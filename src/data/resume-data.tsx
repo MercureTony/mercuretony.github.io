@@ -24,6 +24,7 @@ export const RESUME_DATA = {
   initials: "AU",
   location: "Montreal, Canada, EST", 
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
+  personalwebsite: "https://www.mercuretony.github.io",
   about:
     "Data Scientist and Full Stack Engineer with a robust background in mathematics and computer science", // Customize as needed
   summary:
