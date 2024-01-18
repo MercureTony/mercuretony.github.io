@@ -57,8 +57,8 @@ export const RESUME_DATA = {
     {
       school: "University of Montreal",
       degree: "Bachelor's Degree in Mathematics and Computer Science, Data Science",
-      start: "2018",
-      end: "Present",
+      start: "Present",
+      end: "2024",
       logo: ConsultlyLogo, // Replace with the actual logo if available
     },
   ],
