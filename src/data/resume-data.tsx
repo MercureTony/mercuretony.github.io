@@ -47,7 +47,7 @@ export const RESUME_DATA = {
       },
       {
         name: "X",
-        url: "https://twitter.com/mercure_tony",
+        url: "https://twitter.com/auyende",
         icon: XIcon,
       },
       // Add or remove social icons as needed
