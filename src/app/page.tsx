@@ -25,7 +25,7 @@ export default function Page() {
             <ul className="list-disc list-inside text-stone-800">
               <li className="mb-1">Software engineer I - Data & AI</li>
               <li className="mb-1">Currently <span className="font-bold">open</span> to new opportunities - Preference for remote or hybrid roles</li>
-              <li className="mb-1">Check out my resume <Link className="text-blue-500 hover:text-blue-700" href="/resume">here</Link></li>
+              <li className="mb-1">Check out my resume <Link className="text-decoration-line: underline hover:font-medium" href="/resume">here</Link></li>
               <li className="mb-1">Contact me at <Link className="text-decoration-line: underline hover:font-medium" href="mailto:anthony.m.uyende@gmail.com">anthony.m.uyende@gmail.com</Link></li>
             </ul>
           </div>
