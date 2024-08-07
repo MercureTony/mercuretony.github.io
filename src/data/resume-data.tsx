@@ -29,7 +29,7 @@ export const RESUME_DATA = {
     "Data Scientist and Full Stack Engineer with a robust background in mathematics and computer science", // Customize as needed
   summary:
     "Data Scientist and Full Stack Engineer with a background in math and computer science, focused on using data and technology to create user-friendly, effective solutions. I build applications that make businesses run smoother and always aim to keep learning and uphold ethical standards in my work.", 
-  avatarUrl: "https://media.licdn.com/dms/image/D4E03AQHZUGxVCbOiFQ/profile-displayphoto-shrink_400_400/0/1664367385216?e=1709769600&v=beta&t=dAKbNmWf-tWm9XnfGOae8wkMccdzoFnVnMIKrmxxo94", 
+    avatarUrl: "https://pbs.twimg.com/profile_images/1792282888026689536/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
     tel: "+1 438-866-3006",
@@ -57,8 +57,8 @@ export const RESUME_DATA = {
     {
       school: "University of Montreal",
       degree: "Bachelor's Degree in Mathematics and Computer Science, Data Science",
-      start: "2018",
-      end: "Present",
+      start: "Present",
+      end: "2024",
       logo: ConsultlyLogo, // Replace with the actual logo if available
     },
   ],
@@ -143,7 +143,7 @@ export const RESUME_DATA = {
         href: "https://www.figma.com/file/C82sG81SbTJhzpgaEdZqJz/LumiLivre?type=design&node-id=15-252&mode=design",
       },
       start: "November 2023",
-      end: "Ongoing", // Update the end date if the project is completed
+      end: "May 2024", // Update the end date if the project is completed
     },
     {
       title: "Classification of Hand Signs (ASL)",
