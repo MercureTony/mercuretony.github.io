@@ -53,39 +53,39 @@ export default function Page() {
             )}
             <ul className="list-disc list-inside text-stone-800">
               {[
-                "Software engineer I - Data & AI",
-                <>
+                { id: 1, content: "Software engineer I - Data & AI" },
+                { id: 2, content: <>
                   Currently building <Link href="https://www.boundary-ai.com/" className="inline-flex items-center" target="_blank" rel="noopener noreferrer">
                     <span className="text-decoration-line: underline hover:font-medium">
                       Boundary AI
                     </span>
                     <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
                   </Link> - A startup revolutionizing qualitative feedback analysis using advanced AI and NLP
-                </>,
-                <>Check out my resume <Link className="text-decoration-line: underline hover:font-medium" href="/resume">here</Link></>,
-                <span className="inline-flex items-center">
+                </> },
+                { id: 3, content: <>Check out my resume <Link className="text-decoration-line: underline hover:font-medium" href="/resume">here</Link></> },
+                { id: 4, content: <span className="inline-flex items-center">
                   <Link href="https://cal.com/auyende" className="inline-flex items-center">
                     <span className="text-decoration-line: underline hover:font-medium">
                       Book a meeting
                     </span>
                     <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
                   </Link>
-                </span>,
-                <Link href="mailto:anthony.m.uyende@gmail.com" className="inline-flex items-center">
+                </span> },
+                { id: 5, content: <Link href="mailto:anthony.m.uyende@gmail.com" className="inline-flex items-center">
                   <span className="text-decoration-line: underline hover:font-medium">
                     anthony.m.uyende@gmail.com
                   </span>
                   <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
-                </Link>,
-              ].map((item, index) => (
+                </Link> },
+              ].map((item) => (
                 <motion.li
-                  key={index}
+                  key={item.id}
                   className="mb-1"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: item.id * 0.1 }}
                 >
-                  {item}
+                  {item.content}
                 </motion.li>
               ))}
             </ul>
