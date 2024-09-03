@@ -5,7 +5,6 @@ import { motion, useAnimation } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { RESUME_DATA } from "@/data/resume-data";
 import Link from "next/link";
-import Head from "next/head";
 import { SquareArrowOutUpRight } from "lucide-react";
 
 export default function Page() {
@@ -33,9 +32,6 @@ export default function Page() {
       animate={controls}
       transition={{ duration: 0.5 }}
     >
-      <Head>
-      <script defer src="https://cloud.umami.is/script.js" data-website-id="ea192ba5-ae49-4299-8e5b-3abd3b4dcef5"></script>
-      </Head>
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
