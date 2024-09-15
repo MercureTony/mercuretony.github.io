@@ -64,6 +64,17 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "Boundary AI",
+      link: "https://www.boundary-ai.com/", // Replace with the actual company link if available
+      badges: ["Hybrid"],
+      title: "Founding Team Member",
+      logo: ConsultlyLogo, // Replace with the actual logo if available
+      start: "August 2024",
+      end: "Present",
+      description:
+        "Contributing to the development of AI-driven feedback analysis solutions for businesses, and actively working towards helping the team reach product-market fit. Spearheading the implementation of the 'Survey Series' feature, enabling users to track the evolution of survey responses over time. Collaborating with cross-functional teams to enhance product functionality and user experience. Skills: Python, NLP, Machine Learning, Product Development, Product-Market Fit, Cross-Functional Collaboration",
+    },
+    {
       company: "Unity",
       link: "https://unity.com/", // Replace with the actual company link if available
       badges: ["Remote"], // Update as appropriate
@@ -119,6 +130,10 @@ export const RESUME_DATA = {
     "Node.js",
     "Java",
     "Data Visualization (e.g., D3.js)",
+    "NLP",
+    "Product Development",
+    "Product-Market Fit",
+    "Cross-Functional Collaboration",
     // Add or remove skills as needed
   ],
   projects: [
