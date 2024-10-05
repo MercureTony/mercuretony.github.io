@@ -8,15 +8,15 @@ const AboutPage = () => {
       <section className="text-gray-700">
         <h2 className="text-2xl font-bold mb-4">About Me</h2>
         <p>
-          I'm Anthony Uyende, born in Gabon and raised between Gabon and the USA. I'm a programmer, writer, founder, and investor currently living in Montreal, Canada.
+          I&apos;m Anthony Uyende, born in Gabon and raised between Gabon and the USA. I&apos;m a programmer, writer, founder, and investor currently living in Montreal, Canada.
         </p>
         
         <p className="mt-4">
-          As a Founding Team Member at Boundary AI, I'm contributing to the development of AI-driven feedback analysis solutions for businesses. My work involves leveraging data science and machine learning to create innovative tools that help companies better understand and act on customer feedback.
+          As a Founding Team Member at Boundary AI, I&apos;m contributing to the development of AI-driven feedback analysis solutions for businesses. My work involves leveraging data science and machine learning to create innovative tools that help companies better understand and act on customer feedback.
         </p>
         
         <p className="mt-4">
-          With a background in mathematics and computer science, I'm passionate about using technology to solve complex problems and drive positive change in the world.
+          With a background in mathematics and computer science, I&apos;m passionate about using technology to solve complex problems and drive positive change in the world.
         </p>
       </section>
       

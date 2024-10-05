@@ -28,10 +28,10 @@ const topics: Topic[] = [
         title: "The Lean Startup",
         author: "Eric Ries",
         type: "Book",
-        description: "How today's entrepreneurs use continuous innovation to create radically successful businesses.",
+        description: "How today&apos;s entrepreneurs use continuous innovation to create radically successful businesses.",
       },
       {
-        title: "Paul Graham's Essays",
+        title: "Paul Graham&apos;s Essays",
         author: "Paul Graham",
         type: "Blog",
         description: "Insightful essays on startups, programming, and life by the co-founder of Y Combinator.",
@@ -56,7 +56,7 @@ const topics: Topic[] = [
         url: "https://waitbutwhy.com/",
       },
       {
-        title: "Sam Altman's Blog",
+        title: "Sam Altman&apos;s Blog",
         author: "Sam Altman",
         type: "Blog",
         description: "Insights on technology, startups, and entrepreneurship from the CEO of OpenAI.",
@@ -71,7 +71,7 @@ const topics: Topic[] = [
         title: "Sapiens: A Brief History of Humankind",
         author: "Yuval Noah Harari",
         type: "Book",
-        description: "A groundbreaking narrative of humanity's creation and evolution that explores how biology and history have defined us.",
+        description: "A groundbreaking narrative of humanity&apos;s creation and evolution that explores how biology and history have defined us.",
       },
       {
         title: "Slate Star Codex",
@@ -123,7 +123,7 @@ const topics: Topic[] = [
         title: "The Tao of Charlie Munger",
         author: "David Clark",
         type: "Book",
-        description: "A compilation of quotes from Berkshire Hathaway's Vice Chairman on various aspects of life and business.",
+        description: "A compilation of quotes from Berkshire Hathaway&apos;s Vice Chairman on various aspects of life and business.",
       },
     ]
   },
@@ -152,7 +152,7 @@ const ReadingsPage = () => {
       <h1 className="text-2xl font-bold mb-4">Readings</h1>
       
       <p className="text-gray-700 mb-6">
-        Here's a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, 
+        Here&apos;s a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, 
         organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. 
         I hope you find them as insightful and thought-provoking as I have.
       </p>
