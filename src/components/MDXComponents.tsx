@@ -10,5 +10,13 @@ export const mdxComponents: MDXComponents = {
   ul: ({ children }) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
   ol: ({ children }) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
   li: ({ children }) => <li className="mb-2">{children}</li>,
-  img: (props) => <Image {...props} layout="responsive" loading="lazy" />,
+  img: ({ src, alt, width, height }) => (
+    <Image 
+      src={src as string} 
+      alt={alt as string} 
+      width={width as number || 800} 
+      height={height as number || 600} 
+      layout="responsive"
+    />
+  ),
 }

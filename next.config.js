@@ -7,6 +7,9 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  images: {
+    domains: ['example.com'], // Ajoutez ici les domaines des images que vous utilisez
+  },
 }
 
 module.exports = withMDX(nextConfig)
