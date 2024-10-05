@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
+import Navigation from "@/components/navigation";
 
 import "./globals.css";
 import React from "react";
@@ -26,7 +26,12 @@ export default function RootLayout({
       <head>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="ea192ba5-ae49-4299-8e5b-3abd3b4dcef5"></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="container mx-auto px-4 py-8 flex flex-col items-center">
+          <Navigation />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

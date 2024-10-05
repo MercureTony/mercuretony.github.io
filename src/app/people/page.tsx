@@ -24,6 +24,11 @@ const PeoplePage = () => {
         They range from personal mentors to historical figures whose ideas have shaped my perspective. 
         Each has contributed uniquely to my journey in technology, entrepreneurship, and beyond.
       </p>
+
+      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
+        <p className="font-bold">Note:</p>
+        <p>This list is currently a work in progress and not complete. I will be adding more people and potentially new categories over time. Check back for updates!</p>
+      </div>
       
       <ul className="space-y-2">
         {people.map((person, index) => (

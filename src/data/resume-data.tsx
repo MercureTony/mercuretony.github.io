@@ -1,22 +1,3 @@
-import {
-  AmbitLogo,
-  BarepapersLogo,
-  BimLogo,
-  CDGOLogo,
-  ClevertechLogo,
-  ConsultlyLogo,
-  EvercastLogo,
-  Howdy,
-  JarockiMeLogo,
-  JojoMobileLogo,
-  Minimal,
-  MobileVikingsLogo,
-  MonitoLogo,
-  NSNLogo,
-  ParabolLogo,
-  TastyCloudLogo,
-  YearProgressLogo,
-} from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
@@ -59,7 +40,7 @@ export const RESUME_DATA = {
       degree: "Bachelor's Degree in Mathematics and Computer Science, Data Science",
       start: "Present",
       end: "2024",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: ''  
     },
   ],
   work: [
@@ -68,7 +49,7 @@ export const RESUME_DATA = {
       link: "https://www.boundary-ai.com/", // Replace with the actual company link if available
       badges: ["Hybrid"],
       title: "Founding Team Member",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: '', // Replace with the actual logo if available
       start: "August 2024",
       end: "Present",
       description:
@@ -79,7 +60,7 @@ export const RESUME_DATA = {
       link: "https://unity.com/", // Replace with the actual company link if available
       badges: ["Remote"], // Update as appropriate
       title: "Data Engineer Intern",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: '', // Replace with the actual logo if available
       start: "June 2023",
       end: "August 2023",
       description:
@@ -90,7 +71,7 @@ export const RESUME_DATA = {
       link: "https://www.wealthsimple.com/", // Replace with the actual company link if available
       badges: ["Remote"], // Update as appropriate
       title: "Data Science Intern",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: '', // Replace with the actual logo if available
       start: "January 2023",
       end: "April 2023",
       description:
@@ -101,7 +82,7 @@ export const RESUME_DATA = {
       link: "https://www.shopify.com/", // Replace with the actual company link if available
       badges: ["Remote"], // Update as appropriate
       title: "Data Science Intern",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: '', // Replace with the actual logo if available
       start: "January 2022",
       end: "August 2022",
       description:
@@ -112,7 +93,7 @@ export const RESUME_DATA = {
       link: "https://www.aircanada.com/", // Replace with the actual company link if available
       badges: ["Remote"], // Update as appropriate
       title: "Data Engineer Intern",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+        logo: '', // Replace with the actual logo if available
       start: "June 2021",
       end: "September 2021",
       description:
@@ -152,7 +133,7 @@ export const RESUME_DATA = {
       ],
       description:
         "Developed an AI-driven chat application integrating React with FastAPI and OpenAI's GPT model. Streamlined authentication using JWT and employed D3.js for data visualization. Skills: React, FastAPI, OpenAI GPT, PostgreSQL, WebSockets, JWT, D3.js, Agile Methodologies, Cross-Functional Collaboration",
-      logo: ConsultlyLogo, // Replace with the actual logo if available
+      logo: '', // Replace with the actual logo if available
       link: {
         label: "lumichat.com", // Replace with the actual project link if available
         href: "https://www.figma.com/file/C82sG81SbTJhzpgaEdZqJz/LumiLivre?type=design&node-id=15-252&mode=design",
@@ -165,7 +146,7 @@ export const RESUME_DATA = {
       techStack: ["Machine Learning", "Python", "Data Preprocessing", "Convolutional Neural Networks", "Random Forests"],
       description:
         "Curated a dataset of over 34,000 images of American Sign Language hand signs, ensuring diversity and comprehensiveness. Developed a preprocessing pipeline to clean and standardize data, enhancing model training efficacy. Trained and evaluated machine learning models, including convolutional neural networks and random forests, for accurate classification of hand signs. Skills: Machine Learning, Python, Data Preprocessing, Convolutional Neural Networks, Random Forests, Model Evaluation",
-      logo: ConsultlyLogo, // Replace with the actual project logo if available
+      logo: '', // Replace with the actual project logo if available
       link: {
         label: "Google Colab", // Replace with the actual project link if available
         href: "https://colab.research.google.com/drive/1WStvzSLhQJbaXN0BTw46jvNVsitWswsl", // Replace with the actual project link if available
@@ -178,7 +159,7 @@ export const RESUME_DATA = {
     techStack: ["Python", "SQL", "Pandas", "Data Analysis", "Cohort Analysis", "Visualization"],
     description:
       "Conducted comprehensive cohort analyses to understand merchant adoption and retention rates for the Live View feature. Key findings include a 72.1% adoption rate within the first month post-sale, with a retention plateau of about 20% after four months. Posed critical follow-up questions regarding alternative tools that may offer more value to merchants, suggesting areas for further strategic improvement.",
-    logo: ConsultlyLogo, // Replace with the actual project logo if available
+    logo: '', // Replace with the actual project logo if available
     link: {
       label: "View Analysis", // Replace with the actual project link if available
       href: "https://docs.google.com/presentation/d/1J2HRfOLJb_ycDSfW1oGl6oLFI00LqoUngGkf2IhwNDM/edit?usp=sharing", // Direct link to your project or related presentation
