@@ -11,6 +11,9 @@ const people: Person[] = [
   { name: "Naval Ravikant", url: "https://nav.al/" },
   { name: "Alain Tamno", url: "https://www.amazon.fr/stores/author/B08NYD6N8H/about" },
   { name: "Sam Altman", url: "https://blog.samaltman.com/" },
+  { name: "Paul Washer", url: "https://heartcrymissionary.com/about/mission-and-methodology/staff/paul-washers-bio/" },
+  { name: "Shahvir Sarkary", url: "https://www.shahvirsarkary.com/" },
+  { name: "Immad Akhund", url: "https://x.com/immad" },
   // Add more people here...
 ].sort((a, b) => a.name.localeCompare(b.name)); // This sorts the list alphabetically
 
@@ -19,7 +22,7 @@ const PeoplePage = () => {
     <div className="max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold mb-4">People</h1>
       
-      <p className="text-gray-700 mb-6">
+      <p className="text-stone-900 mb-6">
         This is a collection of individuals who have significantly influenced my thinking, work, or life in general. 
         They range from personal mentors to historical figures whose ideas have shaped my perspective. 
         Each has contributed uniquely to my journey in technology, entrepreneurship, and beyond.

@@ -31,7 +31,7 @@ export default function WritingsPage() {
     <div className="max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold mb-4">Writings</h1>
       
-      <p className="text-gray-700 mb-6">
+      <p className="text-stone-900 mb-6">
         Welcome to my writings page. Here, I share my thoughts, insights, and experiences on various topics 
         that interest me. From personal development to technology trends, these articles reflect my journey 
         of continuous learning and exploration.
@@ -46,7 +46,7 @@ export default function WritingsPage() {
               </Link>
             </h2>
             <p className="text-gray-600 text-sm mb-2">{new Date(post.date).toLocaleDateString()}</p>
-            {post.summary && <p className="text-gray-700">{post.summary}</p>}
+            {post.summary && <p className="text-stone-900">{post.summary}</p>}
           </div>
         ))}
       </div>

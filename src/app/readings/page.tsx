@@ -28,10 +28,10 @@ const topics: Topic[] = [
         title: "The Lean Startup",
         author: "Eric Ries",
         type: "Book",
-        description: "How today&apos;s entrepreneurs use continuous innovation to create radically successful businesses.",
+        description: "How today's entrepreneurs use continuous innovation to create radically successful businesses.",
       },
       {
-        title: "Paul Graham&apos;s Essays",
+        title: "Paul Graham's Essays",
         author: "Paul Graham",
         type: "Blog",
         description: "Insightful essays on startups, programming, and life by the co-founder of Y Combinator.",
@@ -56,7 +56,7 @@ const topics: Topic[] = [
         url: "https://waitbutwhy.com/",
       },
       {
-        title: "Sam Altman&apos;s Blog",
+        title: "Sam Altman's Blog",
         author: "Sam Altman",
         type: "Blog",
         description: "Insights on technology, startups, and entrepreneurship from the CEO of OpenAI.",
@@ -71,7 +71,7 @@ const topics: Topic[] = [
         title: "Sapiens: A Brief History of Humankind",
         author: "Yuval Noah Harari",
         type: "Book",
-        description: "A groundbreaking narrative of humanity&apos;s creation and evolution that explores how biology and history have defined us.",
+        description: "A groundbreaking narrative of humanity's creation and evolution that explores how biology and history have defined us.",
       },
       {
         title: "Slate Star Codex",
@@ -123,7 +123,7 @@ const topics: Topic[] = [
         title: "The Tao of Charlie Munger",
         author: "David Clark",
         type: "Book",
-        description: "A compilation of quotes from Berkshire Hathaway&apos;s Vice Chairman on various aspects of life and business.",
+        description: "A compilation of quotes from Berkshire Hathaway's Vice Chairman on various aspects of life and business.",
       },
     ]
   },
@@ -142,6 +142,52 @@ const topics: Topic[] = [
         type: "Book",
         description: "Examines the spiritual dimension of marriage.",
       },
+      {
+        title: "The Meaning of Marriage",
+        author: "Timothy Keller",
+        type: "Book",
+        description: "Explores the vision of what marriage should be according to the Bible.",
+      },
+    ]
+  },
+  {
+    name: "Faith & Religion",
+    readings: [
+      {
+        title: "Tactics: A Game Plan for Discussing Your Christian Convictions",
+        author: "Gregory Koukl",
+        type: "Book",
+        description: "A practical guide for navigating conversations about faith and beliefs.",
+      },
+      {
+        title: "They Shall Expel Demons",
+        author: "Derek Prince",
+        type: "Book",
+        description: "A comprehensive study on spiritual warfare and deliverance ministry.",
+      },
+      {
+        title: "Seeking Allah, Finding Jesus",
+        author: "Nabeel Qureshi",
+        type: "Book",
+        description: "A personal account of a former Muslim's journey to Christianity.",
+      },
+      {
+        title: "The Bible",
+        author: "Various Authors",
+        type: "Book",
+        description: "The holy scripture of Christianity, containing the Old and New Testaments.",
+      },
+    ]
+  },
+  {
+    name: "Psychology & Society",
+    readings: [
+      {
+        title: "Outliers",
+        author: "Malcolm Gladwell",
+        type: "Book",
+        description: "An examination of the factors that contribute to high levels of success.",
+      },
     ]
   },
 ];
@@ -151,10 +197,11 @@ const ReadingsPage = () => {
     <div className="max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold mb-4">Readings</h1>
       
-      <p className="text-gray-700 mb-6">
+      <p className="text-stone-900 mb-6">
         Here&apos;s a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, 
         organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. 
-        I hope you find them as insightful and thought-provoking as I have.
+        I hope you find them as insightful and thought-provoking as I have. You can find more books I&apos;ve read on my 
+        <a href="https://www.goodreads.com" className="text-blue-600 hover:underline ml-1">Goodreads</a> profile.
       </p>
       
       <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
@@ -193,7 +240,7 @@ const ReadingsPage = () => {
                 <p className="text-gray-600 text-xs mb-1">
                   {reading.author} | {reading.type}
                 </p>
-                <p className="text-gray-700 text-sm">{reading.description}</p>
+                <p className="text-stone-900 text-sm">{reading.description}</p>
               </li>
             ))}
           </ul>
