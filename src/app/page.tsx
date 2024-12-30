@@ -54,7 +54,7 @@ export default function Home() {
           }
         }
       })
-      .catch(() => setCurrentLocation("Somewhere on Earth"));
+      .catch(() => setCurrentLocation(" a place on Earth"));
   }, []);
 
   // Format time difference
