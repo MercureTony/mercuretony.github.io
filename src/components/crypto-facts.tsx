@@ -74,8 +74,8 @@ export function CryptoFacts() {
 
   return (
     <blockquote className="text-sm text-neutral-400">
-      "Did you know that ${INITIAL_INVESTMENT} invested in Bitcoin in {INVESTMENT_YEAR} (${Math.round(bitcoinData.historical).toLocaleString()}/BTC) 
-      would be worth ${Math.round(currentValue).toLocaleString()} today?"
+      Did you know that ${INITIAL_INVESTMENT} invested in Bitcoin in {INVESTMENT_YEAR} (${Math.round(bitcoinData.historical).toLocaleString()}/BTC) 
+      would be worth ${Math.round(currentValue).toLocaleString()} today?
     </blockquote>
   );
 } 
