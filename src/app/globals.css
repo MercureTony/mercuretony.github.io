@@ -64,6 +64,10 @@
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
   }
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
 }
 
 @layer base {
@@ -77,4 +81,18 @@
 
 .print-force-new-page {
   page-break-before: always;
+}
+
+@layer utilities {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-x: hidden;
+    scrollbar-width: none;
+  }
 }

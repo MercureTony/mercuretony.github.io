@@ -28,10 +28,10 @@ export default function WritingsPage() {
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-6 mb-32">
       <h1 className="text-2xl font-bold mb-4">Writings</h1>
       
-      <p className="text-stone-900 mb-6">
+      <p className="mb-6">
         Welcome to my writings page. Here, I share my thoughts, insights, and experiences on various topics 
         that interest me. From personal development to technology trends, these articles reflect my journey 
         of continuous learning and exploration.
@@ -39,14 +39,14 @@ export default function WritingsPage() {
       
       <div className="space-y-8">
         {posts.map((post) => (
-          <div key={post.slug} className="border-b pb-4 last:border-b-0">
+          <div key={post.slug} className="border-b pb-4 last:border-b-0 border-neutral-800 mb-4 last:mb-0">
             <h2 className="text-xl font-semibold mb-2">
-              <Link href={`/writings/${post.slug}`} className="text-blue-600 hover:underline">
+              <Link href={`/writings/${post.slug}`} className="text-neutral-400 hover:underline">
                 {post.title}
               </Link>
             </h2>
             <p className="text-gray-600 text-sm mb-2">{new Date(post.date).toLocaleDateString()}</p>
-            {post.summary && <p className="text-stone-900">{post.summary}</p>}
+            {post.summary && <p>{post.summary}</p>}
           </div>
         ))}
       </div>

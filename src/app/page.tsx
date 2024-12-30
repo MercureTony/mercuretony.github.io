@@ -1,97 +1,230 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import { RESUME_DATA } from "@/data/resume-data";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { SquareArrowOutUpRight, MapPin, Twitter, History } from "lucide-react";
+import { CryptoFacts } from "@/components/crypto-facts";
+import { OpportunitiesSection } from "@/components/opportunities-section";
 
-export default function Page() {
-  const [clickCount, setClickCount] = useState(0);
-  const [showEasterEgg, setShowEasterEgg] = useState(false);
-  const controls = useAnimation();
+interface LocationData {
+  city: string;
+  country: string;
+  timestamp: number;
+}
+
+export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState<string | null>(null);
+  const [lastLocation, setLastLocation] = useState<LocationData | null>(null);
 
   useEffect(() => {
-    controls.start({ opacity: 1, y: 0 });
-  }, [controls]);
+    setMounted(true);
+    
+    // Get last location from localStorage
+    const storedLocation = localStorage.getItem('lastVisit');
+    const lastVisit = storedLocation ? JSON.parse(storedLocation) : null;
+    
+    // Get current location
+    fetch('http://ip-api.com/json/24.48.0.1')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          const currentLoc = `${data.city}, ${data.country}`;
+          setCurrentLocation(currentLoc);
+          
+          // Only update last visit if:
+          // 1. There's no previous visit, or
+          // 2. It's been at least 1 hour since last visit, or
+          // 3. The location is different
+          if (!lastVisit || 
+              Date.now() - lastVisit.timestamp > 3600000 || // 1 hour in milliseconds
+              lastVisit.city !== data.city) {
+            const newLocation: LocationData = {
+              city: data.city,
+              country: data.country,
+              timestamp: Date.now()
+            };
+            localStorage.setItem('lastVisit', JSON.stringify(newLocation));
+          }
+          
+          // Set last location state if it exists and is different
+          if (lastVisit && lastVisit.city !== data.city) {
+            setLastLocation(lastVisit);
+          }
+        }
+      })
+      .catch(() => setCurrentLocation("Somewhere on Earth"));
+  }, []);
 
-  const handleNameClick = () => {
-    setClickCount((prev) => prev + 1);
-    if (clickCount === 4) {
-      setShowEasterEgg(true);
-      setTimeout(() => setShowEasterEgg(false), 3000);
-      setClickCount(0);
-    }
+  // Format time difference
+  const getTimeDifference = (timestamp: number) => {
+    const diff = Date.now() - timestamp;
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    return 'just now';
   };
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.04, 0.62, 0.23, 0.98],
+      }
+    },
+  };
+
+  if (!mounted) return null;
+
   return (
-    <motion.main
-      className="container flex items-start justify-center min-h-screen relative mx-auto scroll-my-12 overflow-auto p-4 mt-2 print:p-12 md:p-16"
-      initial={{ opacity: 0, y: 20 }}
-      animate={controls}
-      transition={{ duration: 0.5 }}
-    >
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="flex-1 space-y-1.5">
-            <motion.h1
-              className="text-4xl font-extrabold text-stone-900 mb-4 cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              onClick={handleNameClick}
+    <main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
+      <motion.div 
+        className="max-w-2xl w-full space-y-8 sm:space-y-10"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div variants={item}>
+          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white to-neutral-400 text-transparent bg-clip-text">
+            Anthony Uyende
+          </h1>
+        </motion.div>
+
+        <motion.ul 
+          className="space-y-4 sm:space-y-6"
+          variants={container}
+        >
+          <motion.li 
+            variants={item}
+            className="text-lg sm:text-xl text-neutral-300"
+          >
+            Software engineer I - Data & AI
+          </motion.li>
+
+          <motion.li 
+            variants={item}
+            className="group"
+          >
+            <span className="text-neutral-300">Currently building </span>
+            <a 
+              href="https://coalesc.xyz" 
+              className="inline-flex items-center gap-1 text-neutral-200 hover:text-white transition-colors duration-200"
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-              {RESUME_DATA.name}
-            </motion.h1>
-            {showEasterEgg && (
+              <span className="border-b border-neutral-700 group-hover:border-neutral-400 transition-colors duration-200">
+                Coalesc
+              </span>
               <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5 }}
+                whileHover={{ scale: 1.1, rotate: 45 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <Badge>Easter Egg Found!</Badge>
+                <SquareArrowOutUpRight className="w-4 h-4" />
               </motion.div>
-            )}
-            <ul className="list-disc list-inside text-stone-800">
-              {[
-                { id: 1, content: "Software engineer I - Data & AI" },
-                { id: 2, content: <>
-                  Currently building <Link href="https://www.boundary-ai.com/" className="inline-flex items-center" target="_blank" rel="noopener noreferrer">
-                    <span className="text-decoration-line: underline hover:font-medium">
-                      Boundary AI
-                    </span>
-                    <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
-                  </Link> - A startup revolutionizing qualitative feedback analysis using advanced AI and NLP
-                </> },
-                { id: 3, content: <>Check out my resume <Link className="text-decoration-line: underline hover:font-medium" href="/resume">here</Link></> },
-                { id: 4, content: <span className="inline-flex items-center">
-                  <Link href="https://cal.com/auyende" className="inline-flex items-center">
-                    <span className="text-decoration-line: underline hover:font-medium">
-                      Book a meeting
-                    </span>
-                    <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </span> },
-                { id: 5, content: <Link href="mailto:anthony.m.uyende@gmail.com" className="inline-flex items-center">
-                  <span className="text-decoration-line: underline hover:font-medium">
-                    anthony.m.uyende@gmail.com
-                  </span>
-                  <SquareArrowOutUpRight className="ml-2 h-4 w-4" />
-                </Link> },
-              ].map((item) => (
-                <motion.li
-                  key={item.id}
-                  className="mb-1"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: item.id * 0.1 }}
-                >
-                  {item.content}
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-    </motion.main>
+            </a>
+            <span className="text-neutral-400"> - A startup building AI agents to help finance teams make better decisions</span>
+          </motion.li>
+
+          <motion.li variants={item}>
+            <Link 
+              href="/resume"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800/50 hover:bg-neutral-800 transition-colors duration-200 text-neutral-200 hover:text-white"
+            >
+              <span>View my resume</span>
+              <motion.div
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                →
+              </motion.div>
+            </Link>
+          </motion.li>
+
+          <motion.li variants={item}>
+            <a 
+              href="/book"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800/50 hover:bg-neutral-800 transition-colors duration-200 text-neutral-200 hover:text-white"
+            >
+              <span>Book a meeting</span>
+              <motion.div
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                →
+              </motion.div>
+            </a>
+          </motion.li>
+
+          <motion.li variants={item}>
+            <a 
+              href="mailto:anthony.m.uyende@gmail.com" 
+              className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
+            >
+              <span className="border-b border-neutral-700 hover:border-neutral-400 transition-colors duration-200">
+                anthony.m.uyende@gmail.com
+              </span>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 45 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <SquareArrowOutUpRight className="w-4 h-4" />
+              </motion.div>
+            </a>
+          </motion.li>
+
+          <motion.div variants={item}>
+            <CryptoFacts />
+          </motion.div>
+
+          <motion.div variants={item} className="mt-12">
+            <OpportunitiesSection />
+          </motion.div>
+        </motion.ul>
+      </motion.div>
+
+      <motion.div 
+        variants={container}
+        className="fixed bottom-20 sm:bottom-24 left-0 right-0 flex flex-col items-center gap-2 text-sm"
+      >
+        {currentLocation && (
+          <motion.div
+            variants={item}
+            className="flex items-center gap-2 text-neutral-500"
+          >
+            <MapPin className="w-4 h-4" />
+            <span>Currently in {currentLocation}</span>
+          </motion.div>
+        )}
+        
+        {lastLocation && (
+          <motion.div
+            variants={item}
+            className="flex items-center gap-2 text-neutral-500"
+          >
+            <History className="w-4 h-4" />
+            <span>Last visited from {lastLocation.city} • {getTimeDifference(lastLocation.timestamp)}</span>
+          </motion.div>
+        )}
+      </motion.div>
+    </main>
   );
 }

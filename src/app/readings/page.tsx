@@ -1,253 +1,132 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Search } from 'lucide-react';
+import { topics } from '@/data/reading-data';
 
-interface Reading {
-  title: string;
-  author: string;
-  type: 'Book' | 'Article' | 'Paper' | 'Blog' | 'Other';
-  description: string;
-  url?: string;
-}
+export default function ReadingsPage() {
+  const [searchQuery, setSearchQuery] = useState('');
 
-interface Topic {
-  name: string;
-  readings: Reading[];
-}
+  // Filter topics and their readings based on search query
+  const filteredTopics = topics.map(topic => ({
+    ...topic,
+    readings: topic.readings.filter(reading => 
+      reading.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      reading.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      reading.description.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })).filter(topic => topic.readings.length > 0);
 
-const topics: Topic[] = [
-  {
-    name: "Entrepreneurship & Startups",
-    readings: [
-      {
-        title: "Zero to One",
-        author: "Peter Thiel",
-        type: "Book",
-        description: "Notes on startups, or how to build the future. This book offers a new way of thinking about innovation.",
-      },
-      {
-        title: "The Lean Startup",
-        author: "Eric Ries",
-        type: "Book",
-        description: "How today's entrepreneurs use continuous innovation to create radically successful businesses.",
-      },
-      {
-        title: "Paul Graham's Essays",
-        author: "Paul Graham",
-        type: "Blog",
-        description: "Insightful essays on startups, programming, and life by the co-founder of Y Combinator.",
-        url: "http://www.paulgraham.com/articles.html",
-      },
-    ]
-  },
-  {
-    name: "Technology & AI",
-    readings: [
-      {
-        title: "Artificial Intelligence: A Modern Approach",
-        author: "Stuart Russell and Peter Norvig",
-        type: "Book",
-        description: "The leading textbook in Artificial Intelligence, used in over 1400 universities in over 125 countries.",
-      },
-      {
-        title: "Wait But Why",
-        author: "Tim Urban",
-        type: "Blog",
-        description: "Long-form, stick-figure-illustrated blog posts about almost everything, including deep dives into AI and technology.",
-        url: "https://waitbutwhy.com/",
-      },
-      {
-        title: "Sam Altman's Blog",
-        author: "Sam Altman",
-        type: "Blog",
-        description: "Insights on technology, startups, and entrepreneurship from the CEO of OpenAI.",
-        url: "https://blog.samaltman.com/",
-      },
-    ]
-  },
-  {
-    name: "Science & History",
-    readings: [
-      {
-        title: "Sapiens: A Brief History of Humankind",
-        author: "Yuval Noah Harari",
-        type: "Book",
-        description: "A groundbreaking narrative of humanity's creation and evolution that explores how biology and history have defined us.",
-      },
-      {
-        title: "Slate Star Codex",
-        author: "Scott Alexander",
-        type: "Blog",
-        description: "A blog about science, medicine, philosophy, politics, and futurism.",
-        url: "https://slatestarcodex.com/",
-      },
-      {
-        title: "Cosmic Queries",
-        author: "Neil deGrasse Tyson",
-        type: "Book",
-        description: "Explores the fundamental questions about our universe and our place within it, covering topics from black holes to the search for alien life.",
-      },
-    ]
-  },
-  {
-    name: "Climate & Environment",
-    readings: [
-      {
-        title: "The Uninhabitable Earth",
-        author: "David Wallace-Wells",
-        type: "Article",
-        description: "A chilling article about the consequences of climate change, originally published in New York Magazine.",
-      },
-    ]
-  },
-  {
-    name: "Finance & Economics",
-    readings: [
-      {
-        title: "Carbon Finance: The Financial Implications of Climate Change",
-        author: "Sonia Labatt and Rodney R. White",
-        type: "Book",
-        description: "Explores the financial implications of climate change and the emerging market for carbon credits.",
-      },
-    ]
-  },
-  {
-    name: "Leadership & Personal Development",
-    readings: [
-      {
-        title: "Start with Why",
-        author: "Simon Sinek",
-        type: "Book",
-        description: "Explores how leaders can inspire cooperation, trust and change.",
-      },
-      {
-        title: "The Tao of Charlie Munger",
-        author: "David Clark",
-        type: "Book",
-        description: "A compilation of quotes from Berkshire Hathaway's Vice Chairman on various aspects of life and business.",
-      },
-    ]
-  },
-  {
-    name: "Relationships",
-    readings: [
-      {
-        title: "Bringing Out the Best in Your Wife",
-        author: "H. Norman Wright",
-        type: "Book",
-        description: "Offers advice on strengthening marital relationships.",
-      },
-      {
-        title: "Sacred Marriage",
-        author: "Gary Thomas",
-        type: "Book",
-        description: "Examines the spiritual dimension of marriage.",
-      },
-      {
-        title: "The Meaning of Marriage",
-        author: "Timothy Keller",
-        type: "Book",
-        description: "Explores the vision of what marriage should be according to the Bible.",
-      },
-    ]
-  },
-  {
-    name: "Faith & Religion",
-    readings: [
-      {
-        title: "Tactics: A Game Plan for Discussing Your Christian Convictions",
-        author: "Gregory Koukl",
-        type: "Book",
-        description: "A practical guide for navigating conversations about faith and beliefs.",
-      },
-      {
-        title: "They Shall Expel Demons",
-        author: "Derek Prince",
-        type: "Book",
-        description: "A comprehensive study on spiritual warfare and deliverance ministry.",
-      },
-      {
-        title: "Seeking Allah, Finding Jesus",
-        author: "Nabeel Qureshi",
-        type: "Book",
-        description: "A personal account of a former Muslim's journey to Christianity.",
-      },
-      {
-        title: "The Bible",
-        author: "Various Authors",
-        type: "Book",
-        description: "The holy scripture of Christianity, containing the Old and New Testaments.",
-      },
-    ]
-  },
-  {
-    name: "Psychology & Society",
-    readings: [
-      {
-        title: "Outliers",
-        author: "Malcolm Gladwell",
-        type: "Book",
-        description: "An examination of the factors that contribute to high levels of success.",
-      },
-    ]
-  },
-];
-
-const ReadingsPage = () => {
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-6 mb-32">
       <h1 className="text-2xl font-bold mb-4">Readings</h1>
       
-      <p className="text-stone-900 mb-6">
+      <p className="mb-6">
         Here&apos;s a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, 
-        organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. 
-        I hope you find them as insightful and thought-provoking as I have. You can find more books I&apos;ve read on my 
-        <a href="https://www.goodreads.com" className="text-blue-600 hover:underline ml-1">Goodreads</a> profile.
+        organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. You can find more books I&apos;ve read on my 
+        <a href="https://www.goodreads.com" className="text-neutral-400 hover:underline ml-1">Goodreads</a> profile.
       </p>
       
-      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
-        <p className="font-bold">Note:</p>
-        <p>This list is currently a work in progress and not complete. I will be adding more readings and potentially new categories over time. Check back for updates!</p>
+      <div className="bg-yellow-900/20 border-l-4 border-yellow-600 text-yellow-200 p-4 mb-6" role="alert">
+        <p className="font-bold mb-1">Note:</p>
+        <p className="text-yellow-300/80">This list is currently a work in progress and not complete. I will be adding more readings and potentially new categories over time. Check back for updates!</p>
       </div>
 
-      <nav className="mb-8">
-        <h2 className="text-xl font-bold mb-2">Table of Contents</h2>
-        <ul className="list-disc list-inside">
-          {topics.map((topic, index) => (
-            <li key={index}>
-              <Link href={`#${topic.name.toLowerCase().replace(/\s+/g, '-')}`} className="text-blue-600 hover:underline">
-                {topic.name}
-              </Link>
-            </li>
+      {/* Search Bar */}
+      <div className="relative mb-8">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <Search className="h-5 w-5 text-neutral-500" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search by title, author, or description..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-4 py-2 bg-neutral-900/50 border border-neutral-800 
+                     rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-700 
+                     text-neutral-200 placeholder-neutral-500"
+        />
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery('')}
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-neutral-500 hover:text-neutral-300"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
+      {/* Results count when searching */}
+      {searchQuery && (
+        <p className="text-sm text-neutral-500 mb-4">
+          Found {filteredTopics.reduce((acc, topic) => acc + topic.readings.length, 0)} results
+        </p>
+      )}
+
+      {filteredTopics.length === 0 ? (
+        <div className="text-center py-10 text-neutral-500">
+          No readings found matching your search.
+        </div>
+      ) : (
+        <>
+          <nav className="mb-8">
+            <h2 className="text-xl font-bold mb-2">Table of Contents</h2>
+            <ul className="list-disc list-inside">
+              {filteredTopics.map((topic, index) => (
+                <li key={index}>
+                  <Link href={`#${topic.name.toLowerCase().replace(/\s+/g, '-')}`} className="text-neutral-400 hover:underline">
+                    {topic.name} ({topic.readings.length})
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          
+          {filteredTopics.map((topic, topicIndex) => (
+            <section key={topicIndex} id={topic.name.toLowerCase().replace(/\s+/g, '-')} className="mb-8">
+              <h2 className="text-xl font-bold mb-4">{topic.name}</h2>
+              <ul className="space-y-4 list-none">
+                {topic.readings.map((reading, readingIndex) => (
+                  <li 
+                    key={readingIndex} 
+                    className={`border-b border-neutral-800 pb-4 last:border-b-0 mb-4 last:mb-0
+                      ${reading.isSpecial ? 'relative' : ''}`}
+                  >
+                    <h3 className={`text-base font-semibold mb-1 
+                      ${reading.isSpecial ? 
+                        'relative inline-block after:absolute after:bottom-0 after:left-0 after:w-full after:h-[30%] after:bg-yellow-500/20 after:-z-10' : 
+                        ''
+                      }`}>
+                      {reading.url ? (
+                        <a 
+                          href={reading.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className={`${reading.isSpecial ? 
+                            'text-yellow-200 hover:text-yellow-300' : 
+                            'text-neutral-400 hover:underline'
+                          }`}
+                        >
+                          {reading.title}
+                        </a>
+                      ) : (
+                        <span className={reading.isSpecial ? 'text-yellow-200' : ''}>
+                          {reading.title}
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-neutral-500 text-sm mb-2">
+                      {reading.author} | {reading.type}
+                    </p>
+                    <p className="text-sm text-neutral-400">{reading.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
-      </nav>
-      
-      {topics.map((topic, topicIndex) => (
-        <section key={topicIndex} id={topic.name.toLowerCase().replace(/\s+/g, '-')} className="mb-8">
-          <h2 className="text-xl font-bold mb-4">{topic.name}</h2>
-          <ul className="space-y-4 list-none">
-            {topic.readings.map((reading, readingIndex) => (
-              <li key={readingIndex} className="border-b pb-3 last:border-b-0">
-                <h3 className="text-base font-semibold mb-1">
-                  {reading.url ? (
-                    <a href={reading.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                      {reading.title}
-                    </a>
-                  ) : (
-                    reading.title
-                  )}
-                </h3>
-                <p className="text-gray-600 text-xs mb-1">
-                  {reading.author} | {reading.type}
-                </p>
-                <p className="text-stone-900 text-sm">{reading.description}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+        </>
+      )}
     </div>
   );
-};
-
-export default ReadingsPage;
+}

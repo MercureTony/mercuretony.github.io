@@ -4,10 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon, Mail, Phone, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+
+const iconClasses = "w-4 h-4 text-neutral-400 hover:text-neutral-200 transition-colors";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -17,16 +19,16 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
+      <section className="mx-auto w-full max-w-2xl space-y-8 bg-[#171717] print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
-            <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
+            <h1 className="text-2xl font-bold text-neutral-200">{RESUME_DATA.name}</h1>
+            <p className="max-w-md text-pretty font-mono text-sm text-neutral-400">
               {RESUME_DATA.about}
             </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
+            <p className="max-w-md items-center text-pretty font-mono text-xs text-neutral-400">
               <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
+                className="inline-flex gap-x-1.5 align-baseline leading-none hover:text-neutral-300"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
               >
@@ -34,46 +36,39 @@ export default function Page() {
                 {RESUME_DATA.location}
               </a>
             </p>
-            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+            <div className="flex gap-x-1 pt-1 font-mono text-sm text-neutral-400 print:hidden">
               {RESUME_DATA.contact.email ? (
-                <Button
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
+                <a 
+                  href={`mailto:${RESUME_DATA.contact.email}`}
+                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  aria-label="Email"
                 >
-                  <a href={`mailto:${RESUME_DATA.contact.email}`}>
-                    <MailIcon className="h-4 w-4" />
-                  </a>
-                </Button>
+                  <Mail className={iconClasses} />
+                </a>
               ) : null}
               {RESUME_DATA.contact.tel ? (
-                <Button
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
+                <a 
+                  href={`tel:${RESUME_DATA.contact.tel}`}
+                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  aria-label="Phone"
                 >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                    <PhoneIcon className="h-4 w-4" />
-                  </a>
-                </Button>
+                  <Phone className={iconClasses} />
+                </a>
               ) : null}
               {RESUME_DATA.contact.social.map((social) => (
-                <Button
+                <a
                   key={social.name}
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  aria-label={social.name}
                 >
-                  <a href={social.url}>
-                    <social.icon className="h-4 w-4" />
-                  </a>
-                </Button>
+                  <social.icon className={iconClasses} />
+                </a>
               ))}
             </div>
-            <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
+            <div className="hidden flex-col gap-x-1 font-mono text-sm text-neutral-400 print:flex">
               {RESUME_DATA.contact.email ? (
                 <a href={`mailto:${RESUME_DATA.contact.email}`}>
                   <span className="underline">{RESUME_DATA.contact.email}</span>
@@ -93,20 +88,20 @@ export default function Page() {
           </Avatar>
         </div>
         <Section>
-          <h2 className="text-xl font-bold">About</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
+          <h2 className="text-xl font-bold text-neutral-200">About</h2>
+          <p className="text-pretty font-mono text-sm text-neutral-400">
             {RESUME_DATA.summary}
           </p>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Work Experience</h2>
+          <h2 className="text-xl font-bold text-neutral-200">Work Experience</h2>
           {RESUME_DATA.work.map((work) => {
             return (
-              <Card key={work.company}>
+              <Card key={work.company} className="bg-neutral-900/50 border-neutral-800">
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link}>
+                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none text-neutral-200">
+                      <a className="hover:text-neutral-300" href={work.link}>
                         {work.company}
                       </a>
 
@@ -114,7 +109,7 @@ export default function Page() {
                         {work.badges.map((badge) => (
                           <Badge
                             variant="secondary"
-                            className="align-middle text-xs"
+                            className="align-middle text-xs bg-neutral-800 text-neutral-300"
                             key={badge}
                           >
                             {badge}
@@ -122,16 +117,16 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-neutral-400">
                       {work.start} - {work.end}
                     </div>
                   </div>
 
-                  <h4 className="font-mono text-sm leading-none">
+                  <h4 className="font-mono text-sm leading-none text-neutral-400">
                     {work.title}
                   </h4>
                 </CardHeader>
-                <CardContent className="mt-2 text-xs">
+                <CardContent className="mt-2 text-xs text-neutral-400">
                   {work.description}
                 </CardContent>
               </Card>
@@ -139,27 +134,29 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Education</h2>
+          <h2 className="text-xl font-bold text-neutral-200">Education</h2>
           {RESUME_DATA.education.map((education) => {
             return (
-              <Card key={education.school}>
+              <Card key={education.school} className="bg-neutral-900/50 border-neutral-800">
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
+                    <h3 className="font-semibold leading-none text-neutral-200">
                       {education.school}
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-neutral-400">
                       {education.start} - {education.end}
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="mt-2">{education.degree}</CardContent>
+                <CardContent className="mt-2 text-neutral-400">
+                  {education.degree}
+                </CardContent>
               </Card>
             );
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
+          <h2 className="text-xl font-bold text-neutral-200">Skills</h2>
           <div className="flex flex-wrap gap-1">
             {RESUME_DATA.skills.map((skill) => {
               return <Badge key={skill}>{skill}</Badge>;
@@ -168,7 +165,7 @@ export default function Page() {
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
+          <h2 className="text-xl font-bold text-neutral-200">Projects</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.projects.map((project) => {
               return (
@@ -185,7 +182,7 @@ export default function Page() {
         </Section>
       </section>
 
-      <CommandMenu
+      {/* <CommandMenu
         links={[
           {
             url: RESUME_DATA.personalWebsiteUrl,
@@ -196,7 +193,7 @@ export default function Page() {
             title: socialMediaLink.name,
           })),
         ]}
-      />
+      /> */}
     </main>
   );
 }

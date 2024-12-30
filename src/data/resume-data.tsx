@@ -5,7 +5,7 @@ export const RESUME_DATA = {
   initials: "AU",
   location: "Montreal, Canada, EST", 
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
-  personalWebsiteUrl: "https://www.mercuretony.github.io",
+  personalWebsiteUrl: "https://anthonyuyende.me/",
   about:
     "Data Scientist and Full Stack Engineer with a robust background in mathematics and computer science", // Customize as needed
   summary:
@@ -45,20 +45,31 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "Coalesc",
+      link: "https://coalesc.xyz/", // Replace with the actual company link if available
+      badges: ["Remote"],
+      title: "Founder",
+      logo: '', // Replace with the actual logo if available
+      start: "November 2024",
+      end: "Present",
+      description:
+        "Building AI agents that assist financial teams with their operations.",
+    },
+    {
       company: "Boundary AI",
       link: "https://www.boundary-ai.com/", // Replace with the actual company link if available
       badges: ["Hybrid"],
       title: "Founding Team Member",
       logo: '', // Replace with the actual logo if available
       start: "August 2024",
-      end: "Present",
+      end: "November 2024",
       description:
         "Contributing to the development of AI-driven feedback analysis solutions for businesses, and actively working towards helping the team reach product-market fit. Spearheading the implementation of the 'Survey Series' feature, enabling users to track the evolution of survey responses over time. Collaborating with cross-functional teams to enhance product functionality and user experience. Skills: Python, NLP, Machine Learning, Product Development, Product-Market Fit, Cross-Functional Collaboration",
     },
     {
       company: "Unity",
       link: "https://unity.com/", // Replace with the actual company link if available
-      badges: ["Remote"], // Update as appropriate
+      badges: ["Hybrid"], // Update as appropriate
       title: "Data Engineer Intern",
       logo: '', // Replace with the actual logo if available
       start: "June 2023",
@@ -91,7 +102,7 @@ export const RESUME_DATA = {
     {
       company: "Trans-Canada Capital (Air Canada)",
       link: "https://www.aircanada.com/", // Replace with the actual company link if available
-      badges: ["Remote"], // Update as appropriate
+      badges: ["Hybrid"], // Update as appropriate
       title: "Data Engineer Intern",
         logo: '', // Replace with the actual logo if available
       start: "June 2021",
