@@ -6,6 +6,8 @@ import Link from "next/link";
 import { SquareArrowOutUpRight, MapPin, Twitter, History } from "lucide-react";
 import { CryptoFacts } from "@/components/crypto-facts";
 import { OpportunitiesSection } from "@/components/opportunities-section";
+import { CurrentlyReading } from "@/components/currently-reading";
+import { Misc } from "@/components/misc";
 
 interface LocationData {
   city: string;
@@ -192,7 +194,7 @@ export default function Home() {
           </motion.li>
 
           <motion.div variants={item}>
-            <CryptoFacts />
+            <Misc />
           </motion.div>
 
           <motion.div variants={item} className="mt-12">
