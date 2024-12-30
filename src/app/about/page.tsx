@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const AboutPage = () => {
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-6 mb-32">
       <section>
         <h2 className="text-2xl font-bold mb-4">About Me</h2>
         <p>
