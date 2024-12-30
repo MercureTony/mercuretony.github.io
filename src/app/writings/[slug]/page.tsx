@@ -20,8 +20,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const { content, data } = matter(fileContents)
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      <Link href="/writings" className="text-blue-600 hover:underline mb-4 inline-block">
+    <div className="max-w-2xl mx-auto space-y-6 mb-34">
+      <Link href="/writings" className="text-neutral-300 hover:underline mb-4 inline-block">
         ← Back to Writings
       </Link>
       
