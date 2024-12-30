@@ -203,7 +203,7 @@ export default function Home() {
 
       <motion.div 
         variants={container}
-        className="fixed bottom-20 sm:bottom-24 left-0 right-0 flex flex-col items-center gap-2 text-sm"
+        className="mt-auto pt-20 pb-32 flex flex-col items-center gap-2 text-sm"
       >
         {currentLocation && (
           <motion.div
