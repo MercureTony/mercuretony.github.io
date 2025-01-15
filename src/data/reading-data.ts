@@ -146,6 +146,20 @@ export interface Reading {
           type: "Book",
           description: "Guide sur la délivrance spirituelle et la rupture des liens négatifs.",
         },
+        {
+          title: "More Than a Carpenter",
+          author: "Josh McDowell",
+          type: "Book",
+          description: "A compelling exploration of Jesus's claim to be more than a carpenter, examining historical evidence and personal testimonies.",
+          url: "https://www.goodreads.com/book/show/68065.More_Than_a_Carpenter"
+        },
+        {
+          title: "The Quest for Male Identity: Building men after God's heart",
+          author: "Moïse Mahara",
+          type: "Book",
+          description: "A spiritual guide exploring biblical masculinity and how to develop a God-centered male identity.",
+          url: "https://www.amazon.com/Quest-Male-Identity-Building-after/dp/B0BTLG6DTX"
+        },
       ]
     },
     {
