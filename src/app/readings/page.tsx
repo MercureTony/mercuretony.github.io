@@ -105,13 +105,13 @@ export default function ReadingsPage() {
                           rel="noopener noreferrer" 
                           className={`${reading.isSpecial ? 
                             'text-yellow-200 hover:text-yellow-300' : 
-                            'text-neutral-400 hover:underline'
+                            'text-white hover:text-neutral-200 hover:underline'
                           }`}
                         >
                           {reading.title}
                         </a>
                       ) : (
-                        <span className={reading.isSpecial ? 'text-yellow-200' : ''}>
+                        <span className={reading.isSpecial ? 'text-yellow-200' : 'text-white'}>
                           {reading.title}
                         </span>
                       )}
@@ -119,7 +119,9 @@ export default function ReadingsPage() {
                     <p className="text-neutral-500 text-sm mb-2">
                       {reading.author} | {reading.type}
                     </p>
-                    <p className="text-sm text-neutral-400">{reading.description}</p>
+                    <p className="text-sm text-neutral-400">
+                      {reading.description}
+                    </p>
                   </li>
                 ))}
               </ul>
