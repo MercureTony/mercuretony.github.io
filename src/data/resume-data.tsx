@@ -130,6 +130,29 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
+      title: "Credit Risk ML System with Production Monitoring",
+      techStack: [
+        "Data Science",
+        "Python",
+        "DBT",
+        "Looker",
+        "XGBoost",
+        "SHAP",
+        "PostgreSQL",
+        "Risk Analytics",
+        "Production Monitoring",
+      ],
+      description:
+        "Developed a complete credit scoring system using Home Credit dataset (307K entries). Implemented advanced feature engineering for risk assessment, created DBT pipelines for data transformation, and designed Looker dashboards for real-time monitoring. Skills: Python, DBT, Looker, Feature Engineering, Risk Analytics, Model Monitoring, XGBoost, SHAP Values, Business Intelligence",
+      logo: '', // À remplacer avec un logo si disponible
+      link: {
+        label: "github.com/mercuretony/credit-risk-system", // À remplacer avec votre lien GitHub
+        href: "https://github.com/mercuretony/credit-risk-system",
+      },
+      start: "Mars 2024",
+      end: "En cours",
+    },
+    {
       title: "LumiChat - An Interactive Chat Application",
       techStack: [
         "Side Project",
