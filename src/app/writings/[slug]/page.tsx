@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { mdxComponents } from '@/components/MDXComponents'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), 'src/content/articles')
@@ -12,6 +13,17 @@ export async function generateStaticParams() {
   return fileNames.map((fileName) => ({
     slug: fileName.replace(/\.mdx$/, ''),
   }))
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const filePath = path.join(process.cwd(), 'src/content/articles', `${params.slug}.mdx`)
+  const fileContents = fs.readFileSync(filePath, 'utf8')
+  const { data } = matter(fileContents)
+  
+  return {
+    title: `${data.title} | Anthony Uyende`,
+    description: data.summary || "An article by Anthony Uyende",
+  }
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
@@ -29,7 +41,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       
       <p className="text-gray-600 text-sm mb-6">Published on {new Date(data.date).toLocaleDateString()}</p>
       
-      <article className="prose lg:prose-xl">
+      <article className="prose lg:prose-xl pb-16 prose-img:rounded-lg prose-img:shadow-lg prose-img:border prose-img:border-neutral-200 prose-img:mb-4">
         <MDXRemote source={content} components={mdxComponents} />
       </article>
     </div>
