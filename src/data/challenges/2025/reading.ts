@@ -83,7 +83,17 @@ export const reading2025: Book[] = [
     coverUrl: "https://images-na.ssl-images-amazon.com/images/P/0857197681.01.L.jpg",
     amazonUrl: "https://www.amazon.ca/-/fr/Psychology-Money-Timeless-lessons-happiness/dp/0857197681",
     dateStarted: "2025-01-15",
-    status: "reading",
+    dateFinished: "2025-01-29",
+    status: "completed",
     weekNumber: 5
+  },
+  {
+    title: "Rencontres Dynamiques Quotidiennes avec Dieu",
+    author: "Zacharias Tanee Fomum",
+    coverUrl: "https://images-na.ssl-images-amazon.com/images/P/B00M1WSJB2.01.L.jpg",
+    amazonUrl: "https://www.amazon.ca/-/fr/Zacharias-Tanee-Fomum-ebook/dp/B00M1WSJB2",
+    dateStarted: "2025-01-29",
+    status: "reading",
+    weekNumber: 6
   }
 ]; 
