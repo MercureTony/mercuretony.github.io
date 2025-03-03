@@ -11,20 +11,18 @@ export function OpportunitiesSection() {
 				</h3>
 				<p className="text-sm text-neutral-400">
 					I'm looking for SMEs (50-250 employees) to try our early beta product.
-					If you're interested in being interviewed, please reach out to me.
+					If you're interested in being interviewed, please reach out to me on
+					my email.
 				</p>
 				<div className="flex gap-2 pt-2">
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						startup
+						small business
 					</span>
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
 						AI
 					</span>
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
 						fintech
-					</span>
-					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						co-founder
 					</span>
 				</div>
 			</div>
