@@ -11,7 +11,7 @@ const AboutPage = () => {
           I&apos;m Anthony Uyende, born in Gabon and raised between Gabon and the USA. I&apos;m a programmer, writer, founder, and investor currently living in Montreal, Canada.
         </p>
         
-        <p>
+                <p className="mt-4">
           I&apos;m currently building <a href="https://coalesc.xyz/" target="_blank" rel="noopener noreferrer">Coalesc</a>, an AI-driven platform for financial audits. We&apos;re leveraging intelligent AI agents to transform how auditors work by automating document vouching—a critical but manual process where auditors spend 8-16 hours per client verifying transactions against supporting documents. Our AI agents autonomously process, analyze, and match documents with high accuracy, reducing this time-consuming task from days to minutes and enabling auditors to focus on what matters most: providing strategic insights and ensuring financial accuracy.
         </p>
         
