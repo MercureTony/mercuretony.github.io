@@ -139,8 +139,7 @@ export default function Home() {
 						</a>
 						<span className="text-neutral-400">
 							{" "}
-							- A startup building AI for financial audits to enable faster and
-							more accurate audits
+							- A startup building AI agents to capture, secure, and organize finance documents.
 						</span>
 					</motion.li>
 
