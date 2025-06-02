@@ -48,7 +48,7 @@ export const RESUME_DATA = {
       company: "1Password",
       link: "https://1password.com/", 
       badges: ["Remote"], 
-      title: "Data Intern",
+      title: "Data",
       logo: '', // Add the actual logo path if available
       start: "March 2025",
       end: "Present",
