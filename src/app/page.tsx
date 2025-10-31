@@ -139,7 +139,7 @@ export default function Home() {
 						</a>
 						<span className="text-neutral-400">
 							{" "}
-							- A startup building AI agents to capture, secure, and organize finance documents.
+							- The AI workspace for accountants.
 						</span>
 					</motion.li>
 

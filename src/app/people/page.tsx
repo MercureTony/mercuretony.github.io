@@ -7,14 +7,16 @@ interface Person {
 }
 
 const people: Person[] = [
-  { name: "Paul Graham", url: "https://paulgraham.com/" },
-  { name: "Naval Ravikant", url: "https://nav.al/" },
   { name: "Alain Tamno", url: "https://www.amazon.fr/stores/author/B08NYD6N8H/about" },
-  { name: "Sam Altman", url: "https://blog.samaltman.com/" },
-  { name: "Paul Washer", url: "https://heartcrymissionary.com/about/mission-and-methodology/staff/paul-washers-bio/" },
-  { name: "Shahvir Sarkary", url: "https://www.shahvirsarkary.com/" },
   { name: "Immad Akhund", url: "https://x.com/immad" },
+  { name: "Jesus Christ", url: "https://www.bible.com/" },
+  { name: "Lea Nzogho", url: "https://www.linkedin.com/in/lea-nzogho-518ab42b6/?originalSubdomain=ga" },
+  { name: "Naval Ravikant", url: "https://nav.al/" },
+  { name: "Paul Graham", url: "https://paulgraham.com/" },
+  { name: "Paul Washer", url: "https://heartcrymissionary.com/about/mission-and-methodology/staff/paul-washers-bio/" },
+  { name: "Sam Altman", url: "https://blog.samaltman.com/" },
   { name: "Santosh Passoubady", url: "https://www.google.com/search?q=santosh+passoubady&client=ms-android-rogers-ca-revc&sca_esv=3035149b170ff626&sxsrf=AE3TifPLXVmb-e3GaN1RE00Z5gQJQsylXg%3A1749862790793&ei=hslMaOuYMM2pptQP9NKTyQc&oq=santosh+passoubady&gs_lp=EhNtb2JpbGUtZ3dzLXdpei1zZXJwIhJzYW50b3NoIHBhc3NvdWJhZHkyBBAjGCcyChAjGIAEGCcYigUyBRAhGKABMgUQABjvBUj5E1C7CVjYEXAEeACQAQKYAawBoAGcB6oBAzAuN7gBA8gBAPgBAZgCBqACmALCAggQABiwAxjvBcICCxAAGIAEGLADGKIEwgIFECEYnwWYAwCIBgGQBgSSBwM0LjKgB4sbsgcDMC4yuAeLAsIHBTAuMy4zyAcT&sclient=mobile-gws-wiz-serp" },
+  { name: "Shahvir Sarkary", url: "https://www.shahvirsarkary.com/" },
   // Add more people here...
 ].sort((a, b) => a.name.localeCompare(b.name)); // This sorts the list alphabetically
 

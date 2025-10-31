@@ -118,7 +118,19 @@ export const reading2025: Book[] = [
 		amazonUrl:
 			"https://www.amazon.ca/Pattern-Breakers-Start-Ups-Change-Future/dp/1541704355/",
 		dateStarted: "2025-02-10",
-		status: "reading",
+		dateFinished: "2025-10-30",
+		status: "completed",
 		weekNumber: 7,
+	},
+	{
+		title: "The Infinite Game",
+		author: "Simon Sinek",
+		coverUrl:
+			"https://images-na.ssl-images-amazon.com/images/P/073521350X.01.L.jpg",
+		amazonUrl:
+			"https://www.amazon.ca/Infinite-Game-Simon-Sinek/dp/073521350X",
+		dateStarted: "2025-10-31",
+		status: "reading",
+		weekNumber: 44,
 	},
 ];
