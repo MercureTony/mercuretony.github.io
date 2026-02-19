@@ -45,6 +45,17 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "Coalesc",
+      link: "https://coalesc.ai/",
+      badges: ["Full-time"],
+      title: "Founder & CEO",
+      logo: "",
+      start: "November 2024",
+      end: "Present",
+      description:
+        "At Coalesc, we're building the AI intake infrastructure for accounting firms. Every month, firms receive documents from everywhere — email attachments, scans, photos, shared drives, walk-ins. Before any accounting starts, someone has to open every file, split PDFs, rename documents, classify by type, match them to the right client, and chase what's missing. We automate that entire upstream workflow. Coalesc ingests documents from any channel, structures them, detects duplicates and gaps, and prepares a clean, audit-ready workspace before they ever touch DT Max, QuickBooks, or audit software. We're starting with tax and bookkeeping workflows, and expanding toward becoming the document operating layer for modern accounting firms. I lead product, engineering, sales, and user discovery — working directly with firms to turn chaotic document flows into structured, reliable systems.",
+    },
+    {
       company: "1Password",
       link: "https://1password.com/",
       badges: ["Remote"],
@@ -54,17 +65,6 @@ export const RESUME_DATA = {
       end: "January 2026",
       description:
         "Contributing to the Data Engineering team by optimizing data ingestion pipelines using Meltano, enhancing internal analytics workflows, and supporting compliance-related data tasks. Actively involved in maintaining ETL processes, improving data visibility in Looker, and collaborating cross-functionally to streamline reporting for business stakeholders. Skills: Python, Meltano, dbt, SQL, Looker, GitLab, AWS CLI, Salesforce data modeling.",
-    },
-    {
-      company: "Coalesc",
-      link: "https://coalesc.ai/",
-      badges: ["Full-time"],
-      title: "Founder & CEO",
-      logo: "",
-      start: "November 2024",
-      end: "Present",
-      description:
-        "Building the document infrastructure layer for accounting. Every workflow — bookkeeping, tax, audit, compliance — starts with chaotic documents that someone has to make usable. Coalesc owns that layer: AI-powered intake, PDF splitting, classification, and routing. 3 design partners on live client files. 11+ firms in pipeline through word-of-mouth alone. Funded. Solo founder shipping full-stack (Next.js, FastAPI, Supabase) with LLM-powered document processing. Skills: AI/ML, Full-Stack Engineering, Product Strategy, Customer Discovery, Fundraising",
     },
     {
       company: "Boundary AI",
