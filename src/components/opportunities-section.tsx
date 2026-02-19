@@ -7,22 +7,24 @@ export function OpportunitiesSection() {
 
 			<div className="space-y-2">
 				<h3 className="text-neutral-200">
-					Looking for accounting and bookkeeping firms
+					Design partners for Coalesc
 				</h3>
 				<p className="text-sm text-neutral-400">
-					I&apos;m looking for accounting and bookkeeping firms to partner with.
-					If you&apos;re interested in learning more about how we can help automate
-					your document workflows, please reach out to me.
+					Partner-led accounting firms, 5–50 employees, managing 500–2,500+
+					client files per year. If your team burns hours splitting PDFs,
+					chasing missing receipts, and sorting documents before bookkeeping,
+					tax, or audit work can even start — we should talk. We work on-site
+					alongside your staff during peak season.
 				</p>
 				<div className="flex gap-2 pt-2">
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						accounting
+						5–50 employees
 					</span>
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						AI automation
+						500+ client files/year
 					</span>
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						fintech
+						document chaos
 					</span>
 				</div>
 			</div>

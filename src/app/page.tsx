@@ -122,7 +122,7 @@ export default function Home() {
 					<motion.li variants={item} className="group">
 						<span className="text-neutral-300">Currently building </span>
 						<a
-							href="https://coalesc.xyz"
+							href="https://coalesc.ai"
 							className="inline-flex items-center gap-1 text-neutral-200 hover:text-white transition-colors duration-200"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -139,7 +139,7 @@ export default function Home() {
 						</a>
 						<span className="text-neutral-400">
 							{" "}
-							- The AI workspace for accountants.
+							- AI document infrastructure for accounting.
 						</span>
 					</motion.li>
 

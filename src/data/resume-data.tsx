@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Data Scientist and Full Stack Engineer with a robust background in mathematics and computer science", // Customize as needed
+    "Founder of Coalesc — AI document infrastructure for accounting.",
   summary:
-    "Data Scientist and Full Stack Engineer with a background in math and computer science, focused on using data and technology to create user-friendly, effective solutions. I build applications that make businesses run smoother and always aim to keep learning and uphold ethical standards in my work.", 
+    "Building Coalesc, the document infrastructure layer that powers accounting workflows — from bookkeeping to tax to audit. Every accounting workflow starts with the same problem: chaotic documents. We own that layer. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.", 
     avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
@@ -46,25 +46,25 @@ export const RESUME_DATA = {
   work: [
     {
       company: "1Password",
-      link: "https://1password.com/", 
-      badges: ["Remote"], 
-      title: "Data",
-      logo: '', // Add the actual logo path if available
+      link: "https://1password.com/",
+      badges: ["Remote"],
+      title: "Data Engineer",
+      logo: '',
       start: "March 2025",
-      end: "Present",
+      end: "January 2026",
       description:
         "Contributing to the Data Engineering team by optimizing data ingestion pipelines using Meltano, enhancing internal analytics workflows, and supporting compliance-related data tasks. Actively involved in maintaining ETL processes, improving data visibility in Looker, and collaborating cross-functionally to streamline reporting for business stakeholders. Skills: Python, Meltano, dbt, SQL, Looker, GitLab, AWS CLI, Salesforce data modeling.",
     },
     {
       company: "Coalesc",
-      link: "https://coalesc.xyz/",
-      badges: ["Remote"],
+      link: "https://coalesc.ai/",
+      badges: ["Full-time"],
       title: "Founder & CEO",
-      logo: "", // Replace with actual logo path if available
+      logo: "",
       start: "November 2024",
       end: "Present",
       description:
-        "Leading Coalesc, a venture-backed startup building the financial document infrastructure layer for SMBs. Our AI-powered system ingests, classifies, and organizes receipts, invoices, and financial documents to become the source of truth for finance teams. Achieved early traction with paying customers, refined GTM motion, and shipping fast with a strong technical team. Skills: AI Agents, Semantic Search, UX for Automation, Startup Strategy, Customer Discovery, Product Vision, Fundraising",
+        "Building the document infrastructure layer for accounting. Every workflow — bookkeeping, tax, audit, compliance — starts with chaotic documents that someone has to make usable. Coalesc owns that layer: AI-powered intake, PDF splitting, classification, and routing. 3 design partners on live client files. 11+ firms in pipeline through word-of-mouth alone. Funded. Solo founder shipping full-stack (Next.js, FastAPI, Supabase) with LLM-powered document processing. Skills: AI/ML, Full-Stack Engineering, Product Strategy, Customer Discovery, Fundraising",
     },
     {
       company: "Boundary AI",

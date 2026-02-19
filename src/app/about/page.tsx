@@ -12,7 +12,7 @@ const AboutPage = () => {
         </p>
         
                 <p className="mt-4">
-          I&apos;m currently building <a href="https://coalesc.xyz/" target="_blank" rel="noopener noreferrer">Coalesc</a>, an AI-powered platform that automates how accounting and finance teams collect, organize, and process financial documents. We&apos;re starting with firms that handle thousands of receipts, invoices, and bank statements every month — turning hours of manual sorting, renaming, and data entry into minutes of automation. Our goal is simple: eliminate the repetitive work in finance so teams can focus on insight, growth, and strategy.
+          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, the AI document infrastructure layer for accounting. Every workflow in accounting — bookkeeping, tax prep, audit, compliance — starts with the same problem: chaotic documents that someone has to make sense of before the real work begins. Coalesc owns that layer. We ingest, classify, split, and structure financial documents so they arrive as usable truth, not raw chaos. We&apos;re working on-site with firms during tax season, proving the system where it matters most.
         </p>
         
         <p className="mt-4">
