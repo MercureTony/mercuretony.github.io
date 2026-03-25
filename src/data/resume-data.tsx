@@ -15,15 +15,14 @@ export const RESUME_DATA = {
     email: "anthony.m.uyende@gmail.com",
     tel: "+1 438-866-3006",
     social: [
-      // Update or add your social links here
       {
         name: "GitHub",
-        url: "https://github.com/MercureTony", // Replace with your GitHub profile
+        url: "https://github.com/MercureTony",
         icon: GitHubIcon,
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/anthony-uyende/", // Replace with your LinkedIn profile
+        url: "https://www.linkedin.com/in/anthony-uyende/",
         icon: LinkedInIcon,
       },
       {
@@ -31,7 +30,6 @@ export const RESUME_DATA = {
         url: "https://twitter.com/auyende",
         icon: XIcon,
       },
-      // Add or remove social icons as needed
     ],
   },
   education: [
@@ -68,10 +66,10 @@ export const RESUME_DATA = {
     },
     {
       company: "Boundary AI",
-      link: "https://www.boundary-ai.com/", // Replace with the actual company link if available
+      link: "https://www.boundary-ai.com/",
       badges: ["Hybrid"],
       title: "Founding Team Member",
-      logo: '', // Replace with the actual logo if available
+      logo: '',
       start: "August 2024",
       end: "November 2024",
       description:
@@ -79,10 +77,10 @@ export const RESUME_DATA = {
     },
     {
       company: "Unity",
-      link: "https://unity.com/", // Replace with the actual company link if available
-      badges: ["Hybrid"], // Update as appropriate
+      link: "https://unity.com/",
+      badges: ["Hybrid"],
       title: "Data Engineer Intern",
-      logo: '', // Replace with the actual logo if available
+      logo: '',
       start: "June 2023",
       end: "August 2023",
       description:
@@ -90,10 +88,10 @@ export const RESUME_DATA = {
     },
     {
       company: "Wealthsimple",
-      link: "https://www.wealthsimple.com/", // Replace with the actual company link if available
-      badges: ["Remote"], // Update as appropriate
+      link: "https://www.wealthsimple.com/",
+      badges: ["Remote"],
       title: "Data Science Intern",
-      logo: '', // Replace with the actual logo if available
+      logo: '',
       start: "January 2023",
       end: "April 2023",
       description:
@@ -101,10 +99,10 @@ export const RESUME_DATA = {
     },
     {
       company: "Shopify",
-      link: "https://www.shopify.com/", // Replace with the actual company link if available
-      badges: ["Remote"], // Update as appropriate
+      link: "https://www.shopify.com/",
+      badges: ["Remote"],
       title: "Data Science Intern",
-      logo: '', // Replace with the actual logo if available
+      logo: '',
       start: "January 2022",
       end: "August 2022",
       description:
@@ -112,10 +110,10 @@ export const RESUME_DATA = {
     },
     {
       company: "Trans-Canada Capital (Air Canada)",
-      link: "https://www.aircanada.com/", // Replace with the actual company link if available
-      badges: ["Hybrid"], // Update as appropriate
+      link: "https://www.aircanada.com/",
+      badges: ["Hybrid"],
       title: "Data Engineer Intern",
-        logo: '', // Replace with the actual logo if available
+      logo: '',
       start: "June 2021",
       end: "September 2021",
       description:
@@ -123,7 +121,6 @@ export const RESUME_DATA = {
     },
   ],
   skills: [
-    // List your skills here
     "Python",
     "SQL",
     "Data Analysis",
@@ -137,7 +134,6 @@ export const RESUME_DATA = {
     "Product Development",
     "Product-Market Fit",
     "Cross-Functional Collaboration",
-    // Add or remove skills as needed
   ],
   projects: [
     {
@@ -155,13 +151,13 @@ export const RESUME_DATA = {
       ],
       description:
         "Developed a complete credit scoring system using Home Credit dataset (307K entries). Implemented advanced feature engineering for risk assessment, created DBT pipelines for data transformation, and designed Looker dashboards for real-time monitoring. Skills: Python, DBT, Looker, Feature Engineering, Risk Analytics, Model Monitoring, XGBoost, SHAP Values, Business Intelligence",
-      logo: '', // À remplacer avec un logo si disponible
+      logo: '',
       link: {
-        label: "github.com/mercuretony/credit-risk-system", // À remplacer avec votre lien GitHub
+        label: "github.com/mercuretony/credit-risk-system",
         href: "https://github.com/mercuretony/credit-risk-system",
       },
-      start: "Mars 2024",
-      end: "En cours",
+      start: "March 2024",
+      end: "Present",
     },
     {
       title: "LumiChat - An Interactive Chat Application",
@@ -178,36 +174,36 @@ export const RESUME_DATA = {
       ],
       description:
         "Developed an AI-driven chat application integrating React with FastAPI and OpenAI's GPT model. Streamlined authentication using JWT and employed D3.js for data visualization. Skills: React, FastAPI, OpenAI GPT, PostgreSQL, WebSockets, JWT, D3.js, Agile Methodologies, Cross-Functional Collaboration",
-      logo: '', // Replace with the actual logo if available
+      logo: '',
       link: {
-        label: "lumichat.com", // Replace with the actual project link if available
+        label: "lumichat.com",
         href: "https://www.figma.com/file/C82sG81SbTJhzpgaEdZqJz/LumiLivre?type=design&node-id=15-252&mode=design",
       },
       start: "November 2023",
-      end: "May 2024", // Update the end date if the project is completed
+      end: "May 2024",
     },
     {
       title: "Classification of Hand Signs (ASL)",
       techStack: ["Machine Learning", "Python", "Data Preprocessing", "Convolutional Neural Networks", "Random Forests"],
       description:
         "Curated a dataset of over 34,000 images of American Sign Language hand signs, ensuring diversity and comprehensiveness. Developed a preprocessing pipeline to clean and standardize data, enhancing model training efficacy. Trained and evaluated machine learning models, including convolutional neural networks and random forests, for accurate classification of hand signs. Skills: Machine Learning, Python, Data Preprocessing, Convolutional Neural Networks, Random Forests, Model Evaluation",
-      logo: '', // Replace with the actual project logo if available
+      logo: '',
       link: {
-        label: "Google Colab", // Replace with the actual project link if available
-        href: "https://colab.research.google.com/drive/1WStvzSLhQJbaXN0BTw46jvNVsitWswsl", // Replace with the actual project link if available
+        label: "Google Colab",
+        href: "https://colab.research.google.com/drive/1WStvzSLhQJbaXN0BTw46jvNVsitWswsl",
       },
       start: "February 2021",
-      end: "February 2021", // Update the end date if the project is completed
+      end: "February 2021",
     },
     {
     title: "Merchant Analytical Journey: Adoption and Retention Analysis",
     techStack: ["Python", "SQL", "Pandas", "Data Analysis", "Cohort Analysis", "Visualization"],
     description:
       "Conducted comprehensive cohort analyses to understand merchant adoption and retention rates for the Live View feature. Key findings include a 72.1% adoption rate within the first month post-sale, with a retention plateau of about 20% after four months. Posed critical follow-up questions regarding alternative tools that may offer more value to merchants, suggesting areas for further strategic improvement.",
-    logo: '', // Replace with the actual project logo if available
+    logo: '',
     link: {
-      label: "View Analysis", // Replace with the actual project link if available
-      href: "https://docs.google.com/presentation/d/1J2HRfOLJb_ycDSfW1oGl6oLFI00LqoUngGkf2IhwNDM/edit?usp=sharing", // Direct link to your project or related presentation
+      label: "View Analysis",
+      href: "https://docs.google.com/presentation/d/1J2HRfOLJb_ycDSfW1oGl6oLFI00LqoUngGkf2IhwNDM/edit?usp=sharing",
     },
     start: "June 2022", 
     end: "August 2022", 

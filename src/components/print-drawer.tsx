@@ -27,7 +27,6 @@ export const PrintDrawer = () => {
             <DrawerTitle>Print Resume</DrawerTitle>
             <DrawerDescription>Print or save your resume as a PDF.</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0"></div>
           <DrawerFooter>
             <Button onClick={() => window.print()}>Print</Button>
             <DrawerClose asChild>

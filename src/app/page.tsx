@@ -2,43 +2,35 @@
 
 import { Misc } from "@/components/misc";
 import { OpportunitiesSection } from "@/components/opportunities-section";
+import { RESUME_DATA } from "@/data/resume-data";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
+const container = {
+	hidden: { opacity: 0 },
+	show: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+			delayChildren: 0.3,
+		},
+	},
+};
+
+const item = {
+	hidden: { opacity: 0, y: 20 },
+	show: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.8,
+			ease: [0.04, 0.62, 0.23, 0.98],
+		},
+	},
+};
 
 export default function Home() {
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	const container = {
-		hidden: { opacity: 0 },
-		show: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.2,
-				delayChildren: 0.3,
-			},
-		},
-	};
-
-	const item = {
-		hidden: { opacity: 0, y: 20 },
-		show: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.8,
-				ease: [0.04, 0.62, 0.23, 0.98],
-			},
-		},
-	};
-
-	if (!mounted) return null;
-
 	return (
 		<main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
 			<motion.div
@@ -119,11 +111,11 @@ export default function Home() {
 
 					<motion.li variants={item}>
 						<a
-							href="mailto:anthony.m.uyende@gmail.com"
+							href={`mailto:${RESUME_DATA.contact.email}`}
 							className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
 						>
 							<span className="border-b border-neutral-700 hover:border-neutral-400 transition-colors duration-200">
-								anthony.m.uyende@gmail.com
+								{RESUME_DATA.contact.email}
 							</span>
 							<motion.div
 								whileHover={{ scale: 1.1, rotate: 45 }}

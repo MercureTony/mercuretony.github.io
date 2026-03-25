@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import en from '../../locales/en';
 
-// Function to get random year between 2009 and 2021
 const getRandomYear = () => {
-  const min = 2013;  // Bitcoin's inception
-  const max = 2021;  // Recent enough for reliable data
+  const min = 2013;
+  const max = 2021;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+const getRandomInvestment = () => 1000 + Math.floor(Math.random() * 19001);
 
 const formatNumber = (num: number) => {
   return num.toLocaleString('en-US', {
@@ -24,10 +25,12 @@ export function CryptoFacts() {
     current: number | null;
     historical: number | null;
     year: number;
+    investment: number;
   }>({
     current: null,
     historical: null,
-    year: getRandomYear()
+    year: getRandomYear(),
+    investment: getRandomInvestment(),
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -85,16 +88,14 @@ export function CryptoFacts() {
     );
   }
 
-  const initialInvestment = 1000 + Math.floor(Math.random() * 19001);
-
-  const btcAmount = initialInvestment / bitcoinData.historical;
+  const btcAmount = bitcoinData.investment / bitcoinData.historical;
   const currentValue = btcAmount * bitcoinData.current;
 
   return (
     <div className="space-y-2">
       <h3 className="text-neutral-200 font-medium">{en.bitcoinFacts.title}</h3>
       <blockquote className="text-sm text-neutral-400">
-        Did you know that $<span className="font-mono">{formatNumber(initialInvestment)}</span> invested in Bitcoin in {bitcoinData.year} ($<span className="font-mono">{formatNumber(Math.round(bitcoinData.historical))}/BTC</span>) would be worth $<span className="font-mono">{formatNumber(Math.round(currentValue))}</span> today?
+        Did you know that $<span className="font-mono">{formatNumber(bitcoinData.investment)}</span> invested in Bitcoin in {bitcoinData.year} ($<span className="font-mono">{formatNumber(Math.round(bitcoinData.historical))}/BTC</span>) would be worth $<span className="font-mono">{formatNumber(Math.round(currentValue))}</span> today?
       </blockquote>
     </div>
   );
