@@ -85,28 +85,17 @@ export function CryptoFacts() {
     );
   }
 
-  const INITIAL_INVESTMENT = () => {
-    const min = 1000;
-    const max = 20000;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  
-  const btcAmount = INITIAL_INVESTMENT() / bitcoinData.historical;
+  const initialInvestment = 1000 + Math.floor(Math.random() * 19001);
+
+  const btcAmount = initialInvestment / bitcoinData.historical;
   const currentValue = btcAmount * bitcoinData.current;
 
   return (
     <div className="space-y-2">
       <h3 className="text-neutral-200 font-medium">{en.bitcoinFacts.title}</h3>
-      <blockquote 
-        className="text-sm text-neutral-400"
-        dangerouslySetInnerHTML={{
-          __html: en.bitcoinFacts.description
-            .replace('{year}', bitcoinData.year.toString())
-            .replace('{amount}', formatNumber(INITIAL_INVESTMENT()))
-            .replace('{historicalPrice}', formatNumber(Math.round(bitcoinData.historical)))
-            .replace('{currentValue}', formatNumber(Math.round(currentValue)))
-        }}
-      />
+      <blockquote className="text-sm text-neutral-400">
+        Did you know that $<span className="font-mono">{formatNumber(initialInvestment)}</span> invested in Bitcoin in {bitcoinData.year} ($<span className="font-mono">{formatNumber(Math.round(bitcoinData.historical))}/BTC</span>) would be worth $<span className="font-mono">{formatNumber(Math.round(currentValue))}</span> today?
+      </blockquote>
     </div>
   );
 } 

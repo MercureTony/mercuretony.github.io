@@ -38,7 +38,7 @@ export const RESUME_DATA = {
     {
       school: "University of Montreal",
       degree: "Bachelor's Degree in Mathematics and Computer Science, Data Science",
-      start: "Present",
+      start: "2020",
       end: "2024",
       logo: ''  
     },

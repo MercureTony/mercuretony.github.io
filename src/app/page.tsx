@@ -7,70 +7,12 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface LocationData {
-	city: string;
-	country: string;
-	timestamp: number;
-}
-
 export default function Home() {
 	const [mounted, setMounted] = useState(false);
-	const [currentLocation, setCurrentLocation] = useState<string | null>(null);
-	const [lastLocation, setLastLocation] = useState<LocationData | null>(null);
 
 	useEffect(() => {
 		setMounted(true);
-
-		// Get last location from localStorage
-		const storedLocation = localStorage.getItem("lastVisit");
-		const lastVisit = storedLocation ? JSON.parse(storedLocation) : null;
-
-		// Get current location
-		fetch("http://ip-api.com/json/24.48.0.1")
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.status === "success") {
-					const currentLoc = `${data.city}, ${data.country}`;
-					setCurrentLocation(currentLoc);
-
-					// Only update last visit if:
-					// 1. There's no previous visit, or
-					// 2. It's been at least 1 hour since last visit, or
-					// 3. The location is different
-					if (
-						!lastVisit ||
-						Date.now() - lastVisit.timestamp > 3600000 || // 1 hour in milliseconds
-						lastVisit.city !== data.city
-					) {
-						const newLocation: LocationData = {
-							city: data.city,
-							country: data.country,
-							timestamp: Date.now(),
-						};
-						localStorage.setItem("lastVisit", JSON.stringify(newLocation));
-					}
-
-					// Set last location state if it exists and is different
-					if (lastVisit && lastVisit.city !== data.city) {
-						setLastLocation(lastVisit);
-					}
-				}
-			})
-			.catch(() => setCurrentLocation(" a place on Earth"));
 	}, []);
-
-	// Format time difference
-	const getTimeDifference = (timestamp: number) => {
-		const diff = Date.now() - timestamp;
-		const minutes = Math.floor(diff / 60000);
-		const hours = Math.floor(minutes / 60);
-		const days = Math.floor(hours / 24);
-
-		if (days > 0) return `${days} day${days > 1 ? "s" : ""} ago`;
-		if (hours > 0) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-		if (minutes > 0) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
-		return "just now";
-	};
 
 	const container = {
 		hidden: { opacity: 0 },
