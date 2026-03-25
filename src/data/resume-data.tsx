@@ -48,7 +48,7 @@ export const RESUME_DATA = {
       badges: ["Full-time"],
       title: "Co-founder & CEO",
       logo: "",
-      start: "May 2025",
+      start: "October 2025",
       end: "Present",
       description:
         "At Coalesc, we're building the AI intake infrastructure for accounting firms. Every month, firms receive documents from everywhere — email attachments, scans, photos, shared drives, walk-ins. Before any accounting starts, someone has to open every file, split PDFs, rename documents, classify by type, match them to the right client, and chase what's missing. We automate that entire upstream workflow. Coalesc ingests documents from any channel, structures them, detects duplicates and gaps, and prepares a clean, audit-ready workspace before they ever touch DT Max, QuickBooks, or audit software. We're starting with tax and bookkeeping workflows, and expanding toward becoming the document operating layer for modern accounting firms. I lead product, engineering, sales, and user discovery — working directly with firms to turn chaotic document flows into structured, reliable systems.",
