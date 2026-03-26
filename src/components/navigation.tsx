@@ -38,6 +38,7 @@ export default function Navigation() {
         <NavItem href="/writings">Writings</NavItem>
         <NavItem href="/readings">Readings</NavItem>
         <NavItem href="/people">People</NavItem>
+        <NavItem href="/calendar">Calendar</NavItem>
       </div>
     </nav>
   );
