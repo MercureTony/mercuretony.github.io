@@ -12,7 +12,7 @@ const AboutPage = () => {
         </p>
 
         <p className="mt-4">
-          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, an AI workspace for accounting firms.
+          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, the preparation layer for accounting firms.
         </p>
 
         <p className="mt-4">

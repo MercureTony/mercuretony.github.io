@@ -9,7 +9,7 @@ export const RESUME_DATA = {
   about:
     "Founder of Coalesc, the preparation layer for accounting firms.",
   summary:
-    "Building Coalesc, the AI workspace where accounting teams prepare client files before the work begins. It turns messy client emails, PDFs, statements, and receipts into work-ready files for bookkeeping, tax, compilation, and assurance. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.",
+    "Building Coalesc, the preparation layer for accounting firms. It turns messy client emails, PDFs, statements, and receipts into work-ready files before bookkeeping, tax, compilation, and assurance work begins. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.",
     avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",

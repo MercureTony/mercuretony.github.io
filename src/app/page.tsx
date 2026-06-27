@@ -73,8 +73,7 @@ export default function Home() {
 						variants={item}
 						className="text-base sm:text-lg text-neutral-300"
 					>
-						Building the AI workspace where accounting teams prepare client
-						files before the work begins.
+						Where accounting engagements begin.
 					</motion.li>
 
 					<motion.li
