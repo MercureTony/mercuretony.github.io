@@ -48,16 +48,12 @@ export default function Home() {
 				<motion.ul className="space-y-4 sm:space-y-6" variants={container}>
 					<motion.li
 						variants={item}
-						className="text-lg sm:text-xl text-neutral-300"
+						className="group text-lg sm:text-xl text-neutral-300"
 					>
-						Software engineer II - Data & AI
-					</motion.li>
-
-					<motion.li variants={item} className="group">
-						<span className="text-neutral-300">Currently building </span>
+						<span>Founder of </span>
 						<a
 							href="https://coalesc.ai"
-							className="inline-flex items-center gap-1 text-neutral-200 hover:text-white transition-colors duration-200"
+							className="inline-flex items-center gap-1 text-neutral-100 hover:text-white transition-colors duration-200"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -71,10 +67,23 @@ export default function Home() {
 								<SquareArrowOutUpRight className="w-4 h-4" />
 							</motion.div>
 						</a>
-						<span className="text-neutral-400">
-							{" "}
-							- AI document infrastructure for accounting.
-						</span>
+					</motion.li>
+
+					<motion.li
+						variants={item}
+						className="text-base sm:text-lg text-neutral-300"
+					>
+						Building the AI workspace where accounting teams prepare client
+						files before the work begins.
+					</motion.li>
+
+					<motion.li
+						variants={item}
+						className="text-sm sm:text-base text-neutral-400"
+					>
+						Coalesc helps partner-led accounting firms turn messy client
+						emails, PDFs, statements, receipts, and supporting documents into
+						work-ready files for bookkeeping, tax, compilation, and assurance.
 					</motion.li>
 
 					<motion.li variants={item}>

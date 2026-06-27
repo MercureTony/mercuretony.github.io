@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Founder of Coalesc — AI document infrastructure for accounting.",
+    "Founder of Coalesc, the preparation layer for accounting firms.",
   summary:
-    "Building Coalesc, the document infrastructure layer that powers accounting workflows — from bookkeeping to tax to audit. Every accounting workflow starts with the same problem: chaotic documents. We own that layer. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.", 
+    "Building Coalesc, the AI workspace where accounting teams prepare client files before the work begins. It turns messy client emails, PDFs, statements, and receipts into work-ready files for bookkeeping, tax, compilation, and assurance. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.",
     avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",

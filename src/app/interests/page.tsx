@@ -48,8 +48,7 @@ export default function InterestsPage() {
       <h1 className="text-2xl font-bold mb-4">Interests</h1>
       
       <p className="mb-6">
-        A collection of topics and areas that drive my curiosity and inform my work. 
-        These interests shape my approach to problem-solving and influence the projects I choose to pursue.
+        A collection of topics that shape how I think, build, and write.
       </p>
 
       <div className="space-y-8">

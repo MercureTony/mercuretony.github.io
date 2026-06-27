@@ -8,30 +8,34 @@ const AboutPage = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">About Me</h2>
         <p>
-          I&apos;m Anthony Uyende, born in Gabon and raised between Gabon and the USA. I&apos;m a programmer, writer, founder, and investor currently living in Montreal, Canada.
+          I&apos;m Anthony Uyende, a founder, programmer, and writer based in Montreal, Canada.
         </p>
-        
-                <p className="mt-4">
-          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, the AI document infrastructure layer for accounting. Every workflow in accounting — bookkeeping, tax prep, audit, compliance — starts with the same problem: chaotic documents that someone has to make sense of before the real work begins. Coalesc owns that layer. We ingest, classify, split, and structure financial documents so they arrive as usable truth, not raw chaos. We&apos;re working on-site with firms during tax season, proving the system where it matters most.
-        </p>
-        
+
         <p className="mt-4">
-          With a background in mathematics and computer science, I&apos;m passionate about using technology to solve complex problems and drive positive change in the world.
+          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, an AI workspace for accounting firms.
+        </p>
+
+        <p className="mt-4">
+          Every accounting engagement starts with the same messy preparation layer: client documents arrive through email, portals, uploads, PDFs, statements, receipts, and spreadsheets. Before bookkeeping, tax, compilation, or assurance work can begin, someone has to collect the right documents, identify what is missing, classify files, follow up with clients, and determine whether the file is actually ready.
+        </p>
+
+        <p className="mt-4">
+          Coalesc is focused on that layer. We help accounting teams prepare client files before the work begins: document intake, classification, missing items, follow-ups, file readiness, and structured handoff into the tools firms already use.
+        </p>
+
+        <p className="mt-4">
+          My background is in mathematics, computer science, data, and AI engineering. I&apos;ve worked across data science, analytics engineering, and software at companies including Shopify, Wealthsimple, Unity, and 1Password.
+        </p>
+
+        <p className="mt-4">
+          I&apos;m interested in building software for industries where trust, judgment, and operational complexity matter. Accounting is one of those industries.
+        </p>
+
+        <p className="mt-4">
+          More broadly, I think a lot about startups, AI infrastructure, economic development, energy, and the systems that shape how societies grow.
         </p>
       </section>
-      
-      <section>
-        <h3 className="text-xl font-semibold mb-2">Interests</h3>
-        <ul className="list-disc list-inside">
-          <li>Startups and entrepreneurship</li>
-          <li>Renewable energy technologies</li>
-          <li>Artificial Intelligence and its applications</li>
-          <li>Climate change mitigation strategies</li>
-          <li>Sustainable agriculture practices</li>
-          <li>Economic growth and development</li>
-        </ul>
-      </section>
-      
+
       <section>
         <h3 className="text-xl font-semibold mb-2">Elsewhere</h3>
         <ul className="list-disc list-inside">
@@ -42,7 +46,7 @@ const AboutPage = () => {
           ))}
         </ul>
       </section>
-      
+
       <section>
         <h3 className="text-xl font-semibold mb-2">More Information</h3>
         <p>
