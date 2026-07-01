@@ -108,6 +108,11 @@ export const INTERESTS_DATA: Interest[] = [
             ]
           }
         ]
+      },
+      {
+        name: "The Informal Economy",
+        description:
+          "Around 2 billion people, roughly 60% of the world's workforce, earn a living outside formal registration, taxation, and labor protection, generating an estimated $10-20 trillion a year. As mobile money, digital payments, and AI make it easier to bring small merchants into the formal system, this becomes one of the largest economic-transformation opportunities of the coming decades, especially across Africa."
       }
     ]
   },
