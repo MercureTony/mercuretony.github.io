@@ -205,8 +205,124 @@ export const RESUME_DATA = {
       label: "View Analysis",
       href: "https://docs.google.com/presentation/d/1J2HRfOLJb_ycDSfW1oGl6oLFI00LqoUngGkf2IhwNDM/edit?usp=sharing",
     },
-    start: "June 2022", 
-    end: "August 2022", 
+    start: "June 2022",
+    end: "August 2022",
   },
   ],
 } as const;
+
+// French overlay for the translatable resume fields. Language-neutral fields
+// (contact, dates, company names, links, tech stacks) are inherited from
+// RESUME_DATA. Arrays are aligned by index with RESUME_DATA.
+const RESUME_FR = {
+  about: "Fondateur de Coalesc, la couche de préparation pour les cabinets comptables.",
+  summary:
+    "Je bâtis Coalesc, la couche de préparation pour les cabinets comptables. Elle transforme les courriels, PDF, relevés et reçus désordonnés des clients en dossiers prêts à traiter, avant que la tenue de livres, la fiscalité, la compilation et la certification puissent commencer. Auparavant ingénieur de données chez 1Password, scientifique de données chez Shopify et Wealthsimple.",
+  badges: {
+    "Full-time": "Temps plein",
+    Remote: "À distance",
+    Hybrid: "Hybride",
+  } as Record<string, string>,
+  education: [
+    {
+      school: "Université de Montréal",
+      degree: "Baccalauréat en mathématiques et informatique, concentration science des données",
+    },
+  ],
+  work: [
+    {
+      title: "Cofondateur et PDG",
+      description:
+        "Chez Coalesc, nous bâtissons l'infrastructure de réception de documents propulsée par l'IA pour les cabinets comptables. Chaque mois, les cabinets reçoivent des documents de partout : pièces jointes de courriels, numérisations, photos, lecteurs partagés, visites au bureau. Avant que tout travail comptable ne commence, quelqu'un doit ouvrir chaque fichier, séparer les PDF, renommer les documents, les classer par type, les associer au bon client et relancer ce qui manque. Nous automatisons tout ce flux en amont. Coalesc reçoit les documents de n'importe quel canal, les structure, détecte les doublons et les manques, et prépare un espace de travail propre et prêt pour la certification avant même qu'ils ne touchent DT Max, QuickBooks ou un logiciel de certification. Nous commençons par les flux de fiscalité et de tenue de livres, et nous évoluons vers la couche d'exploitation documentaire des cabinets comptables modernes. Je dirige le produit, l'ingénierie, les ventes et la découverte client, en travaillant directement avec les cabinets pour transformer des flux documentaires chaotiques en systèmes structurés et fiables.",
+    },
+    {
+      title: "Ingénieur de données",
+      description:
+        "Contribution à l'équipe d'ingénierie de données en optimisant les pipelines d'ingestion de données avec Meltano, en améliorant les flux d'analytique interne et en soutenant les tâches de données liées à la conformité. Participation active au maintien des processus ETL, à l'amélioration de la visibilité des données dans Looker et à la collaboration interfonctionnelle pour simplifier la production de rapports destinés aux parties prenantes. Compétences : Python, Meltano, dbt, SQL, Looker, GitLab, AWS CLI, modélisation de données Salesforce.",
+    },
+    {
+      title: "Membre de l'équipe fondatrice",
+      description:
+        "Contribution au développement de solutions d'analyse de rétroaction propulsées par l'IA pour les entreprises, et travail actif pour aider l'équipe à atteindre l'adéquation produit-marché. Pilotage de la mise en œuvre de la fonctionnalité « Survey Series », permettant aux utilisateurs de suivre l'évolution des réponses aux sondages dans le temps. Collaboration avec des équipes interfonctionnelles pour améliorer les fonctionnalités du produit et l'expérience utilisateur. Compétences : Python, TALN, apprentissage automatique, développement de produits, adéquation produit-marché, collaboration interfonctionnelle.",
+    },
+    {
+      title: "Stagiaire en ingénierie de données",
+      description:
+        "Concentration sur la gouvernance des données par la mise en œuvre de bonnes pratiques de gestion des données afin d'assurer leur qualité et leur intégrité. Pilotage d'un projet de taux d'expansion net (NER) à l'aide de l'analyse de données pour prédire les tendances de revenus. Réalisation d'analyses de données pour dégager des informations opérationnelles, améliorant les processus grâce à des outils de visualisation. Compétences : gouvernance des données, Python, SQL, analyse de données.",
+    },
+    {
+      title: "Stagiaire en science des données",
+      description:
+        "Développement et modernisation de pipelines de données pour améliorer la qualité et l'efficacité du traitement des données. Collaboration avec diverses équipes pour définir les besoins en données et fournir des informations exploitables. Optimisation de la performance des flux de données en intégrant DBT à Airflow. Compétences : Python, DBT, Airflow, analyse de données, collaboration interfonctionnelle.",
+    },
+    {
+      title: "Stagiaire en science des données",
+      description:
+        "Réalisation d'analyses de cohortes à partir des données de Shopify pour aider les chefs de produit avec des informations pertinentes. Analyse de vastes ensembles de données pour produire des rapports détaillés sur la performance des marchands. Contribution à l'amélioration du produit en enrichissant les récits de données et le développement de modèles pour le lancement de Shopify Notebook. Compétences : SQL, Pandas, Mode Analytics, exploration de données, narration par les données.",
+    },
+    {
+      title: "Stagiaire en ingénierie de données",
+      description:
+        "Réalisation d'analyses de séries temporelles en analysant des données financières avec des techniques avancées d'exploration de données pour orienter les stratégies de placement. Maintien et amélioration d'une application web basée sur Flask pour une diffusion fiable des données de marché. Mise en place d'automatisation des processus par le développement et le déploiement de scripts Python, augmentant l'efficacité et la précision opérationnelles. Compétences : Python, SQL, Flask, analyse de séries temporelles, exploration de données, services infonuagiques Azure, automatisation des processus.",
+    },
+  ],
+  skills: {
+    "Data Analysis": "Analyse de données",
+    "Machine Learning": "Apprentissage automatique",
+    "Data Visualization (e.g., D3.js)": "Visualisation de données (p. ex. D3.js)",
+    "Product Development": "Développement de produits",
+    "Product-Market Fit": "Adéquation produit-marché",
+    "Cross-Functional Collaboration": "Collaboration interfonctionnelle",
+  } as Record<string, string>,
+  projects: [
+    {
+      title: "Système d'apprentissage automatique de risque de crédit avec surveillance en production",
+      description:
+        "Développement d'un système complet de cotation de crédit à partir du jeu de données Home Credit (307 000 entrées). Mise en œuvre d'une ingénierie de caractéristiques avancée pour l'évaluation du risque, création de pipelines DBT pour la transformation des données et conception de tableaux de bord Looker pour la surveillance en temps réel. Compétences : Python, DBT, Looker, ingénierie de caractéristiques, analytique du risque, surveillance de modèles, XGBoost, valeurs SHAP, intelligence d'affaires.",
+    },
+    {
+      title: "LumiChat – Une application de clavardage interactive",
+      description:
+        "Développement d'une application de clavardage propulsée par l'IA intégrant React à FastAPI et au modèle GPT d'OpenAI. Simplification de l'authentification à l'aide de JWT et utilisation de D3.js pour la visualisation de données. Compétences : React, FastAPI, GPT d'OpenAI, PostgreSQL, WebSockets, JWT, D3.js, méthodologies agiles, collaboration interfonctionnelle.",
+    },
+    {
+      title: "Classification des signes de la main (ASL)",
+      description:
+        "Constitution d'un jeu de données de plus de 34 000 images de signes de la main de la langue des signes américaine, en assurant diversité et exhaustivité. Développement d'un pipeline de prétraitement pour nettoyer et normaliser les données, améliorant l'efficacité de l'entraînement des modèles. Entraînement et évaluation de modèles d'apprentissage automatique, dont des réseaux de neurones convolutifs et des forêts aléatoires, pour une classification précise des signes de la main. Compétences : apprentissage automatique, Python, prétraitement de données, réseaux de neurones convolutifs, forêts aléatoires, évaluation de modèles.",
+    },
+    {
+      title: "Parcours analytique des marchands : analyse d'adoption et de rétention",
+      description:
+        "Réalisation d'analyses de cohortes exhaustives pour comprendre les taux d'adoption et de rétention des marchands pour la fonctionnalité Live View. Les constats clés incluent un taux d'adoption de 72,1 % au cours du premier mois suivant la vente, avec un plateau de rétention d'environ 20 % après quatre mois. Formulation de questions de suivi cruciales sur d'autres outils susceptibles d'offrir plus de valeur aux marchands, suggérant des pistes d'amélioration stratégique.",
+    },
+  ],
+};
+
+type ResumeData = typeof RESUME_DATA;
+
+export function getResumeData(locale: string): ResumeData {
+  if (locale !== "fr") return RESUME_DATA;
+
+  return {
+    ...RESUME_DATA,
+    about: RESUME_FR.about,
+    summary: RESUME_FR.summary,
+    education: RESUME_DATA.education.map((e, i) => ({
+      ...e,
+      school: RESUME_FR.education[i]?.school ?? e.school,
+      degree: RESUME_FR.education[i]?.degree ?? e.degree,
+    })),
+    work: RESUME_DATA.work.map((w, i) => ({
+      ...w,
+      title: RESUME_FR.work[i]?.title ?? w.title,
+      description: RESUME_FR.work[i]?.description ?? w.description,
+      badges: w.badges.map((b) => RESUME_FR.badges[b] ?? b),
+    })),
+    skills: RESUME_DATA.skills.map((s) => RESUME_FR.skills[s] ?? s),
+    projects: RESUME_DATA.projects.map((p, i) => ({
+      ...p,
+      title: RESUME_FR.projects[i]?.title ?? p.title,
+      description: RESUME_FR.projects[i]?.description ?? p.description,
+    })),
+  } as unknown as ResumeData;
+}

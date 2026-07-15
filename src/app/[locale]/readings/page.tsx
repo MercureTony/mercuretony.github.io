@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { topics } from '@/data/reading-data';
+import { useLocale, useTranslations } from 'next-intl';
+import { getTopics } from '@/data/reading-data';
 
 export default function ReadingsPage() {
   const t = useTranslations('Readings');
+  const locale = useLocale();
+  const topics = getTopics(locale);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filter topics and their readings based on search query

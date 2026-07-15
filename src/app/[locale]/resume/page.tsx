@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
-import { RESUME_DATA } from "@/data/resume-data";
+import { RESUME_DATA, getResumeData } from "@/data/resume-data";
 import { GlobeIcon, Mail, Phone } from "lucide-react";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -15,8 +15,10 @@ export const metadata: Metadata = {
   description: RESUME_DATA.summary,
 };
 
-export default async function Page() {
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations("Resume");
+  const RESUME_DATA = getResumeData(locale);
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16 mb-32">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-[#171717] print:space-y-6">

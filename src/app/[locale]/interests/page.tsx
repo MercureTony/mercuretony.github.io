@@ -5,8 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
-import { INTERESTS_DATA, type Resource } from "@/data/interests-data";
-import type { Locale } from "@/i18n/routing";
+import { getInterests, type Resource } from "@/data/interests-data";
 
 function ResourceList({ resources }: { resources: Resource[] }) {
   return (
@@ -36,6 +35,8 @@ function ResourceList({ resources }: { resources: Resource[] }) {
 
 export default function InterestsPage() {
   const t = useTranslations("Interests");
+  const locale = useLocale();
+  const interests = getInterests(locale);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
 
   const toggleItem = (category: string, itemName: string) => {
@@ -55,7 +56,7 @@ export default function InterestsPage() {
       </p>
 
       <div className="space-y-8">
-        {INTERESTS_DATA.map((interest) => (
+        {interests.map((interest) => (
           <section key={interest.category} className="space-y-4">
             <h2 className="text-xl font-semibold text-neutral-200">
               {interest.category}
