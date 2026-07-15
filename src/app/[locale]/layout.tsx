@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans'
 import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import Navigation from "@/components/navigation";
+import { routing } from "@/i18n/routing";
 import { Analytics } from "@vercel/analytics/react"
 
-import "./globals.css";
+import "../globals.css";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -19,13 +23,30 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={`${GeistSans.className} ${inter.variable}`}>
+    <html lang={locale} className={`${GeistSans.className} ${inter.variable}`}>
       <head>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="ea192ba5-ae49-4299-8e5b-3abd3b4dcef5"></script>
         <link
@@ -34,10 +55,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#171717] text-neutral-200">
-        <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          {children}
-        </div>
-        <Navigation />
+        <NextIntlClientProvider messages={messages}>
+          <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+            {children}
+          </div>
+          <Navigation />
+        </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

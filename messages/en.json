@@ -1,0 +1,11 @@
+{
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "resume": "Resume",
+    "interests": "Interests",
+    "writings": "Writings",
+    "readings": "Readings",
+    "people": "People"
+  }
+}

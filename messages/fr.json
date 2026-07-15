@@ -1,0 +1,11 @@
+{
+  "Nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "resume": "CV",
+    "interests": "Intérêts",
+    "writings": "Écrits",
+    "readings": "Lectures",
+    "people": "Gens"
+  }
+}
