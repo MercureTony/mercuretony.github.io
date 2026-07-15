@@ -1,15 +1,20 @@
 "use client";
 import { reading2025 } from '@/data/challenges/2025/reading';
 import { ArrowUpRight, ChevronDown, ChevronUp, Search, SlidersHorizontal, Star } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+import { Link } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { use, useState } from 'react';
 
-export default function ReadingChallenge({ params }: { params: { year: string } }) {
+export default function ReadingChallenge({ params }: { params: Promise<{ locale: string; year: string }> }) {
+  const { year } = use(params);
+  const t = useTranslations('Challenges');
+  const locale = useLocale();
+  const dateLocale = locale === 'fr' ? 'fr-CA' : 'en-CA';
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'reading' | 'completed' | 'abandoned'>('all');
   const [expandedBooks, setExpandedBooks] = useState<Set<number>>(new Set());
   
-  const books = params.year === "2025" ? reading2025 : [];
+  const books = year === "2025" ? reading2025 : [];
   
   const filteredBooks = books.filter(book => {
     const matchesSearch = book.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -27,6 +32,11 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
     }
     setExpandedBooks(newExpanded);
   };
+
+  const statusLabel = (status: string) =>
+    status === 'completed' ? t('statusCompleted')
+      : status === 'reading' ? t('statusReading')
+      : t('statusAbandoned');
 
   const renderRating = (rating?: number) => {
     if (!rating) return null;
@@ -50,20 +60,20 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
     <div className="max-w-4xl mx-auto space-y-8 mb-32">
       {/* Updated Breadcrumb */}
       <nav className="flex items-center space-x-2 text-sm text-neutral-400">
-        <Link href="/" className="hover:text-neutral-200">Home</Link>
+        <Link href="/" className="hover:text-neutral-200">{t('home')}</Link>
         <span>/</span>
-        <Link href={`/challenges/${params.year}`} className="hover:text-neutral-200">{params.year} Challenges</Link>
+        <Link href={`/challenges/${year}`} className="hover:text-neutral-200">{t('title', { year })}</Link>
         <span>/</span>
-        <span className="text-neutral-200">Reading</span>
+        <span className="text-neutral-200">{t('readingBreadcrumb')}</span>
       </nav>
 
       <header className="space-y-4">
-        <h1 className="text-2xl font-bold">{params.year} Reading Challenge</h1>
+        <h1 className="text-2xl font-bold">{t('readingChallengeTitle', { year })}</h1>
         <p className="text-neutral-400">
-          Reading one book every week throughout {params.year}.
+          {t('challenge52Desc', { year })}
         </p>
         <div className="bg-neutral-900 p-4 rounded-lg">
-          <p className="text-neutral-300">Progress: {books.filter(b => b.status === 'completed').length}/52 books</p>
+          <p className="text-neutral-300">{t('progressBooks', { current: books.filter(b => b.status === 'completed').length })}</p>
           <div className="w-full bg-neutral-800 rounded-full h-2 mt-2">
             <div 
               className="bg-blue-600 h-2 rounded-full transition-all duration-500"
@@ -79,7 +89,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral-500" />
           <input
             type="text"
-            placeholder="Search books or authors..."
+            placeholder={t('searchPlaceholder')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-neutral-900 rounded-lg border border-neutral-800 
@@ -94,10 +104,10 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
             className="px-3 py-2 bg-neutral-900 rounded-lg border border-neutral-800 
                      text-neutral-200 focus:outline-none focus:border-neutral-700"
           >
-            <option value="all">All Status</option>
-            <option value="reading">Reading</option>
-            <option value="completed">Completed</option>
-            <option value="abandoned">Abandoned</option>
+            <option value="all">{t('allStatus')}</option>
+            <option value="reading">{t('filterReading')}</option>
+            <option value="completed">{t('filterCompleted')}</option>
+            <option value="abandoned">{t('filterAbandoned')}</option>
           </select>
         </div>
       </div>
@@ -123,17 +133,17 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                     <h2 className="text-xl font-semibold text-neutral-200">
                       {book.title}
                     </h2>
-                    <p className="text-neutral-400">by {book.author}</p>
+                    <p className="text-neutral-400">{t('by', { author: book.author })}</p>
                   </div>
                   <div className="text-sm text-neutral-500">
-                    Week {book.weekNumber}
+                    {t('week', { number: book.weekNumber })}
                   </div>
                 </div>
 
                 <div className="flex gap-4 text-sm text-neutral-500">
-                  <span>Started: {new Date(book.dateStarted).toLocaleDateString()}</span>
+                  <span>{t('started', { date: new Date(book.dateStarted).toLocaleDateString(dateLocale) })}</span>
                   {book.dateFinished && (
-                    <span>Finished: {new Date(book.dateFinished).toLocaleDateString()}</span>
+                    <span>{t('finished', { date: new Date(book.dateFinished).toLocaleDateString(dateLocale) })}</span>
                   )}
                 </div>
 
@@ -147,7 +157,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                         : 'bg-red-900 text-red-200'
                     }`}
                   >
-                    {book.status}
+                    {statusLabel(book.status)}
                   </span>
                   <a 
                     href={book.amazonUrl}
@@ -155,7 +165,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
                   >
-                    View on Amazon <ArrowUpRight className="w-4 h-4" />
+                    {t('viewOnAmazon')} <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -168,9 +178,9 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                 className="flex items-center gap-2 text-sm text-neutral-400 hover:text-neutral-300"
               >
                 {expandedBooks.has(index) ? (
-                  <>Hide Review <ChevronUp className="w-4 h-4" /></>
+                  <>{t('hideReview')} <ChevronUp className="w-4 h-4" /></>
                 ) : (
-                  <>Show Review <ChevronDown className="w-4 h-4" /></>
+                  <>{t('showReview')} <ChevronDown className="w-4 h-4" /></>
                 )}
               </button>
             )}
@@ -180,7 +190,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
               <div className="border-t border-neutral-800 pt-4 space-y-4">
                 {book.rating && (
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-neutral-400">Rating:</span>
+                    <span className="text-sm text-neutral-400">{t('ratingLabel')}</span>
                     {renderRating(book.rating)}
                   </div>
                 )}
@@ -191,7 +201,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                     
                     {book.review.pros && book.review.pros.length > 0 && (
                       <div className="space-y-2">
-                        <h3 className="text-sm font-medium text-neutral-200">Key Takeaways:</h3>
+                        <h3 className="text-sm font-medium text-neutral-200">{t('keyTakeaways')}</h3>
                         <ul className="list-disc list-inside text-sm text-neutral-400 space-y-1">
                           {book.review.pros.map((pro, i) => (
                             <li key={i}>{pro}</li>
@@ -202,7 +212,7 @@ export default function ReadingChallenge({ params }: { params: { year: string } 
                     
                     {book.review.recommendedFor && (
                       <p className="text-sm text-neutral-400">
-                        <span className="text-neutral-300">Recommended for:</span> {book.review.recommendedFor}
+                        <span className="text-neutral-300">{t('recommendedFor')}</span> {book.review.recommendedFor}
                       </p>
                     )}
                   </>
