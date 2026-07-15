@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
 interface Person {
   name: string;
@@ -20,20 +21,19 @@ const people: Person[] = [
   // Add more people here...
 ].sort((a, b) => a.name.localeCompare(b.name)); // This sorts the list alphabetically
 
-const PeoplePage = () => {
+const PeoplePage = async () => {
+  const t = await getTranslations('People');
   return (
     <div className="max-w-2xl mx-auto space-y-6 mb-32">
-      <h1 className="text-2xl font-bold mb-4">People</h1>
-      
+      <h1 className="text-2xl font-bold mb-4">{t('heading')}</h1>
+
       <p className="mb-6">
-        This is a collection of individuals who have significantly influenced my thinking, work, or life in general. 
-        They range from personal mentors to historical figures whose ideas have shaped my perspective. 
-        Each has contributed uniquely to my journey in technology, entrepreneurship, and beyond.
+        {t('intro')}
       </p>
 
       <div className="bg-yellow-900/20 border-l-4 border-yellow-600 text-yellow-200 p-4 mb-6" role="alert">
-        <p className="font-bold">Note:</p>
-        <p className="text-yellow-300/80">This list is currently a work in progress and not complete. I will be adding more people and potentially new categories over time. Check back for updates!</p>
+        <p className="font-bold">{t('noteTitle')}</p>
+        <p className="text-yellow-300/80">{t('noteText')}</p>
       </div>
       
       <ul className="space-y-2">

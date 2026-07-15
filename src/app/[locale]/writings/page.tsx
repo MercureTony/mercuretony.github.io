@@ -1,7 +1,7 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
+import { getTranslations } from 'next-intl/server'
+import { getArticleSlugs, readArticle } from '@/lib/articles'
 
 interface BlogPost {
   slug: string;
@@ -10,33 +10,35 @@ interface BlogPost {
   summary?: string;
 }
 
-export default function WritingsPage() {
-  const postsDirectory = path.join(process.cwd(), 'src/content/articles')
-  const fileNames = fs.readdirSync(postsDirectory)
-  
-  const posts: BlogPost[] = fileNames.map((fileName) => {
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-    
+export default async function WritingsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations('Writings');
+
+  const posts: BlogPost[] = getArticleSlugs().map((slug) => {
+    const { content } = readArticle(slug, locale);
+    const { data } = matter(content);
     return {
-      slug: fileName.replace(/\.mdx$/, ''),
+      slug,
       title: data.title,
       date: data.date,
       summary: data.summary,
-    }
-  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    };
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const dateLocale = locale === 'fr' ? 'fr-CA' : 'en-CA';
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 mb-32">
-      <h1 className="text-2xl font-bold mb-4">Writings</h1>
-      
+      <h1 className="text-2xl font-bold mb-4">{t('heading')}</h1>
+
       <p className="mb-6">
-        Welcome to my writings page. Here, I share my thoughts, insights, and experiences on various topics 
-        that interest me. From personal development to technology trends, these articles reflect my journey 
-        of continuous learning and exploration.
+        {t('intro')}
       </p>
-      
+
       <div className="space-y-8">
         {posts.map((post) => (
           <div key={post.slug} className="border-b pb-4 last:border-b-0 border-neutral-800 mb-4 last:mb-0">
@@ -45,7 +47,7 @@ export default function WritingsPage() {
                 {post.title}
               </Link>
             </h2>
-            <p className="text-gray-600 text-sm mb-2">{new Date(post.date).toLocaleDateString()}</p>
+            <p className="text-gray-600 text-sm mb-2">{new Date(post.date).toLocaleDateString(dateLocale)}</p>
             {post.summary && <p>{post.summary}</p>}
           </div>
         ))}

@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { INTERESTS_DATA, type Resource } from "@/data/interests-data";
+import type { Locale } from "@/i18n/routing";
 
 function ResourceList({ resources }: { resources: Resource[] }) {
   return (
@@ -33,6 +35,7 @@ function ResourceList({ resources }: { resources: Resource[] }) {
 }
 
 export default function InterestsPage() {
+  const t = useTranslations("Interests");
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
 
   const toggleItem = (category: string, itemName: string) => {
@@ -45,10 +48,10 @@ export default function InterestsPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 mb-32">
-      <h1 className="text-2xl font-bold mb-4">Interests</h1>
-      
+      <h1 className="text-2xl font-bold mb-4">{t("heading")}</h1>
+
       <p className="mb-6">
-        A collection of topics that shape how I think, build, and write.
+        {t("intro")}
       </p>
 
       <div className="space-y-8">
@@ -105,11 +108,11 @@ export default function InterestsPage() {
 
       <section className="mt-12 pt-8 border-t border-neutral-800">
         <h2 className="text-xl font-semibold text-neutral-200 mb-4">
-          Further Reading
+          {t("furtherReadingHeading")}
         </h2>
         <p className="text-neutral-400 mb-4">
-          For a curated list of books, articles, and resources related to these topics, 
-          visit my <Link href="/readings" className="text-neutral-300 hover:underline">readings page</Link>.
+          {t("furtherReadingBefore")}{" "}
+          <Link href="/readings" className="text-neutral-300 hover:underline">{t("readingsLink")}</Link>.
         </p>
       </section>
     </div>

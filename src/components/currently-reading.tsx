@@ -3,9 +3,11 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { reading2025 } from "@/data/challenges/2025/reading";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export function CurrentlyReading() {
+  const t = useTranslations("CurrentlyReading");
   const currentBook = reading2025.find(book => book.status === "reading");
 
   if (!currentBook) return null;
@@ -16,7 +18,7 @@ export function CurrentlyReading() {
         href="/challenges/2025/reading"
         className="group inline-flex items-center gap-2"
       >
-        <h3 className="text-neutral-200 font-medium group-hover:text-neutral-100">Currently Reading</h3>
+        <h3 className="text-neutral-200 font-medium group-hover:text-neutral-100">{t("title")}</h3>
         <ArrowUpRight className="w-4 h-4 text-neutral-400 group-hover:text-neutral-300" />
       </Link>
       <div className="space-y-1">
@@ -32,7 +34,7 @@ export function CurrentlyReading() {
               {currentBook.title}
             </p>
             <p className="text-neutral-400">
-              by {currentBook.author}
+              {t("by", { author: currentBook.author })}
             </p>
           </div>
         </a>

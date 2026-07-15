@@ -7,5 +7,88 @@
     "writings": "Écrits",
     "readings": "Lectures",
     "people": "Gens"
+  },
+  "LanguageSwitcher": {
+    "label": "Langue",
+    "en": "EN",
+    "fr": "FR"
+  },
+  "Home": {
+    "founderOf": "Fondateur de",
+    "tagline": "Là où commencent les mandats comptables.",
+    "description": "Coalesc aide les cabinets comptables dirigés par des associés à transformer les courriels, PDF, relevés, reçus et documents justificatifs désordonnés de leurs clients en dossiers prêts à traiter pour la tenue de livres, la fiscalité, la compilation et la certification.",
+    "viewResume": "Voir mon CV",
+    "bookMeeting": "Prendre rendez-vous"
+  },
+  "CurrentlyReading": {
+    "title": "Lecture en cours",
+    "by": "par {author}"
+  },
+  "Ask": {
+    "heading": "Ma demande",
+    "subhead": "Partenaires pilotes pour Coalesc",
+    "p1": "Je souhaite échanger avec des cabinets comptables dirigés par des associés qui gèrent des centaines ou des milliers de dossiers clients par année.",
+    "p2": "En particulier les cabinets où les équipes passent encore des heures à rassembler des documents, à vérifier ce qui manque, à séparer des PDF, à relancer les clients et à préparer les dossiers avant même que le vrai travail comptable puisse commencer.",
+    "p3": "Si votre équipe doit composer avec le chaos documentaire avant la tenue de livres, la fiscalité, la compilation ou la certification, nous devrions discuter. Nous nous intéressons particulièrement aux cabinets prêts à collaborer étroitement avec nous pendant la haute saison.",
+    "tagFirms": "Cabinets dirigés par des associés",
+    "tagFiles": "500+ dossiers clients/an",
+    "tagServices": "Tenue de livres, fiscalité, compilation, certification",
+    "tagPrep": "Collecte de documents, pièces manquantes, préparation des dossiers"
+  },
+  "About": {
+    "heading": "À propos de moi",
+    "p1": "Je suis Anthony Uyende, fondateur, programmeur et auteur établi à Montréal, au Canada.",
+    "buildingBefore": "Je bâtis actuellement",
+    "buildingAfter": ", la couche de préparation pour les cabinets comptables.",
+    "p3": "Chaque mandat comptable commence par la même couche de préparation désordonnée : les documents des clients arrivent par courriel, portails, téléversements, PDF, relevés, reçus et feuilles de calcul. Avant que la tenue de livres, la fiscalité, la compilation ou la certification puisse commencer, quelqu'un doit rassembler les bons documents, repérer ce qui manque, classer les fichiers, relancer les clients et déterminer si le dossier est réellement prêt.",
+    "p4": "Coalesc se concentre sur cette couche. Nous aidons les équipes comptables à préparer les dossiers clients avant que le travail commence : réception des documents, classification, pièces manquantes, relances, état de préparation des dossiers et transfert structuré vers les outils que les cabinets utilisent déjà.",
+    "p5": "J'ai une formation en mathématiques, en informatique, en données et en ingénierie de l'IA. J'ai travaillé en science des données, en ingénierie analytique et en développement logiciel dans des entreprises comme Shopify, Wealthsimple, Unity et 1Password.",
+    "p6": "J'aime concevoir des logiciels pour les secteurs où la confiance, le jugement et la complexité opérationnelle comptent. La comptabilité est l'un de ces secteurs.",
+    "p7": "Plus largement, je réfléchis beaucoup aux startups, à l'infrastructure de l'IA, au développement économique, à l'énergie et aux systèmes qui façonnent la croissance des sociétés.",
+    "elsewhere": "Ailleurs",
+    "moreInfo": "Plus d'informations",
+    "moreInfoBefore": "Pour un aperçu détaillé de mon expérience professionnelle et de mes compétences, consultez mon",
+    "resumeLink": "CV"
+  },
+  "Interests": {
+    "heading": "Intérêts",
+    "intro": "Un ensemble de sujets qui façonnent ma façon de penser, de bâtir et d'écrire.",
+    "furtherReadingHeading": "Pour aller plus loin",
+    "furtherReadingBefore": "Pour une liste soignée de livres, d'articles et de ressources liés à ces sujets, visitez ma",
+    "readingsLink": "page de lectures"
+  },
+  "Writings": {
+    "heading": "Écrits",
+    "intro": "Bienvenue sur ma page d'écrits. J'y partage mes réflexions, mes idées et mes expériences sur divers sujets qui m'intéressent. Du développement personnel aux tendances technologiques, ces articles reflètent mon parcours d'apprentissage et d'exploration continus.",
+    "backToWritings": "← Retour aux écrits",
+    "publishedOn": "Publié le {date}",
+    "metaTitle": "Écrits | Anthony Uyende",
+    "metaDescription": "Réflexions, idées et expériences sur divers sujets qui m'intéressent."
+  },
+  "Readings": {
+    "heading": "Lectures",
+    "introBefore": "Voici une liste soignée de livres, d'articles, de blogues et d'autres lectures qui ont profondément influencé ma pensée, organisée par thème. Ces ouvrages couvrent divers sujets, dont la technologie, l'entrepreneuriat, la science et le développement personnel. Vous trouverez d'autres livres que j'ai lus sur mon profil",
+    "goodreadsLink": "Goodreads",
+    "introAfter": ".",
+    "noteTitle": "Note :",
+    "noteText": "Cette liste est encore en cours de construction et n'est pas complète. J'y ajouterai d'autres lectures et possiblement de nouvelles catégories au fil du temps. Revenez pour voir les mises à jour!",
+    "searchPlaceholder": "Rechercher par titre, auteur ou description...",
+    "clear": "Effacer",
+    "resultsFound": "{count} résultats trouvés",
+    "noResults": "Aucune lecture ne correspond à votre recherche.",
+    "tableOfContents": "Table des matières"
+  },
+  "People": {
+    "heading": "Gens",
+    "intro": "Voici un ensemble de personnes qui ont profondément influencé ma pensée, mon travail ou ma vie en général. Elles vont de mentors personnels à des figures historiques dont les idées ont façonné ma perspective. Chacune a contribué de façon unique à mon parcours en technologie, en entrepreneuriat et au-delà.",
+    "noteTitle": "Note :",
+    "noteText": "Cette liste est encore en cours de construction et n'est pas complète. J'y ajouterai d'autres personnes et possiblement de nouvelles catégories au fil du temps. Revenez pour voir les mises à jour!"
+  },
+  "Resume": {
+    "about": "À propos",
+    "workExperience": "Expérience professionnelle",
+    "education": "Formation",
+    "skills": "Compétences",
+    "projects": "Projets"
   }
 }

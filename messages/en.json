@@ -7,5 +7,88 @@
     "writings": "Writings",
     "readings": "Readings",
     "people": "People"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR"
+  },
+  "Home": {
+    "founderOf": "Founder of",
+    "tagline": "Where accounting engagements begin.",
+    "description": "Coalesc helps partner-led accounting firms turn messy client emails, PDFs, statements, receipts, and supporting documents into work-ready files for bookkeeping, tax, compilation, and assurance.",
+    "viewResume": "View my resume",
+    "bookMeeting": "Book a meeting"
+  },
+  "CurrentlyReading": {
+    "title": "Currently Reading",
+    "by": "by {author}"
+  },
+  "Ask": {
+    "heading": "Ask",
+    "subhead": "Design partners for Coalesc",
+    "p1": "I'm looking to speak with partner-led accounting firms handling hundreds or thousands of client files per year.",
+    "p2": "Especially firms where teams still spend hours collecting documents, checking what is missing, splitting PDFs, relaunching clients, and preparing files before the real accounting work can begin.",
+    "p3": "If your team deals with document chaos before bookkeeping, tax, compilation, or assurance work, we should talk. We are especially interested in firms open to working closely with us during peak season.",
+    "tagFirms": "Partner-led firms",
+    "tagFiles": "500+ client files/year",
+    "tagServices": "Bookkeeping, tax, compilation, assurance",
+    "tagPrep": "Document collection, missing items, file preparation"
+  },
+  "About": {
+    "heading": "About Me",
+    "p1": "I'm Anthony Uyende, a founder, programmer, and writer based in Montreal, Canada.",
+    "buildingBefore": "I'm currently building",
+    "buildingAfter": ", the preparation layer for accounting firms.",
+    "p3": "Every accounting engagement starts with the same messy preparation layer: client documents arrive through email, portals, uploads, PDFs, statements, receipts, and spreadsheets. Before bookkeeping, tax, compilation, or assurance work can begin, someone has to collect the right documents, identify what is missing, classify files, follow up with clients, and determine whether the file is actually ready.",
+    "p4": "Coalesc is focused on that layer. We help accounting teams prepare client files before the work begins: document intake, classification, missing items, follow-ups, file readiness, and structured handoff into the tools firms already use.",
+    "p5": "My background is in mathematics, computer science, data, and AI engineering. I've worked across data science, analytics engineering, and software at companies including Shopify, Wealthsimple, Unity, and 1Password.",
+    "p6": "I'm interested in building software for industries where trust, judgment, and operational complexity matter. Accounting is one of those industries.",
+    "p7": "More broadly, I think a lot about startups, AI infrastructure, economic development, energy, and the systems that shape how societies grow.",
+    "elsewhere": "Elsewhere",
+    "moreInfo": "More Information",
+    "moreInfoBefore": "For a detailed overview of my professional experience and skills, please see my",
+    "resumeLink": "resume"
+  },
+  "Interests": {
+    "heading": "Interests",
+    "intro": "A collection of topics that shape how I think, build, and write.",
+    "furtherReadingHeading": "Further Reading",
+    "furtherReadingBefore": "For a curated list of books, articles, and resources related to these topics, visit my",
+    "readingsLink": "readings page"
+  },
+  "Writings": {
+    "heading": "Writings",
+    "intro": "Welcome to my writings page. Here, I share my thoughts, insights, and experiences on various topics that interest me. From personal development to technology trends, these articles reflect my journey of continuous learning and exploration.",
+    "backToWritings": "← Back to Writings",
+    "publishedOn": "Published on {date}",
+    "metaTitle": "Writings | Anthony Uyende",
+    "metaDescription": "Thoughts, insights, and experiences on various topics that interest me."
+  },
+  "Readings": {
+    "heading": "Readings",
+    "introBefore": "Here's a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. You can find more books I've read on my",
+    "goodreadsLink": "Goodreads",
+    "introAfter": "profile.",
+    "noteTitle": "Note:",
+    "noteText": "This list is currently a work in progress and not complete. I will be adding more readings and potentially new categories over time. Check back for updates!",
+    "searchPlaceholder": "Search by title, author, or description...",
+    "clear": "Clear",
+    "resultsFound": "Found {count} results",
+    "noResults": "No readings found matching your search.",
+    "tableOfContents": "Table of Contents"
+  },
+  "People": {
+    "heading": "People",
+    "intro": "This is a collection of individuals who have significantly influenced my thinking, work, or life in general. They range from personal mentors to historical figures whose ideas have shaped my perspective. Each has contributed uniquely to my journey in technology, entrepreneurship, and beyond.",
+    "noteTitle": "Note:",
+    "noteText": "This list is currently a work in progress and not complete. I will be adding more people and potentially new categories over time. Check back for updates!"
+  },
+  "Resume": {
+    "about": "About",
+    "workExperience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects"
   }
 }

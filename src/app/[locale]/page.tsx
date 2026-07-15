@@ -3,9 +3,10 @@
 import { Misc } from "@/components/misc";
 import { OpportunitiesSection } from "@/components/opportunities-section";
 import { RESUME_DATA } from "@/data/resume-data";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
-import Link from "next/link";
 
 const container = {
 	hidden: { opacity: 0 },
@@ -31,6 +32,7 @@ const item = {
 };
 
 export default function Home() {
+	const t = useTranslations("Home");
 	return (
 		<main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
 			<motion.div
@@ -50,7 +52,7 @@ export default function Home() {
 						variants={item}
 						className="group text-lg sm:text-xl text-neutral-300"
 					>
-						<span>Founder of </span>
+						<span>{t("founderOf")} </span>
 						<a
 							href="https://coalesc.ai"
 							className="inline-flex items-center gap-1 text-neutral-100 hover:text-white transition-colors duration-200"
@@ -73,16 +75,14 @@ export default function Home() {
 						variants={item}
 						className="text-base sm:text-lg text-neutral-300"
 					>
-						Where accounting engagements begin.
+						{t("tagline")}
 					</motion.li>
 
 					<motion.li
 						variants={item}
 						className="text-sm sm:text-base text-neutral-400"
 					>
-						Coalesc helps partner-led accounting firms turn messy client
-						emails, PDFs, statements, receipts, and supporting documents into
-						work-ready files for bookkeeping, tax, compilation, and assurance.
+						{t("description")}
 					</motion.li>
 
 					<motion.li variants={item}>
@@ -90,7 +90,7 @@ export default function Home() {
 							href="/resume"
 							className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800/50 hover:bg-neutral-800 transition-colors duration-200 text-neutral-200 hover:text-white"
 						>
-							<span>View my resume</span>
+							<span>{t("viewResume")}</span>
 							<motion.div
 								whileHover={{ x: 5 }}
 								transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -107,7 +107,7 @@ export default function Home() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>Book a meeting</span>
+							<span>{t("bookMeeting")}</span>
 							<motion.div
 								whileHover={{ x: 5 }}
 								transition={{ type: "spring", stiffness: 400, damping: 10 }}
