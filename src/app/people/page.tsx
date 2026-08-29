@@ -1,4 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
+import React from 'react';
+import Link from 'next/link';
 
 interface Person {
   name: string;
@@ -9,60 +10,43 @@ const people: Person[] = [
   { name: "Alain Tamno", url: "https://www.amazon.fr/stores/author/B08NYD6N8H/about" },
   { name: "Immad Akhund", url: "https://x.com/immad" },
   { name: "Jesus Christ", url: "https://www.bible.com/" },
-  {
-    name: "Lea Nzogho",
-    url: "https://www.linkedin.com/in/lea-nzogho-518ab42b6/?originalSubdomain=ga",
-  },
+  { name: "Lea Nzogho", url: "https://www.linkedin.com/in/lea-nzogho-518ab42b6/?originalSubdomain=ga" },
   { name: "Naval Ravikant", url: "https://nav.al/" },
   { name: "Paul Graham", url: "https://paulgraham.com/" },
-  {
-    name: "Paul Washer",
-    url: "https://heartcrymissionary.com/about/mission-and-methodology/staff/paul-washers-bio/",
-  },
+  { name: "Paul Washer", url: "https://heartcrymissionary.com/about/mission-and-methodology/staff/paul-washers-bio/" },
   { name: "Sam Altman", url: "https://blog.samaltman.com/" },
-  {
-    name: "Santosh Passoubady",
-    url: "https://www.google.com/search?q=santosh+passoubady",
-  },
+  { name: "Santosh Passoubady", url: "https://www.google.com/search?q=santosh+passoubady&client=ms-android-rogers-ca-revc&sca_esv=3035149b170ff626&sxsrf=AE3TifPLXVmb-e3GaN1RE00Z5gQJQsylXg%3A1749862790793&ei=hslMaOuYMM2pptQP9NKTyQc&oq=santosh+passoubady&gs_lp=EhNtb2JpbGUtZ3dzLXdpei1zZXJwIhJzYW50b3NoIHBhc3NvdWJhZHkyBBAjGCcyChAjGIAEGCcYigUyBRAhGKABMgUQABjvBUj5E1C7CVjYEXAEeACQAQKYAawBoAGcB6oBAzAuN7gBA8gBAPgBAZgCBqACmALCAggQABiwAxjvBcICCxAAGIAEGLADGKIEwgIFECEYnwWYAwCIBgGQBgSSBwM0LjKgB4sbsgcDMC4yuAeLAsIHBTAuMy4zyAcT&sclient=mobile-gws-wiz-serp" },
   { name: "Shahvir Sarkary", url: "https://www.shahvirsarkary.com/" },
-].sort((a, b) => a.name.localeCompare(b.name));
+  // Add more people here...
+].sort((a, b) => a.name.localeCompare(b.name)); // This sorts the list alphabetically
 
-export default function PeoplePage() {
+const PeoplePage = () => {
   return (
-    <main className="mx-auto mb-32 max-w-2xl">
-      <header className="mb-10 space-y-3">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-neutral-600">
-          Influences
-        </p>
-        <h1 className="text-3xl font-semibold tracking-[-0.025em] text-neutral-100">
-          People
-        </h1>
-        <p className="max-w-xl leading-7 text-neutral-400">
-          People who have shaped how I think, work, build, or live. Some are people I know.
-          Others I know only through their work.
-        </p>
-        <p className="text-sm tabular-nums text-neutral-600">{people.length} people · evolving list</p>
-      </header>
+    <div className="max-w-2xl mx-auto space-y-6 mb-32">
+      <h1 className="text-2xl font-bold mb-4">People</h1>
+      
+      <p className="mb-6">
+        This is a collection of individuals who have significantly influenced my thinking, work, or life in general. 
+        They range from personal mentors to historical figures whose ideas have shaped my perspective. 
+        Each has contributed uniquely to my journey in technology, entrepreneurship, and beyond.
+      </p>
 
-      <ul className="grid gap-2 sm:grid-cols-2">
-        {people.map((person) => (
-          <li key={person.name}>
-            <a
-              href={person.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex min-h-12 items-center justify-between gap-3 rounded-lg border border-neutral-800 bg-neutral-900/25 px-3.5 py-3 text-neutral-300 transition-colors duration-150 hover:border-neutral-700 hover:bg-neutral-900/60 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] motion-reduce:transition-none"
-            >
-              <span>{person.name}</span>
-              <ArrowUpRight
-                className="h-4 w-4 shrink-0 text-neutral-700 transition-all duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-neutral-400 motion-reduce:transform-none motion-reduce:transition-none"
-                aria-hidden="true"
-              />
-              <span className="sr-only">Opens in a new tab</span>
-            </a>
+      <div className="bg-yellow-900/20 border-l-4 border-yellow-600 text-yellow-200 p-4 mb-6" role="alert">
+        <p className="font-bold">Note:</p>
+        <p className="text-yellow-300/80">This list is currently a work in progress and not complete. I will be adding more people and potentially new categories over time. Check back for updates!</p>
+      </div>
+      
+      <ul className="space-y-2">
+        {people.map((person, index) => (
+          <li key={index}>
+            <Link href={person.url} className="text-neutral-400 hover:underline" target="_blank" rel="noopener noreferrer">
+              {person.name}
+            </Link>
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
-}
+};
+
+export default PeoplePage;
