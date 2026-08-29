@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+import { CopyLinkButton } from "@/components/copy-link-button";
 import { mdxComponents } from "@/components/MDXComponents";
 import { ReadingProgress } from "@/components/reading-progress";
 import { formatDateOnly } from "@/lib/date";
@@ -93,20 +94,25 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             <p className="mt-4 text-base leading-7 text-neutral-400">{data.summary}</p>
           ) : null}
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-600">
-            <time dateTime={data.date} className="tabular-nums">
-              {formatDateOnly(data.date, {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </time>
-            <span aria-hidden="true">·</span>
-            <span className="tabular-nums">{readingTime} min read</span>
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-600">
+              <time dateTime={data.date} className="tabular-nums">
+                {formatDateOnly(data.date, {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+              <span aria-hidden="true">·</span>
+              <span className="tabular-nums">{readingTime} min read</span>
+            </div>
+            <CopyLinkButton />
           </div>
         </header>
 
-        <article>{<MDXRemote source={content} components={mdxComponents} />}</article>
+        <article>
+          <MDXRemote source={content} components={mdxComponents} />
+        </article>
 
         <nav
           aria-label="More writing"
