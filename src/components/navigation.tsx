@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
+type Locale = "en" | "fr";
+
 type NavItemProps = {
   href: string;
   children: React.ReactNode;
@@ -17,8 +19,8 @@ function NavItem({ href, children, isActive }: NavItemProps) {
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-11 shrink-0 items-center justify-center rounded-full px-3 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-200 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 motion-reduce:transition-none sm:px-4 sm:text-base",
-        "hover:bg-neutral-800 hover:text-white",
+        "px-3 py-2 text-sm sm:px-4 sm:text-base rounded-full transition-all duration-200",
+        "hover:bg-neutral-800/50 hover:text-white",
         isActive ? "bg-neutral-800 text-white" : "text-neutral-400",
       )}
     >
@@ -27,37 +29,85 @@ function NavItem({ href, children, isActive }: NavItemProps) {
   );
 }
 
-const items = [
-  ["/", "Home"],
-  ["/about", "About"],
-  ["/resume", "Resume"],
-  ["/interests", "Interests"],
-  ["/writings", "Writings"],
-  ["/readings", "Readings"],
-  ["/people", "People"],
-] as const;
+function stripLocale(pathname: string) {
+  const stripped = pathname.replace(/^\/fr(?=\/|$)/, "");
+  return stripped || "/";
+}
+
+function localizedPath(locale: Locale, path: string) {
+  return locale === "fr" ? `/fr${path}` : path;
+}
 
 export default function Navigation() {
   const pathname = usePathname();
+  const locale: Locale = pathname === "/fr" || pathname.startsWith("/fr/") ? "fr" : "en";
+  const basePath = stripLocale(pathname);
+
+  const labels =
+    locale === "fr"
+      ? {
+          resume: "CV",
+          interests: "Intérêts",
+          writings: "Écrits",
+          readings: "Lectures",
+        }
+      : {
+          resume: "Resume",
+          interests: "Interests",
+          writings: "Writings",
+          readings: "Readings",
+        };
+
+  const items = [
+    ["/resume", labels.resume],
+    ["/interests", labels.interests],
+    ["/writings", labels.writings],
+    ["/readings", labels.readings],
+  ] as const;
+
+  const isCorePath = items.some(
+    ([href]) => basePath === href || basePath.startsWith(`${href}/`),
+  );
+
+  const languageHref =
+    locale === "fr"
+      ? isCorePath
+        ? basePath
+        : "/resume"
+      : isCorePath
+        ? `/fr${basePath}`
+        : "/fr/resume";
 
   return (
     <nav
-      aria-label="Primary"
-      className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-4 sm:bottom-8"
+      aria-label={locale === "fr" ? "Navigation principale" : "Primary navigation"}
+      className="fixed bottom-4 sm:bottom-8 left-0 right-0 flex items-center justify-center w-full z-50 px-4"
     >
-      <div className="max-w-full overflow-x-auto overscroll-x-contain rounded-full border border-neutral-800 bg-neutral-950/95 p-1.5 shadow-2xl shadow-black/30 no-scrollbar">
-        <div className="flex w-max items-center gap-1">
-          {items.map(([href, label]) => {
-            const isActive =
-              href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+      <div className="flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-4 rounded-full bg-black/60 backdrop-blur-md border border-neutral-800 overflow-x-auto no-scrollbar">
+        {items.map(([href, label]) => {
+          const localizedHref = localizedPath(locale, href);
+          const isActive = basePath === href || basePath.startsWith(`${href}/`);
 
-            return (
-              <NavItem key={href} href={href} isActive={isActive}>
-                {label}
-              </NavItem>
-            );
-          })}
-        </div>
+          return (
+            <NavItem key={href} href={localizedHref} isActive={isActive}>
+              {label}
+            </NavItem>
+          );
+        })}
+
+        <span className="mx-1 h-5 w-px shrink-0 bg-neutral-800" aria-hidden="true" />
+
+        <Link
+          href={languageHref}
+          hrefLang={locale === "fr" ? "en" : "fr"}
+          lang={locale === "fr" ? "en" : "fr"}
+          aria-label={
+            locale === "fr" ? "Switch to English" : "Passer au français"
+          }
+          className="shrink-0 rounded-full px-3 py-2 text-sm text-neutral-500 transition-colors duration-200 hover:bg-neutral-800/50 hover:text-white"
+        >
+          {locale === "fr" ? "EN" : "FR"}
+        </Link>
       </div>
     </nav>
   );
