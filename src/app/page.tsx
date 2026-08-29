@@ -1,124 +1,148 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { ArrowRight } from "lucide-react";
+"use client";
+
+import { Misc } from "@/components/misc";
+import { OpportunitiesSection } from "@/components/opportunities-section";
+import { RESUME_DATA } from "@/data/resume-data";
+import { motion } from "framer-motion";
+import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
-import { CurrentlyReading } from "@/components/currently-reading";
-import { HomeIntro } from "@/components/home-intro";
-import { OpportunitiesSection } from "@/components/opportunities-section";
-import { formatDateOnly } from "@/lib/date";
+const container = {
+	hidden: { opacity: 0 },
+	show: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+			delayChildren: 0.3,
+		},
+	},
+};
 
-interface PostSummary {
-  slug: string;
-  title: string;
-  date: string;
-  summary?: string;
-}
-
-function getRecentPosts(): PostSummary[] {
-  const postsDirectory = path.join(process.cwd(), "src/content/articles");
-
-  return fs
-    .readdirSync(postsDirectory)
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => {
-      const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug: fileName.replace(/\.mdx$/, ""),
-        title: data.title,
-        date: data.date,
-        summary: data.summary,
-      };
-    })
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, 3);
-}
+const item = {
+	hidden: { opacity: 0, y: 20 },
+	show: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.8,
+			ease: [0.04, 0.62, 0.23, 0.98],
+		},
+	},
+};
 
 export default function Home() {
-  const recentPosts = getRecentPosts();
+	return (
+		<main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
+			<motion.div
+				className="max-w-2xl w-full space-y-8 sm:space-y-10"
+				variants={container}
+				initial="hidden"
+				animate="show"
+			>
+				<motion.div variants={item}>
+					<h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white to-neutral-400 text-transparent bg-clip-text">
+						Anthony Uyende
+					</h1>
+				</motion.div>
 
-  return (
-    <main className="mx-auto w-full max-w-2xl space-y-14 pt-8 sm:pt-14">
-      <HomeIntro />
+				<motion.ul className="space-y-4 sm:space-y-6" variants={container}>
+					<motion.li
+						variants={item}
+						className="group text-lg sm:text-xl text-neutral-300"
+					>
+						<span>Founder of </span>
+						<a
+							href="https://coalesc.ai"
+							className="inline-flex items-center gap-1 text-neutral-100 hover:text-white transition-colors duration-200"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span className="border-b border-neutral-700 group-hover:border-neutral-400 transition-colors duration-200">
+								Coalesc
+							</span>
+							<motion.div
+								whileHover={{ scale: 1.1, rotate: 45 }}
+								transition={{ type: "spring", stiffness: 400, damping: 10 }}
+							>
+								<SquareArrowOutUpRight className="w-4 h-4" />
+							</motion.div>
+						</a>
+					</motion.li>
 
-      <section className="border-t border-neutral-800/80 pt-8">
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-neutral-600">
-              Notes
-            </p>
-            <h2 className="text-xl font-semibold tracking-tight text-neutral-200">
-              Recent writing
-            </h2>
-          </div>
-          <Link
-            href="/writings"
-            className="group inline-flex min-h-11 items-center gap-1.5 text-sm text-neutral-500 transition-colors duration-150 hover:text-neutral-200 motion-reduce:transition-none"
-          >
-            All writing
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-              aria-hidden="true"
-            />
-          </Link>
-        </div>
+					<motion.li
+						variants={item}
+						className="text-base sm:text-lg text-neutral-300"
+					>
+						Where accounting engagements begin.
+					</motion.li>
 
-        <div className="divide-y divide-neutral-800/80">
-          {recentPosts.map((post) => (
-            <article key={post.slug}>
-              <Link
-                href={`/writings/${post.slug}`}
-                className="group -mx-3 grid gap-2 rounded-lg px-3 py-5 transition-colors duration-150 hover:bg-neutral-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] motion-reduce:transition-none sm:grid-cols-[7rem_1fr]"
-              >
-                <time
-                  dateTime={post.date}
-                  className="text-sm tabular-nums text-neutral-600"
-                >
-                  {formatDateOnly(post.date, { month: "short", day: "numeric" })}
-                </time>
-                <div className="min-w-0">
-                  <h3 className="font-medium text-neutral-200 transition-colors duration-150 group-hover:text-white motion-reduce:transition-none">
-                    {post.title}
-                  </h3>
-                  {post.summary ? (
-                    <p className="mt-1 line-clamp-2 text-sm leading-6 text-neutral-500">
-                      {post.summary}
-                    </p>
-                  ) : null}
-                </div>
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
+					<motion.li
+						variants={item}
+						className="text-sm sm:text-base text-neutral-400"
+					>
+						Coalesc helps partner-led accounting firms turn messy client
+						emails, PDFs, statements, receipts, and supporting documents into
+						work-ready files for bookkeeping, tax, compilation, and assurance.
+					</motion.li>
 
-      <section className="grid gap-4 border-t border-neutral-800/80 pt-8 sm:grid-cols-[0.9fr_1.1fr]">
-        <CurrentlyReading />
-        <div className="rounded-xl border border-neutral-800 bg-neutral-900/30 p-5">
-          <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-neutral-600">
-            Current focus
-          </p>
-          <h2 className="text-base font-medium text-neutral-200">Coalesc</h2>
-          <p className="mt-2 text-sm leading-6 text-neutral-500">
-            Building software that turns messy client documents into complete,
-            review-ready accounting work.
-          </p>
-          <a
-            href="https://coalesc.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-neutral-300 underline decoration-neutral-700 underline-offset-4 transition-colors duration-150 hover:text-white hover:decoration-neutral-400 motion-reduce:transition-none"
-          >
-            Visit Coalesc
-            <span className="sr-only">, opens in a new tab</span>
-          </a>
-        </div>
-      </section>
+					<motion.li variants={item}>
+						<Link
+							href="/resume"
+							className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800/50 hover:bg-neutral-800 transition-colors duration-200 text-neutral-200 hover:text-white"
+						>
+							<span>View my resume</span>
+							<motion.div
+								whileHover={{ x: 5 }}
+								transition={{ type: "spring", stiffness: 400, damping: 10 }}
+							>
+								→
+							</motion.div>
+						</Link>
+					</motion.li>
 
-      <OpportunitiesSection />
-    </main>
-  );
+					<motion.li variants={item}>
+						<a
+							href="https://cal.com/auyende/15min"
+							className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800/50 hover:bg-neutral-800 transition-colors duration-200 text-neutral-200 hover:text-white"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span>Book a meeting</span>
+							<motion.div
+								whileHover={{ x: 5 }}
+								transition={{ type: "spring", stiffness: 400, damping: 10 }}
+							>
+								→
+							</motion.div>
+						</a>
+					</motion.li>
+
+					<motion.li variants={item}>
+						<a
+							href={`mailto:${RESUME_DATA.contact.email}`}
+							className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
+						>
+							<span className="border-b border-neutral-700 hover:border-neutral-400 transition-colors duration-200">
+								{RESUME_DATA.contact.email}
+							</span>
+							<motion.div
+								whileHover={{ scale: 1.1, rotate: 45 }}
+								transition={{ type: "spring", stiffness: 400, damping: 10 }}
+							>
+								<SquareArrowOutUpRight className="w-4 h-4" />
+							</motion.div>
+						</a>
+					</motion.li>
+
+					<motion.div variants={item}>
+						<Misc />
+					</motion.div>
+
+					<motion.div variants={item} className="mt-12">
+						<OpportunitiesSection />
+					</motion.div>
+				</motion.ul>
+			</motion.div>
+		</main>
+	);
 }
