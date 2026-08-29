@@ -15,6 +15,7 @@ export function formatDateOnly(
     day: "numeric",
     year: "numeric",
   },
+  locale = "en-CA",
 ) {
-  return new Intl.DateTimeFormat("en-CA", options).format(dateOnlyToLocalDate(value));
+  return new Intl.DateTimeFormat(locale, options).format(dateOnlyToLocalDate(value));
 }
