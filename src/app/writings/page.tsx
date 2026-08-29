@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { formatDateOnly } from "@/lib/date";
 
 interface BlogPost {
@@ -34,7 +35,7 @@ export default function WritingsPage() {
     .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
-    <main className="mx-auto mb-32 max-w-2xl">
+    <main className="mx-auto mb-32 max-w-2xl">\n      <LanguageSwitcher locale="en" englishHref="/writings" frenchHref="/fr/writings" />
       <header className="mb-10 space-y-3">
         <p className="text-xs font-medium uppercase tracking-[0.16em] text-neutral-600">
           Essays & notes
