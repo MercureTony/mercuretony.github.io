@@ -1,127 +1,177 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Search } from 'lucide-react';
-import { topics } from '@/data/reading-data';
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { Search, X } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+
+import { topics } from "@/data/reading-data";
 
 export default function ReadingsPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const normalizedQuery = searchQuery.trim().toLowerCase();
 
-  // Filter topics and their readings based on search query
-  const filteredTopics = topics.map(topic => ({
-    ...topic,
-    readings: topic.readings.filter(reading => 
-      reading.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      reading.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      reading.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(topic => topic.readings.length > 0);
+  const filteredTopics = useMemo(
+    () =>
+      topics
+        .map((topic) => ({
+          ...topic,
+          readings: topic.readings.filter((reading) => {
+            if (!normalizedQuery) return true;
+
+            return (
+              reading.title.toLowerCase().includes(normalizedQuery) ||
+              reading.author.toLowerCase().includes(normalizedQuery) ||
+              reading.description.toLowerCase().includes(normalizedQuery)
+            );
+          }),
+        }))
+        .filter((topic) => topic.readings.length > 0),
+    [normalizedQuery],
+  );
+
+  const resultCount = filteredTopics.reduce(
+    (total, topic) => total + topic.readings.length,
+    0,
+  );
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6 mb-32">
-      <h1 className="text-2xl font-bold mb-4">Readings</h1>
-      
+    <div className="mx-auto mb-32 max-w-2xl space-y-6">\n      <LanguageSwitcher locale="en" englishHref="/readings" frenchHref="/fr/readings" />
+      <h1 className="mb-4 text-2xl font-bold">Readings</h1>
+
       <p className="mb-6">
-        Here&apos;s a curated list of books, articles, blogs, and other readings that have significantly influenced my thinking, 
-        organized by topic. These works cover a range of subjects including technology, entrepreneurship, science, and personal development. You can find more books I&apos;ve read on my 
-        <a href="https://www.goodreads.com" className="text-neutral-400 hover:underline ml-1">Goodreads</a> profile.
+        Here&apos;s a curated list of books, articles, blogs, and other readings that have
+        significantly influenced my thinking, organized by topic. These works cover
+        technology, entrepreneurship, science, and personal development. You can find more
+        books I&apos;ve read on my{" "}
+        <a
+          href="https://www.goodreads.com"
+          className="text-neutral-400 underline-offset-4 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Goodreads
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>{" "}
+        profile.
       </p>
-      
-      <div className="bg-yellow-900/20 border-l-4 border-yellow-600 text-yellow-200 p-4 mb-6" role="alert">
-        <p className="font-bold mb-1">Note:</p>
-        <p className="text-yellow-300/80">This list is currently a work in progress and not complete. I will be adding more readings and potentially new categories over time. Check back for updates!</p>
-      </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-8">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-neutral-500" />
-        </div>
-        <input
-          type="text"
-          placeholder="Search by title, author, or description..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 bg-neutral-900/50 border border-neutral-800 
-                     rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-700 
-                     text-neutral-200 placeholder-neutral-500"
-        />
-        {searchQuery && (
-          <button
-            onClick={() => setSearchQuery('')}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-neutral-500 hover:text-neutral-300"
-          >
-            Clear
-          </button>
-        )}
-      </div>
-
-      {/* Results count when searching */}
-      {searchQuery && (
-        <p className="text-sm text-neutral-500 mb-4">
-          Found {filteredTopics.reduce((acc, topic) => acc + topic.readings.length, 0)} results
+      <aside
+        aria-label="About this list"
+        className="mb-6 border-l-2 border-yellow-600 bg-yellow-900/20 p-4 text-yellow-200"
+      >
+        <p className="mb-1 font-semibold">Work in progress</p>
+        <p className="text-yellow-300/80">
+          I&apos;m still adding readings and categories over time.
         </p>
-      )}
+      </aside>
+
+      <div className="relative mb-8">
+        <label htmlFor="reading-search" className="sr-only">
+          Search readings by title, author, or description
+        </label>
+        <Search
+          className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500"
+          aria-hidden="true"
+        />
+        <input
+          id="reading-search"
+          type="search"
+          inputMode="search"
+          autoComplete="off"
+          spellCheck={false}
+          placeholder="Search title, author, or description"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          className="min-h-11 w-full rounded-lg border border-neutral-800 bg-neutral-900/50 py-2 pl-10 pr-14 text-neutral-200 outline-none transition-colors duration-150 placeholder:text-neutral-500 focus:border-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] motion-reduce:transition-none"
+        />
+        {searchQuery ? (
+          <button
+            type="button"
+            onClick={() => setSearchQuery("")}
+            aria-label="Clear search"
+            className="absolute right-0 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md text-neutral-500 transition-colors duration-150 hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 motion-reduce:transition-none"
+          >
+            <X className="h-4 w-4" aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
+
+      {normalizedQuery ? (
+        <p className="mb-4 text-sm text-neutral-500" role="status" aria-live="polite">
+          {resultCount === 1 ? "1 result" : `${resultCount} results`}
+        </p>
+      ) : null}
 
       {filteredTopics.length === 0 ? (
-        <div className="text-center py-10 text-neutral-500">
-          No readings found matching your search.
+        <div className="py-10 text-center">
+          <p className="text-neutral-400">No readings match “{searchQuery.trim()}”.</p>
+          <button
+            type="button"
+            onClick={() => setSearchQuery("")}
+            className="mt-3 inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium text-neutral-200 underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300"
+          >
+            Clear search
+          </button>
         </div>
       ) : (
         <>
-          <nav className="mb-8">
-            <h2 className="text-xl font-bold mb-2">Table of Contents</h2>
-            <ul className="list-disc list-inside">
-              {filteredTopics.map((topic, index) => (
-                <li key={index}>
-                  <Link href={`#${topic.name.toLowerCase().replace(/\s+/g, '-')}`} className="text-neutral-400 hover:underline">
+          <nav className="mb-8" aria-label="Reading topics">
+            <h2 className="mb-2 text-xl font-bold">Table of Contents</h2>
+            <ul className="list-inside list-disc space-y-1">
+              {filteredTopics.map((topic) => (
+                <li key={topic.name}>
+                  <Link
+                    href={`#${topic.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="text-neutral-400 underline-offset-4 hover:underline"
+                  >
                     {topic.name} ({topic.readings.length})
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
-          
-          {filteredTopics.map((topic, topicIndex) => (
-            <section key={topicIndex} id={topic.name.toLowerCase().replace(/\s+/g, '-')} className="mb-8">
-              <h2 className="text-xl font-bold mb-4">{topic.name}</h2>
-              <ul className="space-y-4 list-none">
-                {topic.readings.map((reading, readingIndex) => (
-                  <li 
-                    key={readingIndex} 
-                    className={`border-b border-neutral-800 pb-4 last:border-b-0 mb-4 last:mb-0
-                      ${reading.isSpecial ? 'relative' : ''}`}
+
+          {filteredTopics.map((topic) => (
+            <section
+              key={topic.name}
+              id={topic.name.toLowerCase().replace(/\s+/g, "-")}
+              className="mb-8 scroll-mt-8"
+            >
+              <h2 className="mb-4 text-xl font-bold">{topic.name}</h2>
+              <ul className="list-none space-y-4">
+                {topic.readings.map((reading) => (
+                  <li
+                    key={`${reading.title}-${reading.author}`}
+                    className={`mb-4 border-b border-neutral-800 pb-4 last:mb-0 last:border-b-0 ${reading.isSpecial ? "relative" : ""}`}
                   >
-                    <h3 className={`text-base font-semibold mb-1 
-                      ${reading.isSpecial ? 
-                        'relative inline-block after:absolute after:bottom-0 after:left-0 after:w-full after:h-[30%] after:bg-yellow-500/20 after:-z-10' : 
-                        ''
-                      }`}>
+                    <h3
+                      className={`mb-1 text-base font-semibold ${reading.isSpecial ? "relative inline-block after:absolute after:bottom-0 after:left-0 after:-z-10 after:h-[30%] after:w-full after:bg-yellow-500/20" : ""}`}
+                    >
                       {reading.url ? (
-                        <a 
-                          href={reading.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className={`${reading.isSpecial ? 
-                            'text-yellow-200 hover:text-yellow-300' : 
-                            'text-white hover:text-neutral-200 hover:underline'
-                          }`}
+                        <a
+                          href={reading.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={
+                            reading.isSpecial
+                              ? "text-yellow-200 underline-offset-4 hover:text-yellow-300 hover:underline"
+                              : "text-white underline-offset-4 hover:text-neutral-200 hover:underline"
+                          }
                         >
                           {reading.title}
+                          <span className="sr-only"> (opens in a new tab)</span>
                         </a>
                       ) : (
-                        <span className={reading.isSpecial ? 'text-yellow-200' : 'text-white'}>
+                        <span className={reading.isSpecial ? "text-yellow-200" : "text-white"}>
                           {reading.title}
                         </span>
                       )}
                     </h3>
-                    <p className="text-neutral-500 text-sm mb-2">
-                      {reading.author} | {reading.type}
+                    <p className="mb-2 text-sm text-neutral-500">
+                      {reading.author} · {reading.type}
                     </p>
-                    <p className="text-sm text-neutral-400">
-                      {reading.description}
-                    </p>
+                    <p className="text-sm text-neutral-400">{reading.description}</p>
                   </li>
                 ))}
               </ul>
