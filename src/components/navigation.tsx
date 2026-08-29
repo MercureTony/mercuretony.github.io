@@ -47,11 +47,16 @@ export default function Navigation() {
     >
       <div className="max-w-full overflow-x-auto overscroll-x-contain rounded-full border border-neutral-800 bg-neutral-950/95 p-1.5 shadow-2xl shadow-black/30 no-scrollbar">
         <div className="flex w-max items-center gap-1">
-          {items.map(([href, label]) => (
-            <NavItem key={href} href={href} isActive={pathname === href}>
-              {label}
-            </NavItem>
-          ))}
+          {items.map(([href, label]) => {
+            const isActive =
+              href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+
+            return (
+              <NavItem key={href} href={href} isActive={isActive}>
+                {label}
+              </NavItem>
+            );
+          })}
         </div>
       </div>
     </nav>
