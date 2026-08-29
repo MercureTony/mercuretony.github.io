@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16 mb-32">
+    <main className="container relative mx-auto mb-32 scroll-my-12 p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-[#171717] print:space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-start justify-between gap-6">
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold text-neutral-200">{RESUME_DATA.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-neutral-400">
@@ -26,9 +26,10 @@ export default function Page() {
             </p>
             <p className="max-w-md items-center text-pretty font-mono text-xs text-neutral-400">
               <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:text-neutral-300"
+                className="inline-flex min-h-11 items-center gap-x-1.5 rounded-md pr-2 align-baseline leading-none text-neutral-400 transition-colors duration-150 hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 motion-reduce:transition-none"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <GlobeIcon className="h-3 w-3" />
                 {RESUME_DATA.location}
@@ -38,7 +39,7 @@ export default function Page() {
               {RESUME_DATA.contact.email ? (
                 <a 
                   href={`mailto:${RESUME_DATA.contact.email}`}
-                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors duration-150 hover:bg-neutral-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 motion-reduce:transition-none"
                   aria-label="Email"
                 >
                   <Mail className={iconClasses} />
@@ -47,7 +48,7 @@ export default function Page() {
               {RESUME_DATA.contact.tel ? (
                 <a 
                   href={`tel:${RESUME_DATA.contact.tel}`}
-                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors duration-150 hover:bg-neutral-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 motion-reduce:transition-none"
                   aria-label="Phone"
                 >
                   <Phone className={iconClasses} />
@@ -59,7 +60,7 @@ export default function Page() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2 hover:bg-neutral-800/50 transition-all"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors duration-150 hover:bg-neutral-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 motion-reduce:transition-none"
                   aria-label={social.name}
                 >
                   <social.icon className={iconClasses} />
@@ -80,7 +81,7 @@ export default function Page() {
             </div>
           </div>
 
-          <Avatar className="h-28 w-28">
+          <Avatar className="h-24 w-24 shrink-0 sm:h-28 sm:w-28">
             <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
             <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
           </Avatar>
@@ -97,9 +98,9 @@ export default function Page() {
             return (
               <Card key={work.company} className="bg-neutral-900/50 border-neutral-800">
                 <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
+                  <div className="flex flex-col gap-1 text-base sm:flex-row sm:items-start sm:justify-between sm:gap-x-3">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none text-neutral-200">
-                      <a className="hover:text-neutral-300" href={work.link}>
+                      <a className="hover:text-neutral-300" href={work.link} target="_blank" rel="noopener noreferrer">
                         {work.company}
                       </a>
 
@@ -137,7 +138,7 @@ export default function Page() {
             return (
               <Card key={education.school} className="bg-neutral-900/50 border-neutral-800">
                 <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
+                  <div className="flex flex-col gap-1 text-base sm:flex-row sm:items-start sm:justify-between sm:gap-x-3">
                     <h3 className="font-semibold leading-none text-neutral-200">
                       {education.school}
                     </h3>
