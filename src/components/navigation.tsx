@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 
 type NavItemProps = {
@@ -11,7 +12,9 @@ type NavItemProps = {
 
 function NavItem({ href, children }: NavItemProps) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  // French pages live under /fr, so /fr/writings should light up "Writings" too.
+  const currentPath = pathname.startsWith("/fr/") ? pathname.slice("/fr".length) : pathname;
+  const isActive = currentPath === href;
 
   return (
     <Link
@@ -38,6 +41,7 @@ export default function Navigation() {
         <NavItem href="/writings">Writings</NavItem>
         <NavItem href="/readings">Readings</NavItem>
         <NavItem href="/people">People</NavItem>
+        <LanguageSwitcher />
       </div>
     </nav>
   );

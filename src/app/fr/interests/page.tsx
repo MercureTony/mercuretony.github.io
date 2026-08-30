@@ -1,6 +1,5 @@
 "use client";
 
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -53,7 +52,6 @@ export default function InterestsPageFr() {
 
   return (
     <div lang="fr" className="mx-auto mb-32 max-w-2xl space-y-6">
-      <LanguageSwitcher locale="fr" englishHref="/interests" frenchHref="/fr/interests" />
       <h1 className="mb-4 text-2xl font-bold">Intérêts</h1>
 
       <p className="mb-6">Une collection de sujets qui influencent ma façon de penser, de construire et d’écrire.</p>

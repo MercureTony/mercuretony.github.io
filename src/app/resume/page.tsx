@@ -3,7 +3,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { RESUME_DATA } from "@/data/resume-data";
 import { GlobeIcon, Mail, Phone } from "lucide-react";
 import { Metadata } from "next";
@@ -19,7 +18,6 @@ export default function Page() {
   return (
     <main className="container relative mx-auto mb-32 scroll-my-12 p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-[#171717] print:space-y-6">
-        <LanguageSwitcher locale="en" englishHref="/resume" frenchHref="/fr/resume" />
         <div className="flex items-start justify-between gap-6">
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold text-neutral-200">{RESUME_DATA.name}</h1>
