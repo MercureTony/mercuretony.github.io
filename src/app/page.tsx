@@ -32,7 +32,7 @@ const item = {
 
 export default function Home() {
 	return (
-		<main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
+		<main className="flex flex-col items-center justify-start min-h-screen text-neutral-200 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-32">
 			<motion.div
 				className="max-w-2xl w-full space-y-8 sm:space-y-10"
 				variants={container}

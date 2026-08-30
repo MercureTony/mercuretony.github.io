@@ -1,6 +1,5 @@
 "use client";
 
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -36,7 +35,7 @@ export default function ReadingsPageFr() {
   );
 
   return (
-    <div lang="fr" className="mx-auto mb-32 max-w-2xl space-y-6">\n      <LanguageSwitcher locale="fr" englishHref="/readings" frenchHref="/fr/readings" />
+    <div lang="fr" className="mx-auto mb-32 max-w-2xl space-y-6">
       <h1 className="mb-4 text-2xl font-bold">Lectures</h1>
 
       <p className="mb-6">
