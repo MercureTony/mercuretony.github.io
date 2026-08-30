@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getLocale, hasFrenchVersion, stripLocale, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-// English paths that also have a French page under /fr. The switcher only
-// shows up on these, so it never offers a link to a page that doesn't exist.
-const TRANSLATED_ROUTES = ["/resume", "/interests", "/writings", "/readings"];
+const baseStyles = "rounded-full px-1.5 py-1 text-xs uppercase";
 
-type LocaleLinkProps = {
+function LocaleLink({
+  href,
+  locale,
+  isActive,
+}: {
   href: string;
-  locale: "en" | "fr";
+  locale: Locale;
   isActive: boolean;
-};
-
-function LocaleLink({ href, locale, isActive }: LocaleLinkProps) {
+}) {
   return (
     <Link
       href={href}
@@ -22,7 +23,8 @@ function LocaleLink({ href, locale, isActive }: LocaleLinkProps) {
       lang={locale}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "rounded-full px-1.5 py-1 text-xs uppercase transition-colors duration-200",
+        baseStyles,
+        "transition-colors duration-200",
         isActive ? "text-white" : "text-neutral-500 hover:text-neutral-200"
       )}
     >
@@ -33,22 +35,28 @@ function LocaleLink({ href, locale, isActive }: LocaleLinkProps) {
 
 export function LanguageSwitcher() {
   const pathname = usePathname();
-
-  const isFrench = pathname.startsWith("/fr/");
-  const englishHref = isFrench ? pathname.slice("/fr".length) : pathname;
-
-  if (!TRANSLATED_ROUTES.includes(englishHref)) {
-    return null;
-  }
+  const locale = getLocale(pathname);
+  const englishHref = stripLocale(pathname);
 
   return (
     <div
-      aria-label={isFrench ? "Choix de la langue" : "Language"}
       role="group"
+      aria-label={locale === "fr" ? "Choix de la langue" : "Language"}
       className="ml-1 flex shrink-0 items-center gap-0.5 border-l border-neutral-800 pl-2"
     >
-      <LocaleLink href={englishHref} locale="en" isActive={!isFrench} />
-      <LocaleLink href={`/fr${englishHref}`} locale="fr" isActive={isFrench} />
+      <LocaleLink href={englishHref} locale="en" isActive={locale === "en"} />
+      {hasFrenchVersion(englishHref) ? (
+        <LocaleLink href={`/fr${englishHref}`} locale="fr" isActive={locale === "fr"} />
+      ) : (
+        // Kept in place, dimmed, so the control doesn't shift or vanish between pages.
+        <span
+          aria-disabled="true"
+          title="This page isn't available in French yet"
+          className={cn(baseStyles, "cursor-default text-neutral-700")}
+        >
+          fr
+        </span>
+      )}
     </div>
   );
 }
