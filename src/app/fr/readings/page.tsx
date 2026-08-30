@@ -36,7 +36,8 @@ export default function ReadingsPageFr() {
   );
 
   return (
-    <div lang="fr" className="mx-auto mb-32 max-w-2xl space-y-6">\n      <LanguageSwitcher locale="fr" englishHref="/readings" frenchHref="/fr/readings" />
+    <div lang="fr" className="mx-auto mb-32 max-w-2xl space-y-6">
+      <LanguageSwitcher locale="fr" englishHref="/readings" frenchHref="/fr/readings" />
       <h1 className="mb-4 text-2xl font-bold">Lectures</h1>
 
       <p className="mb-6">
