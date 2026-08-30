@@ -3,6 +3,8 @@
 // pointing at the English route.
 export const TRANSLATED_ROUTES = ["/resume", "/interests", "/writings", "/readings"];
 
+const ARTICLE_PATH = /^\/writings\/([^/]+)$/;
+
 export type Locale = "en" | "fr";
 
 export function getLocale(pathname: string): Locale {
@@ -15,11 +17,25 @@ export function stripLocale(pathname: string): string {
   return pathname.startsWith("/fr/") ? pathname.slice("/fr".length) : pathname;
 }
 
-export function hasFrenchVersion(englishPath: string): boolean {
-  return TRANSLATED_ROUTES.includes(englishPath);
+/**
+ * Articles are translated one at a time, so which ones have a French version is
+ * read off the content directory at build time and handed down from the layout
+ * rather than hard-coded here.
+ */
+export function hasFrenchVersion(englishPath: string, translatedArticleSlugs: string[] = []) {
+  if (TRANSLATED_ROUTES.includes(englishPath)) return true;
+
+  const article = englishPath.match(ARTICLE_PATH);
+  return article ? translatedArticleSlugs.includes(article[1]) : false;
 }
 
 /** Keeps the reader in their chosen language wherever a translation exists. */
-export function localizedHref(englishPath: string, locale: Locale): string {
-  return locale === "fr" && hasFrenchVersion(englishPath) ? `/fr${englishPath}` : englishPath;
+export function localizedHref(
+  englishPath: string,
+  locale: Locale,
+  translatedArticleSlugs: string[] = [],
+): string {
+  return locale === "fr" && hasFrenchVersion(englishPath, translatedArticleSlugs)
+    ? `/fr${englishPath}`
+    : englishPath;
 }

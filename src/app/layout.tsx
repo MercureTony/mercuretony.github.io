@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans'
 import { Inter } from "next/font/google";
 import Navigation from "@/components/navigation";
+import { getTranslatedSlugs } from "@/lib/posts";
 import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
@@ -37,7 +38,7 @@ export default function RootLayout({
         <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           {children}
         </div>
-        <Navigation />
+        <Navigation translatedArticleSlugs={getTranslatedSlugs()} />
       </body>
     </html>
   );

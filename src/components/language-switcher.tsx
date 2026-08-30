@@ -33,7 +33,11 @@ function LocaleLink({
   );
 }
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({
+  translatedArticleSlugs = [],
+}: {
+  translatedArticleSlugs?: string[];
+}) {
   const pathname = usePathname();
   const locale = getLocale(pathname);
   const englishHref = stripLocale(pathname);
@@ -45,7 +49,7 @@ export function LanguageSwitcher() {
       className="ml-1 flex shrink-0 items-center gap-0.5 border-l border-neutral-800 pl-2"
     >
       <LocaleLink href={englishHref} locale="en" isActive={locale === "en"} />
-      {hasFrenchVersion(englishHref) ? (
+      {hasFrenchVersion(englishHref, translatedArticleSlugs) ? (
         <LocaleLink href={`/fr${englishHref}`} locale="fr" isActive={locale === "fr"} />
       ) : (
         // Kept in place, dimmed, so the control doesn't shift or vanish between pages.

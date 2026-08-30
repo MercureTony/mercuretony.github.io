@@ -30,7 +30,11 @@ function NavItem({ href, currentPath, locale, children }: NavItemProps) {
   );
 }
 
-export default function Navigation() {
+export default function Navigation({
+  translatedArticleSlugs = [],
+}: {
+  translatedArticleSlugs?: string[];
+}) {
   const pathname = usePathname();
   // Compare and link in terms of English paths so French pages, which live
   // under /fr, highlight the right item and keep the reader in French.
@@ -55,7 +59,7 @@ export default function Navigation() {
             {item.label}
           </NavItem>
         ))}
-        <LanguageSwitcher />
+        <LanguageSwitcher translatedArticleSlugs={translatedArticleSlugs} />
       </div>
     </nav>
   );

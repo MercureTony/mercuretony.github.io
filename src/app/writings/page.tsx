@@ -1,37 +1,11 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { formatDateOnly } from "@/lib/date";
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  summary?: string;
-}
+import { getPosts } from "@/lib/posts";
 
 export default function WritingsPage() {
-  const postsDirectory = path.join(process.cwd(), "src/content/articles");
-  const fileNames = fs.readdirSync(postsDirectory);
-
-  const posts: BlogPost[] = fileNames
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => {
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug: fileName.replace(/\.mdx$/, ""),
-        title: data.title,
-        date: data.date,
-        summary: data.summary,
-      };
-    })
-    .sort((a, b) => b.date.localeCompare(a.date));
+  const posts = getPosts("en");
 
   return (
     <main className="mx-auto mb-32 max-w-2xl">
