@@ -68,9 +68,3 @@ Two licenses, because this repository holds two different things.
   the translations in `locales`, and the images in `public` — is **not** MIT.
   See [LICENSE-CONTENT](./LICENSE-CONTENT). Short version: read and share it,
   don't republish it as your own.
-
-## Credits
-
-Built on top of [Bartosz Jarocki's minimalist CV](https://github.com/BartoszJarocki/cv),
-which is MIT licensed. The original copyright notice is retained in
-[LICENSE](./LICENSE).
