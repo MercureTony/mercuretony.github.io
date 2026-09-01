@@ -1,67 +1,76 @@
-![cv](https://github.com/BartoszJarocki/cv/assets/1017620/79bdb9fc-0b20-4d2c-aafe-0526ad4a71d2)
+# mercuretony.github.io
 
-# Minimalist CV
+The source for my personal site: resume, essays, reading log, interests, and a
+few side pages. Bilingual (English / French), print-friendly, statically
+rendered.
 
-Simple web app that renders minimalist CV with print-friendly layout.
+Live at **[mercuretony-github-io.vercel.app](https://mercuretony-github-io.vercel.app)**.
 
-Built with Next.js and shadcn/ui, deployed on Vercel.
+## Stack
 
-# Features
+- [Next.js 14](https://nextjs.org) (App Router) + React 18 + TypeScript
+- [Tailwind CSS](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com)
+- MDX for articles, via `next-mdx-remote`
+- Deployed on [Vercel](https://vercel.com)
 
-- Setup only takes a few minutes [single config file](./src/data/resume-data.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/ui, TailwindCss
-- Auto generated Layout
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+## Running locally
 
-# Getting Started Locally
+Requires Node 20+ and [pnpm](https://pnpm.io).
 
-1. Clone this repository to your local machine:
-
-   ```bash
-   git clone https://github.com/BartoszJarocki/cv.git
-   ```
-
-2. Move to the cloned directory
-
-   ```bash
-   cd cv
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   yarn install
-   ```
-
-4. Start the local Server:
-
-   ```bash
-   yarn dev
-   ```
-
-5. Open the [Config file](./src/data/resume-data.tsx) and make changes
-
-# Run with Docker
-
-Build the containewr
-
+```bash
+git clone https://github.com/MercureTony/mercuretony.github.io.git
+cd mercuretony.github.io
+pnpm install
+pnpm dev
 ```
+
+The site is then at [localhost:3000](http://localhost:3000).
+
+Other scripts: `pnpm build`, `pnpm start`, `pnpm lint`.
+
+### With Docker
+
+```bash
 docker compose build
+docker compose up -d   # stop with: docker compose down
 ```
 
-Run the container
+## Layout
 
-```
-docker compose up -d
-```
+| Path | What lives there |
+| --- | --- |
+| `src/app` | Routes. English at the root, French under `src/app/fr`. |
+| `src/content/articles` | Essays, as MDX files. Filename is the URL slug. |
+| `src/data` | Resume, reading list, interests, challenges. `*.fr.ts(x)` files are the French versions. |
+| `src/components` | Shared components; `src/components/ui` is shadcn/ui. |
+| `locales` | UI strings for each language. |
 
-Stop the Container
+Most content changes are edits to a single file in `src/data`, or a new MDX
+file in `src/content/articles`.
 
-```
-docker compose down 
-```
+## Reusing this
 
-# License
+You are welcome to fork the site and make it yours. Start by replacing
+`src/data/resume-data.tsx` (and its `.fr` counterpart), then delete
+`src/content/articles` and the entries in `src/data` — that content is mine and
+is not covered by the code license (see below).
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Issues and pull requests are welcome for bugs and improvements to the code.
+I am not looking for contributions to the writing.
+
+## License
+
+Two licenses, because this repository holds two different things.
+
+- **Code** — the components, layouts, config, and styling — is [MIT](./LICENSE).
+  Use it, fork it, ship it.
+- **Content** — everything in `src/content`, the prose and data in `src/data`,
+  the translations in `locales`, and the images in `public` — is **not** MIT.
+  See [LICENSE-CONTENT](./LICENSE-CONTENT). Short version: read and share it,
+  don't republish it as your own.
+
+## Credits
+
+Built on top of [Bartosz Jarocki's minimalist CV](https://github.com/BartoszJarocki/cv),
+which is MIT licensed. The original copyright notice is retained in
+[LICENSE](./LICENSE).
