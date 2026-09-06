@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans'
 import { Inter } from "next/font/google";
 import Navigation from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#171717] text-neutral-200">
         <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           {children}
+          <SiteFooter />
         </div>
         <Navigation />
       </body>
