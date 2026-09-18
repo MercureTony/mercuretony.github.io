@@ -7,9 +7,9 @@ export const RESUME_DATA_FR = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6",
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Fondateur de Coalesc, la couche de préparation pour les cabinets comptables.",
+    "Fondateur de Coalesc. Nous construisons un logiciel qui fait passer les mandats comptables des pièces clients brutes à un travail prêt pour la révision.",
   summary:
-    "Je construis Coalesc, la couche de préparation pour les cabinets comptables. Le produit transforme les courriels, PDF, relevés et reçus désordonnés des clients en dossiers prêts à travailler avant le début de la tenue de livres, de la fiscalité, de la compilation ou de l’assurance. Auparavant ingénieur de données chez 1Password et data scientist chez Shopify et Wealthsimple.",
+    "Je construis Coalesc autour d’une idée : l’unité fondamentale de l’automatisation comptable est le mandat, pas la tâche. Coalesc maintient une compréhension vivante de ce que le mandat exige, des preuves reçues, de ce qui reste à résoudre et de ce qui nécessite un jugement professionnel, puis exécute ce qu’il peut afin de faire avancer le travail vers la révision. Auparavant ingénieur de données chez 1Password et data scientist chez Shopify et Wealthsimple.",
   avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
@@ -47,12 +47,12 @@ export const RESUME_DATA_FR = {
       company: "Coalesc",
       link: "https://coalesc.ai/",
       badges: ["Temps plein"],
-      title: "Cofondateur et CEO",
+      title: "Fondateur et CEO",
       logo: "",
       start: "Octobre 2025",
       end: "Aujourd’hui",
       description:
-        "Chez Coalesc, je construis l’infrastructure d’intake alimentée par l’IA pour les cabinets comptables. Les documents arrivent de partout : pièces jointes, scans, photos, dossiers partagés et documents papier. Avant que le travail comptable commence, quelqu’un doit ouvrir les fichiers, séparer les PDF, les renommer, les classer, les rattacher au bon client et relancer ce qui manque. Coalesc automatise cette préparation en amont et crée un espace de travail propre et vérifiable avant le passage vers les logiciels comptables. Je dirige le produit, l’ingénierie, les ventes et la recherche utilisateur.",
+        "Chez Coalesc, nous construisons autour d’une thèse simple : le travail comptable consiste à faire passer un mandat de preuves incomplètes et non vérifiées à un état complet, défendable et prêt pour la révision. Coalesc maintient un état du mandat compris par la machine : les preuves attendues et reçues, les changements, les procédures applicables, le travail terminé, les éléments non résolus et ce qui nécessite un jugement professionnel. Le système exécute ce qu’il peut, conserve la provenance et fait remonter les exceptions pour révision. Aujourd’hui, cela commence par la collecte, la complétude, les relances clients et la préparation bancaire. Je dirige le produit, l’ingénierie, les ventes et la recherche utilisateur.",
     },
     {
       company: "1Password",
