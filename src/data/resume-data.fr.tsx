@@ -7,9 +7,9 @@ export const RESUME_DATA_FR = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6",
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Fondateur de Coalesc. Nous construisons un logiciel qui fait passer les mandats comptables des pièces clients brutes à un travail prêt pour la révision.",
+    "Fondateur de Coalesc, un logiciel qui exécute le travail comptable.",
   summary:
-    "Je construis Coalesc autour d’une idée : l’unité fondamentale de l’automatisation comptable est le mandat, pas la tâche. Coalesc maintient une compréhension vivante de ce que le mandat exige, des preuves reçues, de ce qui reste à résoudre et de ce qui nécessite un jugement professionnel, puis exécute ce qu’il peut afin de faire avancer le travail vers la révision. Auparavant ingénieur de données chez 1Password et data scientist chez Shopify et Wealthsimple.",
+    "Je construis Coalesc, un logiciel qui exécute le travail comptable. Notre thèse est que l’unité fondamentale de l’automatisation comptable est le mandat, pas la tâche : Coalesc comprend ce que le mandat exige, exécute le travail qu’il peut et le fait avancer vers la révision, tout en faisant remonter ce qui nécessite un jugement professionnel. Auparavant ingénieur de données chez 1Password et data scientist chez Shopify et Wealthsimple.",
   avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
