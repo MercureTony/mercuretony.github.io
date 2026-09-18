@@ -12,7 +12,7 @@ const AboutPage = () => {
         </p>
 
         <p className="mt-4">
-          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a> around a simple thesis: the fundamental unit of accounting automation is the engagement, not the task.
+          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, software that executes accounting work.
         </p>
 
         <p className="mt-4">
@@ -24,7 +24,7 @@ const AboutPage = () => {
         </p>
 
         <p className="mt-4">
-          Coalesc is being built to own that transition. It continuously understands the engagement, executes what it can, preserves evidence and provenance, and moves the work toward review. The long-term vision is simple: accountants should start at review. Today, that starts with intake, completeness, client follow-up, and bank preparation.
+          Coalesc is being built to own that transition. It continuously understands the engagement, applies the firm&apos;s methodology, executes the work it can, preserves evidence and provenance, and moves the engagement toward review. The underlying thesis is that the fundamental unit of accounting automation is the engagement, not the task. The long-term vision is simple: accountants should start at review. Today, that starts with intake, completeness, client follow-up, and bank preparation.
         </p>
 
         <p className="mt-4">
