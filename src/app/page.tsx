@@ -73,16 +73,19 @@ export default function Home() {
 						variants={item}
 						className="text-base sm:text-lg text-neutral-300"
 					>
-						Where accounting engagements begin.
+						The fundamental unit of accounting automation is the engagement, not the task.
 					</motion.li>
 
 					<motion.li
 						variants={item}
 						className="text-sm sm:text-base text-neutral-400"
 					>
-						Coalesc helps partner-led accounting firms turn messy client
-						emails, PDFs, statements, receipts, and supporting documents into
-						work-ready files for bookkeeping, tax, compilation, and assurance.
+						I&apos;m building Coalesc around a simple idea: every accounting
+						engagement should have a live, machine-understood state. Coalesc
+						understands what the engagement requires, what evidence has arrived,
+						what remains unresolved, and what requires judgment, then executes
+						what it can to move the engagement toward review. Live today: intake,
+						completeness, client follow-up, and bank preparation.
 					</motion.li>
 
 					<motion.li variants={item}>
