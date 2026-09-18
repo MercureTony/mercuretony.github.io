@@ -73,19 +73,19 @@ export default function Home() {
 						variants={item}
 						className="text-base sm:text-lg text-neutral-300"
 					>
-						The fundamental unit of accounting automation is the engagement, not the task.
+						I&apos;m building Coalesc, software that executes accounting work.
 					</motion.li>
 
 					<motion.li
 						variants={item}
 						className="text-sm sm:text-base text-neutral-400"
 					>
-						I&apos;m building Coalesc around a simple idea: every accounting
-						engagement should have a live, machine-understood state. Coalesc
-						understands what the engagement requires, what evidence has arrived,
-						what remains unresolved, and what requires judgment, then executes
-						what it can to move the engagement toward review. Live today: intake,
-						completeness, client follow-up, and bank preparation.
+						Our thesis is that the fundamental unit of accounting automation is the
+						engagement, not the task. Coalesc understands what an engagement
+						requires, what evidence has arrived, what remains unresolved, and what
+						requires judgment, then executes what it can to move the work toward
+						review. The vision: accountants should start at review. Live today:
+						intake, completeness, client follow-up, and bank preparation.
 					</motion.li>
 
 					<motion.li variants={item}>
