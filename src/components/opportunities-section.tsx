@@ -19,9 +19,9 @@ export function OpportunitiesSection() {
 				</p>
 				<p className="text-sm text-neutral-400">
 					The goal is not a generic AI pilot. We want to instrument one workflow,
-					measure the baseline, use Coalesc to move the engagement toward
-					review, and measure what actually changed. If the economics are
-					meaningful, we expand from there.
+					measure the baseline, let Coalesc execute as much of that accounting
+					work as it safely can, and measure what changed on the path to review.
+					If the economics are meaningful, we expand from there.
 				</p>
 				<div className="flex flex-wrap gap-2 pt-2">
 					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
