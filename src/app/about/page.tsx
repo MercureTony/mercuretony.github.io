@@ -12,15 +12,19 @@ const AboutPage = () => {
         </p>
 
         <p className="mt-4">
-          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a>, the preparation layer for accounting firms.
+          I&apos;m currently building <a href="https://coalesc.ai/" target="_blank" rel="noopener noreferrer">Coalesc</a> around a simple thesis: the fundamental unit of accounting automation is the engagement, not the task.
         </p>
 
         <p className="mt-4">
-          Every accounting engagement starts with the same messy preparation layer: client documents arrive through email, portals, uploads, PDFs, statements, receipts, and spreadsheets. Before bookkeeping, tax, compilation, or assurance work can begin, someone has to collect the right documents, identify what is missing, classify files, follow up with clients, and determine whether the file is actually ready.
+          Accounting work is the process of moving an engagement from incomplete, untrusted evidence to a complete, defensible, review-ready state. Yet the truth of that engagement is still maintained manually across documents, email, portals, spreadsheets, tax software, ledgers, workpapers, and the accountant&apos;s own head.
         </p>
 
         <p className="mt-4">
-          Coalesc is focused on that layer. We help accounting teams prepare client files before the work begins: document intake, classification, missing items, follow-ups, file readiness, and structured handoff into the tools firms already use.
+          I believe every accounting engagement should have a live, machine-understood state. The system should know what evidence is expected, what has arrived, what can be trusted, what changed from prior periods, what procedures the firm applies, what has been completed, what remains unresolved, and what actually requires professional judgment.
+        </p>
+
+        <p className="mt-4">
+          Coalesc is being built to own that transition. It continuously understands the engagement, executes what it can, preserves evidence and provenance, and moves the work toward review. The long-term vision is simple: accountants should start at review. Today, that starts with intake, completeness, client follow-up, and bank preparation.
         </p>
 
         <p className="mt-4">
@@ -28,11 +32,7 @@ const AboutPage = () => {
         </p>
 
         <p className="mt-4">
-          I&apos;m interested in building software for industries where trust, judgment, and operational complexity matter. Accounting is one of those industries.
-        </p>
-
-        <p className="mt-4">
-          More broadly, I think a lot about startups, AI infrastructure, economic development, energy, and the systems that shape how societies grow.
+          I&apos;m interested in building software for industries where trust, judgment, and operational complexity matter. More broadly, I think a lot about startups, AI infrastructure, economic development, energy, and the systems that shape how societies grow.
         </p>
       </section>
 
