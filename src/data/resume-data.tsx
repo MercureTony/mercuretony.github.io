@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Founder of Coalesc, the preparation layer for accounting firms.",
+    "Founder of Coalesc. We are building software that moves accounting engagements from raw client evidence to review-ready work.",
   summary:
-    "Building Coalesc, the preparation layer for accounting firms. It turns messy client emails, PDFs, statements, and receipts into work-ready files before bookkeeping, tax, compilation, and assurance work begins. Previously data engineer at 1Password, data scientist at Shopify and Wealthsimple.",
+    "Building Coalesc around the idea that the fundamental unit of accounting automation is the engagement, not the task. Coalesc maintains a live understanding of what an engagement requires, what evidence has arrived, what remains unresolved, and what requires professional judgment, then executes what it can to move the work toward review. Previously data engineer at 1Password and data scientist at Shopify and Wealthsimple.",
     avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
@@ -46,12 +46,12 @@ export const RESUME_DATA = {
       company: "Coalesc",
       link: "https://coalesc.ai/",
       badges: ["Full-time"],
-      title: "Co-founder & CEO",
+      title: "Founder & CEO",
       logo: "",
       start: "October 2025",
       end: "Present",
       description:
-        "At Coalesc, we're building the AI intake infrastructure for accounting firms. Every month, firms receive documents from everywhere — email attachments, scans, photos, shared drives, walk-ins. Before any accounting starts, someone has to open every file, split PDFs, rename documents, classify by type, match them to the right client, and chase what's missing. We automate that entire upstream workflow. Coalesc ingests documents from any channel, structures them, detects duplicates and gaps, and prepares a clean, audit-ready workspace before they ever touch DT Max, QuickBooks, or audit software. We're starting with tax and bookkeeping workflows, and expanding toward becoming the document operating layer for modern accounting firms. I lead product, engineering, sales, and user discovery — working directly with firms to turn chaotic document flows into structured, reliable systems.",
+        "At Coalesc, we are building around a simple thesis: accounting work is the process of moving an engagement from incomplete, untrusted evidence to a complete, defensible, review-ready state. Coalesc maintains a live, machine-understood engagement state: what evidence is expected, what has arrived, what changed, what procedures apply, what is complete, what remains unresolved, and what requires professional judgment. The system executes what it can, preserves provenance, and surfaces exceptions for review. Today, that starts with intake, completeness, client follow-up, and bank preparation. I lead product, engineering, sales, and user discovery, working directly with accounting firms to turn their methodology into reliable execution.",
     },
     {
       company: "1Password",
