@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   locationLink: "https://maps.app.goo.gl/ETXpqQ35o9qxY7UL6", 
   personalWebsiteUrl: "https://anthonyuyende.com/",
   about:
-    "Founder of Coalesc. We are building software that moves accounting engagements from raw client evidence to review-ready work.",
+    "Founder of Coalesc, software that executes accounting work.",
   summary:
-    "Building Coalesc around the idea that the fundamental unit of accounting automation is the engagement, not the task. Coalesc maintains a live understanding of what an engagement requires, what evidence has arrived, what remains unresolved, and what requires professional judgment, then executes what it can to move the work toward review. Previously data engineer at 1Password and data scientist at Shopify and Wealthsimple.",
+    "Building Coalesc, software that executes accounting work. Our thesis is that the fundamental unit of accounting automation is the engagement, not the task: Coalesc understands what the engagement requires, executes the work it can, and moves it toward review while surfacing what requires professional judgment. Previously data engineer at 1Password and data scientist at Shopify and Wealthsimple.",
     avatarUrl: "/WZUA17vg_400x400.jpg",
   contact: {
     email: "anthony.m.uyende@gmail.com",
