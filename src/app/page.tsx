@@ -3,6 +3,8 @@
 import { Misc } from "@/components/misc";
 import { OpportunitiesSection } from "@/components/opportunities-section";
 import { RESUME_DATA } from "@/data/resume-data";
+import { CURRENT_THESIS, THESIS_HISTORY } from "@/data/thesis-history";
+import { formatDateOnly } from "@/lib/date";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
@@ -86,6 +88,21 @@ export default function Home() {
 						requires judgment, then executes what it can to move the work toward
 						review. The vision: accountants should start at review. Live today:
 						intake, completeness, client follow-up, and bank preparation.
+					</motion.li>
+
+					<motion.li variants={item} className="font-mono text-xs text-neutral-500">
+						<Link
+							href="/thesis"
+							className="transition-colors duration-200 hover:text-neutral-300"
+						>
+							thesis v{CURRENT_THESIS.version} · since{" "}
+							{formatDateOnly(CURRENT_THESIS.date, {
+								month: "short",
+								day: "numeric",
+								year: "numeric",
+							})}{" "}
+							· {THESIS_HISTORY.length - 1} earlier versions
+						</Link>
 					</motion.li>
 
 					<motion.li variants={item}>
