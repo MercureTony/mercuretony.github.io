@@ -2,18 +2,16 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { reading2025 } from "@/data/challenges/2025/reading";
+import { currentBook } from "@/data/currently-reading";
 import Link from "next/link";
 
 export function CurrentlyReading() {
-  const currentBook = reading2025.find(book => book.status === "reading");
-
   if (!currentBook) return null;
 
   return (
     <motion.div className="space-y-2">
       <Link 
-        href="/challenges/2025/reading"
+        href="/readings"
         className="group inline-flex items-center gap-2"
       >
         <h3 className="text-neutral-200 font-medium group-hover:text-neutral-100">Currently Reading</h3>
