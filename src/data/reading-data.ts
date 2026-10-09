@@ -82,6 +82,12 @@ export interface Reading {
           type: "Book",
           description: "An examination of the factors that contribute to high levels of success.",
         },
+        {
+          title: "Man's Search for Meaning",
+          author: "Viktor E. Frankl",
+          type: "Book",
+          description: "A psychiatrist's account of surviving Nazi concentration camps and his argument that the search for meaning is our primary drive in life.",
+        },
       ]
     },
     {

@@ -130,7 +130,18 @@ export const reading2025: Book[] = [
 		amazonUrl:
 			"https://www.amazon.ca/Infinite-Game-Simon-Sinek/dp/073521350X",
 		dateStarted: "2025-10-31",
-		status: "reading",
+		status: "completed",
 		weekNumber: 44,
+	},
+	{
+		title: "Man's Search for Meaning",
+		author: "Viktor E. Frankl",
+		coverUrl:
+			"https://images-na.ssl-images-amazon.com/images/P/0807014273.01.L.jpg",
+		amazonUrl:
+			"https://www.amazon.ca/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273",
+		dateStarted: "2026-10-09",
+		status: "reading",
+		weekNumber: 41,
 	},
 ];

@@ -78,6 +78,13 @@ export const topicsFr: Topic[] = [
         type: "Book",
         description: "Une analyse des facteurs qui contribuent aux niveaux élevés de réussite.",
       },
+      {
+        title: "Man's Search for Meaning",
+        author: "Viktor E. Frankl",
+        type: "Book",
+        description:
+          "Le récit d’un psychiatre ayant survécu aux camps de concentration nazis, et sa thèse selon laquelle la quête de sens est le moteur premier de l’existence.",
+      },
     ],
   },
   {
