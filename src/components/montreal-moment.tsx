@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { type Phase, buildContext, resolveMoment } from "@/data/moments";
+import { type ArticleMeta, type Phase, buildContext, resolveMoment } from "@/data/moments";
 import { parseReplay } from "@/lib/montreal-time";
 import { useMontrealWeather } from "@/lib/use-montreal-weather";
 
 /** One line, only when something is true in Montreal or on the visitor's clock. */
-export function MontrealMoment() {
+export function MontrealMoment({ articles }: { articles?: ArticleMeta[] }) {
   const weather = useMontrealWeather();
   const [phase, setPhase] = useState<(Phase & { id: string }) | null>(null);
 
@@ -18,12 +18,12 @@ export function MontrealMoment() {
       const replay = parseReplay(window.location.search);
       const now = replay.at ?? new Date();
       const code = replay.weatherCode ?? weather.code;
-      setPhase(resolveMoment(buildContext(now, code)));
+      setPhase(resolveMoment(buildContext(now, code, articles)));
     };
     compute();
     const timer = window.setInterval(compute, 60_000);
     return () => window.clearInterval(timer);
-  }, [weather.code]);
+  }, [weather.code, articles]);
 
   return (
     <AnimatePresence initial={false}>

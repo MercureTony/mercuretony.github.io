@@ -8,6 +8,13 @@ import { type CivilDateTime, dayNumber, easterSunday, montrealParts, nthWeekday 
 import { isHeavyRain, isThunderstorm } from "../lib/sky";
 import { sunTimes } from "../lib/sun";
 
+export interface ArticleMeta {
+  slug: string;
+  title: string;
+  /** YYYY-MM-DD, from the essay's frontmatter. */
+  date: string;
+}
+
 export interface MomentContext {
   now: Date;
   montreal: CivilDateTime;
@@ -18,6 +25,8 @@ export interface MomentContext {
   sunset: Date;
   /** Open-Meteo WMO code for Montreal right now, when it could be fetched. */
   weatherCode?: number;
+  /** The essays, so the page can notice one published today. */
+  articles?: ArticleMeta[];
 }
 
 export interface Phase {
@@ -182,6 +191,18 @@ export const MOMENTS: Moment[] = [
         : null,
   },
   {
+    id: "new-today",
+    // The day an essay's date is today's date in Montreal. Its title is the line.
+    resolve: (ctx) => {
+      const { year, month, day } = ctx.montreal;
+      const today = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      const fresh = ctx.articles?.find((article) => article.date === today);
+      return fresh
+        ? { dateline: "New today.", line: fresh.title, href: `/writings/${fresh.slug}` }
+        : null;
+    },
+  },
+  {
     id: "storm",
     resolve: (ctx) =>
       ctx.weatherCode !== undefined && isThunderstorm(ctx.weatherCode)
@@ -230,10 +251,14 @@ export const MOMENTS: Moment[] = [
   },
 ];
 
-export function buildContext(now: Date, weatherCode?: number): MomentContext {
+export function buildContext(
+  now: Date,
+  weatherCode?: number,
+  articles?: ArticleMeta[],
+): MomentContext {
   const montreal = montrealParts(now);
   const { sunrise, sunset } = sunTimes(montreal.year, montreal.month, montreal.day);
-  return { now, montreal, visitorHour: now.getHours(), sunrise, sunset, weatherCode };
+  return { now, montreal, visitorHour: now.getHours(), sunrise, sunset, weatherCode, articles };
 }
 
 /** The one line for this instant, or null on an ordinary day. */
