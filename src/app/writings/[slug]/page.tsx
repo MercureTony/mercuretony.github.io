@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -76,12 +75,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       <main className="mx-auto mb-32 max-w-2xl">
         <Link
           href="/writings"
-          className="group mb-8 inline-flex min-h-11 items-center gap-2 text-sm text-neutral-500 transition-colors duration-150 hover:text-neutral-200 motion-reduce:transition-none"
+          className="mb-8 inline-flex min-h-11 items-center text-sm text-neutral-500 underline-offset-4 transition-colors duration-150 hover:text-neutral-200 hover:underline motion-reduce:transition-none"
         >
-          <ArrowLeft
-            className="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-            aria-hidden="true"
-          />
           All writing
         </Link>
 
@@ -116,38 +111,30 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
         <nav
           aria-label="More writing"
-          className="mt-14 grid gap-3 border-t border-neutral-800/80 pt-8 sm:grid-cols-2"
+          className="mt-14 space-y-3 border-t border-neutral-800/80 pt-8 text-sm leading-6"
         >
           {newerPost ? (
-            <Link
-              href={`/writings/${newerPost.slug}`}
-              className="group rounded-xl border border-neutral-800 bg-neutral-900/30 p-4 transition-colors duration-150 hover:border-neutral-700 hover:bg-neutral-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] motion-reduce:transition-none"
-            >
-              <span className="mb-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600">
-                <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-                Newer
-              </span>
-              <span className="block text-sm leading-6 text-neutral-300 group-hover:text-white">
+            <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
+              <span className="text-neutral-600">Newer</span>
+              <Link
+                href={`/writings/${newerPost.slug}`}
+                className="text-neutral-300 underline-offset-4 transition-colors duration-150 hover:text-white hover:underline motion-reduce:transition-none"
+              >
                 {newerPost.title}
-              </span>
-            </Link>
-          ) : (
-            <div />
-          )}
+              </Link>
+            </p>
+          ) : null}
 
           {olderPost ? (
-            <Link
-              href={`/writings/${olderPost.slug}`}
-              className="group rounded-xl border border-neutral-800 bg-neutral-900/30 p-4 text-right transition-colors duration-150 hover:border-neutral-700 hover:bg-neutral-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] motion-reduce:transition-none"
-            >
-              <span className="mb-2 flex items-center justify-end gap-1.5 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600">
-                Older
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </span>
-              <span className="block text-sm leading-6 text-neutral-300 group-hover:text-white">
+            <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
+              <span className="text-neutral-600">Older</span>
+              <Link
+                href={`/writings/${olderPost.slug}`}
+                className="text-neutral-300 underline-offset-4 transition-colors duration-150 hover:text-white hover:underline motion-reduce:transition-none"
+              >
                 {olderPost.title}
-              </span>
-            </Link>
+              </Link>
+            </p>
           ) : null}
         </nav>
       </main>

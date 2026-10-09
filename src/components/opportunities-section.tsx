@@ -23,20 +23,6 @@ export function OpportunitiesSection() {
 					work as it safely can, and measure what changed on the path to review.
 					If the economics are meaningful, we expand from there.
 				</p>
-				<div className="flex flex-wrap gap-2 pt-2">
-					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						Established accounting firms
-					</span>
-					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						Partner / COO / practice leader
-					</span>
-					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						High-volume, measurable workflow
-					</span>
-					<span className="text-xs px-2 py-1 bg-neutral-800 rounded-full text-neutral-400">
-						Evidence → execution → review
-					</span>
-				</div>
 			</div>
 		</section>
 	);

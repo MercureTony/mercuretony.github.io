@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { formatDateOnly } from "@/lib/date";
@@ -67,22 +66,14 @@ export default function WritingsPage() {
                   })}
                 </time>
                 {index === 0 ? (
-                  <span className="mt-2 block w-fit rounded-full border border-neutral-800 px-2 py-0.5 text-[11px] font-medium text-neutral-500">
-                    Latest
-                  </span>
+                  <span className="mt-1 block text-xs text-neutral-600">Latest</span>
                 ) : null}
               </div>
 
               <div className="min-w-0">
-                <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-lg font-medium leading-7 text-neutral-200 transition-colors duration-150 group-hover:text-white motion-reduce:transition-none">
-                    {post.title}
-                  </h2>
-                  <ArrowRight
-                    className="mt-1 h-4 w-4 shrink-0 text-neutral-700 transition-all duration-150 group-hover:translate-x-0.5 group-hover:text-neutral-400 motion-reduce:transform-none motion-reduce:transition-none"
-                    aria-hidden="true"
-                  />
-                </div>
+                <h2 className="text-lg font-medium leading-7 text-neutral-200 transition-colors duration-150 group-hover:text-white motion-reduce:transition-none">
+                  {post.title}
+                </h2>
                 {post.summary ? (
                   <p className="mt-2 text-sm leading-6 text-neutral-500">{post.summary}</p>
                 ) : null}

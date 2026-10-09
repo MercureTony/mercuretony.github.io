@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -86,10 +85,11 @@ export default function InterestsPage() {
                       >
                         <span className="mb-2 flex items-center justify-between gap-3">
                           <span className="font-medium text-neutral-200">{item.name}</span>
-                          <ChevronRight
-                            className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-150 motion-reduce:transition-none ${isExpanded ? "rotate-90" : ""}`}
-                            aria-hidden="true"
-                          />
+                          <span className="shrink-0 text-xs text-neutral-500">
+                            {isExpanded
+                              ? "Hide"
+                              : `${item.resources!.length} ${item.resources!.length === 1 ? "resource" : "resources"}`}
+                          </span>
                         </span>
                         <span className="block text-sm text-neutral-400">
                           {item.description}
