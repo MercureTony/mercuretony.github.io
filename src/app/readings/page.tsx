@@ -171,6 +171,14 @@ export default function ReadingsPage() {
                       {reading.author} · {reading.type}
                     </p>
                     <p className="text-sm text-neutral-400">{reading.description}</p>
+                    {reading.isSpecial ? (
+                      <Link
+                        href="/scripture"
+                        className="mt-2 inline-block text-sm text-neutral-500 underline-offset-4 hover:text-neutral-300 hover:underline"
+                      >
+                        Where it shows up in my writing
+                      </Link>
+                    ) : null}
                   </li>
                 ))}
               </ul>

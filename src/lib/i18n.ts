@@ -1,7 +1,7 @@
 // English paths that also have a French page under /fr. Everything else is
 // English-only, so the switcher offers no French link for it and the nav keeps
 // pointing at the English route.
-export const TRANSLATED_ROUTES = ["/resume", "/interests", "/writings", "/readings"];
+export const TRANSLATED_ROUTES = ["/resume", "/interests", "/writings", "/readings", "/scripture"];
 
 export type Locale = "en" | "fr";
 

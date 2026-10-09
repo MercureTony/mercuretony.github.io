@@ -1,6 +1,10 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import Link from "next/link";
+import * as React from "react";
+
+import { withScriptureRefs } from "@/components/scripture-ref";
+import { slugify } from "@/lib/slug";
 
 function ArticleLink({
   href = "",
@@ -29,6 +33,20 @@ function ArticleLink({
   );
 }
 
+function textOf(children: React.ReactNode): string {
+  return React.Children.toArray(children)
+    .map((child) => {
+      if (typeof child === "string" || typeof child === "number") return String(child);
+      if (React.isValidElement<{ children?: React.ReactNode }>(child)) {
+        return textOf(child.props.children);
+      }
+      return "";
+    })
+    .join("");
+}
+
+// Headings carry an id so the concordance can link straight to the paragraph
+// a verse was quoted in.
 export const mdxComponents: MDXComponents = {
   h1: ({ children }) => (
     <h1 className="mb-5 mt-12 text-3xl font-semibold tracking-[-0.025em] text-neutral-100">
@@ -36,15 +54,25 @@ export const mdxComponents: MDXComponents = {
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="mb-4 mt-12 scroll-mt-8 text-2xl font-semibold tracking-[-0.02em] text-neutral-100">
+    <h2
+      id={slugify(textOf(children))}
+      className="mb-4 mt-12 scroll-mt-8 text-2xl font-semibold tracking-[-0.02em] text-neutral-100"
+    >
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mb-3 mt-8 text-xl font-semibold text-neutral-200">{children}</h3>
+    <h3
+      id={slugify(textOf(children))}
+      className="mb-3 mt-8 scroll-mt-8 text-xl font-semibold text-neutral-200"
+    >
+      {children}
+    </h3>
   ),
   p: ({ children }) => (
-    <p className="mb-5 text-[1.02rem] leading-8 text-neutral-300">{children}</p>
+    <p className="mb-5 text-[1.02rem] leading-8 text-neutral-300">
+      {withScriptureRefs(children)}
+    </p>
   ),
   a: ({ href, children }) => <ArticleLink href={href}>{children}</ArticleLink>,
   ul: ({ children }) => (
@@ -57,10 +85,11 @@ export const mdxComponents: MDXComponents = {
       {children}
     </ol>
   ),
-  li: ({ children }) => <li className="pl-1">{children}</li>,
+  li: ({ children }) => <li className="pl-1">{withScriptureRefs(children)}</li>,
   strong: ({ children }) => (
-    <strong className="font-semibold text-neutral-100">{children}</strong>
+    <strong className="font-semibold text-neutral-100">{withScriptureRefs(children)}</strong>
   ),
+  em: ({ children }) => <em>{withScriptureRefs(children)}</em>,
   blockquote: ({ children }) => (
     <blockquote className="my-8 border-l-2 border-neutral-700 pl-5 text-neutral-400">
       {children}
