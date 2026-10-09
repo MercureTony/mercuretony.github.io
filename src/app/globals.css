@@ -83,6 +83,25 @@
   page-break-before: always;
 }
 
+/* The end colour of the name's gradient on the home page, driven by the sun
+   over Montreal (src/lib/sky-inline.js before first paint, then
+   montreal-light.tsx). Registered so changes glide at the speed of weather. */
+@property --sky {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a3a3a3;
+}
+
+html {
+  transition: --sky 2400ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    transition: none;
+  }
+}
+
 @layer utilities {
   .backdrop-blur-sm {
     backdrop-filter: blur(8px);

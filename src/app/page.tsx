@@ -1,6 +1,7 @@
 "use client";
 
 import { Misc } from "@/components/misc";
+import { MontrealLight } from "@/components/montreal-light";
 import { OpportunitiesSection } from "@/components/opportunities-section";
 import { RESUME_DATA } from "@/data/resume-data";
 import { CURRENT_THESIS, THESIS_HISTORY } from "@/data/thesis-history";
@@ -44,9 +45,15 @@ export default function Home() {
 				animate="show"
 			>
 				<motion.div variants={item}>
-					<h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white to-neutral-400 text-transparent bg-clip-text">
+					{/* The gradient's end is lit by the real sun over Montreal; see montreal-light.tsx. */}
+					<h1
+						id="name"
+						className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text"
+						style={{ backgroundImage: "linear-gradient(90deg, #ffffff, var(--sky, #a3a3a3))" }}
+					>
 						Anthony Uyende
 					</h1>
+					<MontrealLight target="name" />
 				</motion.div>
 
 				<motion.ul className="space-y-4 sm:space-y-6" variants={container}>

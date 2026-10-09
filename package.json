@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-moments.mjs && next build",
+    "check:moments": "node scripts/check-moments.mjs",
     "start": "next start",
     "lint": "next lint",
     "thesis": "node scripts/thesis-history.mjs"

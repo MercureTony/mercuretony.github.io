@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CurrentlyReading } from "./currently-reading";
+import { MontrealMoment } from "./montreal-moment";
 
 export function Misc() {
   return (
@@ -11,6 +12,7 @@ export function Misc() {
       transition={{ duration: 0.4 }}
       className="space-y-8"
     >
+      <MontrealMoment />
       <CurrentlyReading />
     </motion.div>
   );

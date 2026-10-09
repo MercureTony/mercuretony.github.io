@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans'
 import { Inter } from "next/font/google";
+import fs from "fs";
+import path from "path";
 import Navigation from "@/components/navigation";
 import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
 import React from "react";
+
+// Lights the name on the home page by the sun over Montreal before the first
+// paint. Read at build time so the script has no request of its own.
+const skyScript = fs.readFileSync(path.join(process.cwd(), "src/lib/sky-inline.js"), "utf8");
 
 export const metadata: Metadata = {
   title: "Anthony Uyende",
@@ -25,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.className} ${inter.variable}`}>
+    // suppressHydrationWarning: the inline script below sets a style on <html>
+    // before React hydrates.
+    <html lang="en" className={`${GeistSans.className} ${inter.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: skyScript }} />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="ea192ba5-ae49-4299-8e5b-3abd3b4dcef5"></script>
         <link
           rel="icon"
