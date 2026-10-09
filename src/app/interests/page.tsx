@@ -24,12 +24,9 @@ function ResourceList({ resources }: { resources: Resource[] }) {
             <span className="text-neutral-300 transition-colors duration-150 group-hover:text-white motion-reduce:transition-none">
               {resource.title}
             </span>
-            <div className="flex shrink-0 items-center gap-2 text-xs text-neutral-500">
-              <span className="rounded-full bg-neutral-800 px-2 py-1">
-                {resource.type}
-              </span>
-              <span className="tabular-nums">{resource.date}</span>
-            </div>
+            <span className="shrink-0 text-xs text-neutral-500">
+              {resource.type} · <span className="tabular-nums">{resource.date}</span>
+            </span>
           </div>
           <span className="sr-only">Opens in a new tab</span>
         </a>
