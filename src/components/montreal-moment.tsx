@@ -43,7 +43,7 @@ export function MontrealMoment({ articles }: { articles?: ArticleMeta[] }) {
           >
             {phase.line}
           </Link>
-          {phase.cite ? <span> — {phase.cite}</span> : null}
+          {phase.cite ? <span> ({phase.cite})</span> : null}
         </motion.p>
       ) : null}
     </AnimatePresence>
