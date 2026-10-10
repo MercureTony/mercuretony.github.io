@@ -41,19 +41,6 @@ export const INTERESTS_DATA_FR: Interest[] = [
         description:
           "Des systèmes d’IA où les humains restent responsables du jugement, de la révision et de la décision finale, surtout dans les services professionnels.",
       },
-      {
-        name: "L’IA et l’électricité",
-        description:
-          "Comment la puissance de calcul derrière l’IA transforme les marchés de l’électricité, des nouvelles centrales au prix du kilowattheure aux heures de pointe.",
-        resources: [
-          {
-            title: "Power 2026, de Neel Somani",
-            url: "https://power2026.ai/",
-            type: "book",
-            date: "2026",
-          },
-        ],
-      },
     ],
   },
   {
@@ -65,6 +52,12 @@ export const INTERESTS_DATA_FR: Interest[] = [
         description:
           "Énergies renouvelables, nucléaire, géothermie et rôle d’une énergie bon marché dans le progrès économique.",
         resources: [
+          {
+            title: "Power 2026, de Neel Somani",
+            url: "https://power2026.ai/",
+            type: "book",
+            date: "2026",
+          },
           {
             title: "CFS to build first ARC fusion power plant in Virginia",
             url: "https://blog.cfs.energy/cfs-will-build-its-first-arc-fusion-power-plant-in-virginia/",

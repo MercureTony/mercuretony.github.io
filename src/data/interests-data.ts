@@ -59,19 +59,6 @@ export const INTERESTS_DATA: Interest[] = [
         name: "Human-in-the-Loop AI",
         description:
           "AI systems where humans remain responsible for judgment, review, and final decisions, especially in professional services."
-      },
-      {
-        name: "AI and Electricity",
-        description:
-          "How the compute behind AI is changing electricity markets, from new power plants to the price of a kilowatt-hour at peak hours.",
-        resources: [
-          {
-            title: "Power 2026, by Neel Somani",
-            url: "https://power2026.ai/",
-            type: "book",
-            date: "2026"
-          }
-        ]
       }
     ]
   },
@@ -84,6 +71,12 @@ export const INTERESTS_DATA: Interest[] = [
         description:
           "Renewable energy, nuclear power, geothermal systems, and the role of cheap energy in economic progress.",
         resources: [
+          {
+            title: "Power 2026, by Neel Somani",
+            url: "https://power2026.ai/",
+            type: "book",
+            date: "2026"
+          },
           {
             title: "CFS to build first ARC fusion power plant in Virginia",
             url: "https://blog.cfs.energy/cfs-will-build-its-first-arc-fusion-power-plant-in-virginia/",
