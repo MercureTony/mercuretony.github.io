@@ -72,6 +72,12 @@ export const INTERESTS_DATA: Interest[] = [
           "Renewable energy, nuclear power, geothermal systems, and the role of cheap energy in economic progress.",
         resources: [
           {
+            title: "Power 2026, by Neel Somani",
+            url: "https://power2026.ai/",
+            type: "book",
+            date: "2026"
+          },
+          {
             title: "CFS to build first ARC fusion power plant in Virginia",
             url: "https://blog.cfs.energy/cfs-will-build-its-first-arc-fusion-power-plant-in-virginia/",
             type: "article",
