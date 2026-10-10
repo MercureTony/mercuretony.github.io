@@ -53,12 +53,11 @@ export async function generateStaticParams() {
   return getPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const filePath = path.join(process.cwd(), "src/content/articles", `${params.slug}.mdx`);
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "src/content/articles", `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContents);
 
@@ -71,8 +70,9 @@ export async function generateMetadata({
 const neighbourLink =
   "font-serif text-[1.0625rem] leading-[1.5] text-neutral-200 underline decoration-neutral-600 decoration-[0.06em] underline-offset-[0.2em] transition-colors duration-150 hover:decoration-neutral-300 motion-reduce:transition-none";
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), "src/content/articles", `${params.slug}.mdx`);
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "src/content/articles", `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(fileContents);
 
@@ -81,7 +81,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const verses = scriptureIn(content);
 
   const posts = getPosts();
-  const currentIndex = posts.findIndex((post) => post.slug === params.slug);
+  const currentIndex = posts.findIndex((post) => post.slug === slug);
   const newerPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
   const olderPost =
     currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
