@@ -7,10 +7,10 @@ import type { ArticleMeta } from "@/data/moments";
 import { RESUME_DATA } from "@/data/resume-data";
 import { CURRENT_THESIS, THESIS_HISTORY } from "@/data/thesis-history";
 import { formatDateOnly } from "@/lib/date";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 
-const container = {
+const container: Variants = {
 	hidden: { opacity: 0 },
 	show: {
 		opacity: 1,
@@ -21,7 +21,7 @@ const container = {
 	},
 };
 
-const item = {
+const item: Variants = {
 	hidden: { opacity: 0, y: 20 },
 	show: {
 		opacity: 1,

@@ -8,7 +8,7 @@ Live at **[mercuretony-github-io.vercel.app](https://mercuretony-github-io.verce
 
 ## Stack
 
-- [Next.js 14](https://nextjs.org) (App Router) + React 18 + TypeScript
+- [Next.js 15](https://nextjs.org) (App Router) + React 19 + TypeScript
 - [Tailwind CSS](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com)
 - MDX for articles, via `next-mdx-remote`
 - Deployed on [Vercel](https://vercel.com)
