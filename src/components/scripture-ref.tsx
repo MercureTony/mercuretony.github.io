@@ -16,7 +16,7 @@ export function ScriptureRef({
       target="_blank"
       rel="noopener noreferrer"
       title="Read the passage"
-      className="underline decoration-dotted decoration-neutral-600 underline-offset-4 transition-colors duration-150 hover:decoration-neutral-300 motion-reduce:transition-none"
+      className="underline decoration-dotted decoration-neutral-500 underline-offset-[0.2em] transition-colors duration-150 hover:decoration-neutral-200 motion-reduce:transition-none"
     >
       {children}
     </a>

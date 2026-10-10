@@ -118,12 +118,24 @@ const namePattern = Array.from(nameToId.keys())
   .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+"))
   .join("|");
 
+/** bible.com's ids for the translations the essays name. NIV is the default. */
+export const VERSIONS: Record<string, number> = {
+  NIV: 111,
+  KJV: 1,
+  ESV: 59,
+  NLT: 116,
+  NKJV: 114,
+  LSG: 93,
+};
+
 /**
- * Matches "Matthew 11:28", "Mark 4:37-38", "1 Corinthians 15:33", "Psaume 139:14".
- * The leading group stands in for a lookbehind, which older Safari can't parse.
+ * Matches "Matthew 11:28", "Mark 4:37-38 KJV", "1 Corinthians 15:33", "Genesis
+ * 2:18 (NIV)", "Psaume 139:14". A trailing translation, with or without
+ * parentheses, is part of the match so the link opens that translation. The
+ * leading group stands in for a lookbehind, which older Safari can't parse.
  */
 export const REFERENCE_PATTERN = new RegExp(
-  `(^|[^\\w])(${namePattern})\\s+(\\d{1,3}):(\\d{1,3})(?:\\s*[-–]\\s*(\\d{1,3}))?(?![\\d:])`,
+  `(^|[^\\w])(${namePattern})\\s+(\\d{1,3}):(\\d{1,3})(?:\\s*[-–]\\s*(\\d{1,3}))?(?![\\d:])(?:\\s*\\(?(${Object.keys(VERSIONS).join("|")})\\)?)?`,
   "giu",
 );
 
@@ -132,6 +144,8 @@ export interface Reference {
   chapter: number;
   verse: number;
   verseEnd?: number;
+  /** A translation the text named, e.g. "KJV". */
+  version?: string;
 }
 
 export interface ReferenceMatch {
@@ -148,7 +162,8 @@ function parseMatch(match: RegExpMatchArray): Reference | null {
   if (chapter < 1 || chapter > book.chapters) return null;
   const verse = Number(match[4]);
   const verseEnd = match[5] ? Number(match[5]) : undefined;
-  return { book: book.id, chapter, verse, verseEnd };
+  const version = match[6] ? match[6].toUpperCase() : undefined;
+  return { book: book.id, chapter, verse, verseEnd, version };
 }
 
 export function findReferences(text: string): ReferenceMatch[] {
@@ -187,8 +202,12 @@ export function position(ref: Reference): number {
   return (before + ref.chapter - 1 + withinChapter) / (book ? TOTAL_CHAPTERS : 1);
 }
 
-/** bible.com, the same place the People page sends readers for Jesus Christ. NIV is 111. */
-export function bibleUrl(ref: Reference, version = 111): string {
+/**
+ * bible.com, the same place the People page sends readers for Jesus Christ,
+ * in the translation the text named, or the NIV.
+ */
+export function bibleUrl(ref: Reference, fallback = VERSIONS.NIV): string {
   const range = ref.verseEnd ? `-${ref.verseEnd}` : "";
+  const version = (ref.version && VERSIONS[ref.version]) || fallback;
   return `https://www.bible.com/bible/${version}/${ref.book}.${ref.chapter}.${ref.verse}${range}`;
 }

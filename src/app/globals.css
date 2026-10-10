@@ -102,6 +102,59 @@ html {
   }
 }
 
+/* Essays are set in Literata (src/lib/fonts.ts): a text serif with a true
+   italic, 18px on 1.6 on phones and 19px on 1.55 from 640px, hyphenated only
+   where lines are short. Everything inside inherits from here. */
+.essay {
+  font-family: var(--font-literata), Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga";
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 7 4 3;
+  -webkit-hyphenate-limit-before: 4;
+  -webkit-hyphenate-limit-after: 3;
+}
+
+@media (min-width: 640px) {
+  .essay {
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    -webkit-hyphens: manual;
+    hyphens: manual;
+  }
+}
+
+/* The opening quotation mark of a quote hangs in the margin so the first
+   letter of the verse aligns with the paragraphs. */
+.essay blockquote > p:first-child {
+  text-indent: -0.42em;
+}
+
+@supports (hanging-punctuation: first) {
+  .essay blockquote {
+    hanging-punctuation: first;
+  }
+  .essay blockquote > p:first-child {
+    text-indent: 0;
+  }
+}
+
+/* A second paragraph inside a quote is its reference: a small sans caption. */
+.essay blockquote > p + p {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-style: normal;
+  color: #a3a3a3;
+  text-indent: 0;
+}
+
 @layer utilities {
   .backdrop-blur-sm {
     backdrop-filter: blur(8px);

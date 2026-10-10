@@ -4,11 +4,12 @@ import matter from "gray-matter";
 import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import * as React from "react";
 
-import { CopyLinkButton } from "@/components/copy-link-button";
 import { mdxComponents } from "@/components/MDXComponents";
-import { ReadingProgress } from "@/components/reading-progress";
+import { ScriptureRef } from "@/components/scripture-ref";
 import { formatDateOnly } from "@/lib/date";
+import { type Reference, findReferences, formatReference, referenceKey } from "@/lib/scripture";
 
 interface PostMeta {
   slug: string;
@@ -35,6 +36,19 @@ function getPosts(): PostMeta[] {
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
+/** Every verse the essay cites, once each, in order of first appearance. */
+function scriptureIn(content: string): Reference[] {
+  const seen = new Set<string>();
+  return findReferences(content)
+    .map((match) => match.ref)
+    .filter((ref) => {
+      const key = referenceKey(ref);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
 export async function generateStaticParams() {
   return getPosts().map((post) => ({ slug: post.slug }));
 }
@@ -54,6 +68,9 @@ export async function generateMetadata({
   };
 }
 
+const neighbourLink =
+  "font-serif text-[1.0625rem] leading-[1.5] text-neutral-200 underline decoration-neutral-600 decoration-[0.06em] underline-offset-[0.2em] transition-colors duration-150 hover:decoration-neutral-300 motion-reduce:transition-none";
+
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const filePath = path.join(process.cwd(), "src/content/articles", `${params.slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
@@ -61,6 +78,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
   const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
   const readingTime = data.readingTime || Math.max(1, Math.ceil(wordCount / 220));
+  const verses = scriptureIn(content);
 
   const posts = getPosts();
   const currentIndex = posts.findIndex((post) => post.slug === params.slug);
@@ -69,75 +87,85 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
 
   return (
-    <>
-      <ReadingProgress />
+    <main className="mx-auto max-w-[37rem] pb-[calc(7rem+env(safe-area-inset-bottom))]">
+      <Link
+        href="/writings"
+        className="mb-10 inline-flex min-h-11 items-center text-[0.8125rem] text-neutral-400 underline-offset-4 transition-colors duration-150 hover:text-neutral-200 hover:underline motion-reduce:transition-none"
+      >
+        All writing
+      </Link>
 
-      <main className="mx-auto mb-32 max-w-2xl">
-        <Link
-          href="/writings"
-          className="mb-8 inline-flex min-h-11 items-center text-sm text-neutral-500 underline-offset-4 transition-colors duration-150 hover:text-neutral-200 hover:underline motion-reduce:transition-none"
-        >
-          All writing
-        </Link>
-
-        <header className="mb-10 border-b border-neutral-800/80 pb-8">
-          <h1 className="text-3xl font-semibold leading-tight tracking-[-0.03em] text-neutral-100 sm:text-4xl">
+      <div className="essay">
+        <header className="mb-12 sm:mb-14">
+          <h1 className="text-balance text-[2.125rem] font-medium leading-[1.12] tracking-[-0.015em] text-neutral-100 sm:text-[2.75rem] sm:leading-[1.08]">
             {data.title}
           </h1>
 
           {data.summary ? (
-            <p className="mt-4 text-base leading-7 text-neutral-400">{data.summary}</p>
+            <p className="mt-4 text-pretty text-[1.0625rem] leading-[1.5] text-neutral-400">
+              {data.summary}
+            </p>
           ) : null}
 
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-600">
-              <time dateTime={data.date} className="tabular-nums">
-                {formatDateOnly(data.date, {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </time>
-              <span aria-hidden="true">·</span>
-              <span className="tabular-nums">{readingTime} min read</span>
-            </div>
-            <CopyLinkButton />
-          </div>
+          <p className="mt-5 font-sans text-[0.8125rem] tabular-nums text-neutral-400">
+            <time dateTime={data.date}>
+              {formatDateOnly(data.date, { month: "long", day: "numeric", year: "numeric" })}
+            </time>
+            <span aria-hidden="true"> · </span>
+            {readingTime} min
+          </p>
         </header>
 
         <article>
           <MDXRemote source={content} components={mdxComponents} />
         </article>
+      </div>
 
-        <nav
-          aria-label="More writing"
-          className="mt-14 space-y-3 border-t border-neutral-800/80 pt-8 text-sm leading-6"
-        >
-          {newerPost ? (
-            <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
-              <span className="text-neutral-600">Newer</span>
-              <Link
-                href={`/writings/${newerPost.slug}`}
-                className="text-neutral-300 underline-offset-4 transition-colors duration-150 hover:text-white hover:underline motion-reduce:transition-none"
-              >
-                {newerPost.title}
-              </Link>
-            </p>
-          ) : null}
+      {/* The essay ends on its own last line; then air, then a signature. */}
+      <footer className="mt-20 space-y-3 text-[0.8125rem] leading-6 text-neutral-400">
+        <p>
+          Anthony Uyende{data.place ? `, ${data.place}` : ""},{" "}
+          {formatDateOnly(data.date, { month: "long", year: "numeric" })}.
+        </p>
+        {verses.length ? (
+          <p>
+            Scripture in this essay:{" "}
+            {verses.map((ref, i) => (
+              <React.Fragment key={referenceKey(ref)}>
+                {i > 0 ? ", " : ""}
+                <ScriptureRef reference={ref}>{formatReference(ref)}</ScriptureRef>
+              </React.Fragment>
+            ))}
+            .{" "}
+            <Link
+              href="/scripture"
+              className="underline decoration-neutral-700 underline-offset-[0.2em] transition-colors duration-150 hover:decoration-neutral-400 motion-reduce:transition-none"
+            >
+              Where else it shows up.
+            </Link>
+          </p>
+        ) : null}
+      </footer>
 
-          {olderPost ? (
-            <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
-              <span className="text-neutral-600">Older</span>
-              <Link
-                href={`/writings/${olderPost.slug}`}
-                className="text-neutral-300 underline-offset-4 transition-colors duration-150 hover:text-white hover:underline motion-reduce:transition-none"
-              >
-                {olderPost.title}
-              </Link>
-            </p>
-          ) : null}
-        </nav>
-      </main>
-    </>
+      <nav aria-label="More writing" className="mt-16 space-y-5">
+        {newerPost ? (
+          <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
+            <span className="text-[0.8125rem] leading-6 text-neutral-400">Newer</span>
+            <Link href={`/writings/${newerPost.slug}`} className={neighbourLink}>
+              {newerPost.title}
+            </Link>
+          </p>
+        ) : null}
+
+        {olderPost ? (
+          <p className="grid gap-1 sm:grid-cols-[4rem_1fr]">
+            <span className="text-[0.8125rem] leading-6 text-neutral-400">Older</span>
+            <Link href={`/writings/${olderPost.slug}`} className={neighbourLink}>
+              {olderPost.title}
+            </Link>
+          </p>
+        ) : null}
+      </nav>
+    </main>
   );
 }

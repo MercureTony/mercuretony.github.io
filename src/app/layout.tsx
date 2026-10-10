@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import fs from "fs";
 import path from "path";
 import Navigation from "@/components/navigation";
+import { literata } from "@/lib/fonts";
 import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
@@ -33,7 +34,11 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning: the inline script below sets a style on <html>
     // before React hydrates.
-    <html lang="en" className={`${GeistSans.className} ${inter.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistSans.className} ${GeistSans.variable} ${inter.variable} ${literata.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: skyScript }} />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="ea192ba5-ae49-4299-8e5b-3abd3b4dcef5"></script>
