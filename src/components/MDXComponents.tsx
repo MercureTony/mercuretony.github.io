@@ -27,9 +27,20 @@ function ArticleLink({
       </Link>
     );
   }
+  // A link that leaves the site carries a small raised arrow, the same mark
+  // as the essay's closing card. Links within the site carry none.
+  const external = /^https?:\/\//.test(href);
   return (
     <a href={href} className={linkClass}>
       {children}
+      {external ? (
+        <span
+          aria-hidden="true"
+          className="ml-[0.08em] inline-block align-super font-sans text-[0.6em] leading-none text-neutral-400"
+        >
+          ↗
+        </span>
+      ) : null}
     </a>
   );
 }
