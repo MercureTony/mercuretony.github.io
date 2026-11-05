@@ -50,9 +50,10 @@ file in `src/content/articles`.
 
 ## Photographs in essays
 
-An essay can open on a photograph. It develops from grey to colour as the page
-loads, follows the pointer on the writing list, and becomes the essay's share
-card. Essays without one get a typographic card instead.
+Photos sit in the text as numbered figures, like a textbook's: *Figure 1.*,
+*Figure 2.*, numbered in the order they appear. Refer to them in the text as
+"(Figure 1)". An essay's first figure also becomes its share card; essays
+without one get a card of type.
 
 1. Prepare the photos. This turns them upright, shrinks them to 2000px and
    strips their metadata, including GPS location:
@@ -61,30 +62,20 @@ card. Essays without one get a typographic card instead.
    pnpm photos why-im-building-coalesc ~/Downloads/stage.jpg
    ```
 
-2. Add the cover to the essay's front matter:
-
-   ```yaml
-   photo: /writings/why-im-building-coalesc/stage.jpg
-   photoAlt: "What the photo shows, for people who can't see it."
-   photoCaption: "Optional line under the photo."
-   photoFocus: top   # optional: the part to keep when cropped
-   ```
-
-3. Photos inside the text, which develop as they scroll into view:
+2. Place the figure where the text needs it. The quoted part is the caption:
 
    ```mdx
-   ![What it shows](/writings/slug/photo.jpg "Optional caption")
+   ![What the photo shows, for people who can't see it](/writings/slug/stage.jpg "The caption.")
+   ```
 
-   <Photo src="/writings/slug/photo.jpg" alt="…" caption="…" size="wide" />
+   Two photos side by side, as one figure:
 
-   <Photos caption="One caption for the set.">
+   ```mdx
+   <Photos caption="One caption for the pair.">
      <Photo src="/writings/slug/a.jpg" alt="…" />
      <Photo src="/writings/slug/b.jpg" alt="…" />
    </Photos>
    ```
-
-Share cards are drawn at build time by
-`src/app/writings/[slug]/opengraph-image.tsx`.
 
 ## Reusing this
 

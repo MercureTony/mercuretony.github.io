@@ -5,17 +5,6 @@ import matter from "gray-matter";
 const ARTICLES = path.join(process.cwd(), "src/content/articles");
 const PUBLIC = path.join(process.cwd(), "public");
 
-export interface Photo {
-  /** Public path, e.g. /writings/storms/cover.jpg */
-  src: string;
-  alt: string;
-  caption?: string;
-  /** Which part to keep when the photo is cropped, as CSS object-position: "top", "30% 20%"… */
-  focus: string;
-  width: number;
-  height: number;
-}
-
 export interface EssayMeta {
   slug: string;
   title: string;
@@ -23,7 +12,8 @@ export interface EssayMeta {
   summary?: string;
   place?: string;
   readingTime: number;
-  photo?: Photo;
+  /** The essay's first figure, which its share card is drawn from. */
+  shareImage?: string;
 }
 
 /**
@@ -60,22 +50,14 @@ export function photoSize(src: string): { width: number; height: number } {
   }
 
   throw new Error(
-    `${src}: essay photos must be JPEG or PNG (share cards can't use WebP). Run \`pnpm photos\` to prepare them.`,
+    `${src}: essay photos must be JPEG or PNG. Run \`pnpm photos\` to prepare them.`,
   );
 }
 
-function readPhoto(data: Record<string, unknown>, slug: string): Photo | undefined {
-  if (typeof data.photo !== "string" || !data.photo) return undefined;
-  if (typeof data.photoAlt !== "string" || !data.photoAlt.trim()) {
-    throw new Error(`${slug}.mdx: a photo needs photoAlt, a sentence describing it.`);
-  }
-  return {
-    src: data.photo,
-    alt: data.photoAlt,
-    caption: typeof data.photoCaption === "string" ? data.photoCaption : undefined,
-    focus: typeof data.photoFocus === "string" ? data.photoFocus : "center",
-    ...photoSize(data.photo),
-  };
+/** The first photo in an essay's text: ![…](src) or <Photo src="…">. */
+function firstFigure(content: string): string | undefined {
+  const match = /!\[[^\]]*\]\(\s*([^\s)]+)|<Photo\b[^>]*\bsrc=["']([^"']+)["']/.exec(content);
+  return match ? match[1] || match[2] : undefined;
 }
 
 export function getEssay(slug: string): { meta: EssayMeta; content: string } {
@@ -92,7 +74,7 @@ export function getEssay(slug: string): { meta: EssayMeta; content: string } {
       summary: data.summary,
       place: data.place,
       readingTime: data.readingTime || Math.max(1, Math.ceil(words / 220)),
-      photo: readPhoto(data, slug),
+      shareImage: firstFigure(content),
     },
   };
 }

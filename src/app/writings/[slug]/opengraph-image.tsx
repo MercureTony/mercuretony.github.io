@@ -7,7 +7,7 @@ import { formatDateOnly } from "@/lib/date";
 import { getEssay, getEssays } from "@/lib/essays";
 
 // The card a link to an essay unfurls into, drawn at build time. An essay
-// with a photo becomes that photo with its title over it; one without
+// with a figure becomes its first photo with the title over it; one without
 // becomes a page of type in the essay's own face.
 
 export const size = { width: 1200, height: 630 };
@@ -79,12 +79,12 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const line = [meta.place, when, `${meta.readingTime} min read`].filter(Boolean).join("  ·  ");
   const titleSize = meta.title.length > 56 ? 60 : meta.title.length > 32 ? 70 : 84;
 
-  if (meta.photo) {
-    // Crop here rather than with object-position, which the card renderer
-    // ignores. sharp takes the same words: top, right bottom, centre…
-    const focus = meta.photo.focus.replace("center", "centre");
-    const photo = await sharp(path.join(process.cwd(), "public", meta.photo.src))
-      .resize(1200, 630, { fit: "cover", position: focus })
+  if (meta.shareImage) {
+    // The essay's first figure, cropped to the card. The crop keeps the photo's
+    // top, where a stage photo's slide or a landscape's horizon tends to sit;
+    // the title covers the bottom.
+    const photo = await sharp(path.join(process.cwd(), "public", meta.shareImage))
+      .resize(1200, 630, { fit: "cover", position: "top" })
       .jpeg({ quality: 90 })
       .toBuffer();
     const photoTitleSize = Math.min(titleSize, 72);

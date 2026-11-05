@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import * as React from "react";
 
 import { mdxComponents } from "@/components/MDXComponents";
-import { Plate } from "@/components/essay-photo";
 import { ScriptureRef } from "@/components/scripture-ref";
 import { formatDateOnly } from "@/lib/date";
 import { getEssay, getEssays } from "@/lib/essays";
@@ -75,8 +74,6 @@ export default async function BlogPost({ params }: Props) {
       </Link>
 
       <div className="essay">
-        {meta.photo ? <Plate photo={meta.photo} /> : null}
-
         <header className="mb-12 sm:mb-14">
           <h1 className="text-balance text-[2.125rem] font-medium leading-[1.12] tracking-[-0.015em] text-neutral-100 sm:text-[2.75rem] sm:leading-[1.08]">
             {meta.title}
