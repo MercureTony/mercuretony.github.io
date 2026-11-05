@@ -1,8 +1,8 @@
 import type { MDXComponents } from "mdx/types";
-import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
+import { Photo, Photos } from "@/components/essay-photo";
 import { withScriptureRefs } from "@/components/scripture-ref";
 import { slugify } from "@/lib/slug";
 
@@ -88,7 +88,14 @@ export const mdxComponents: MDXComponents = {
       {children}
     </h3>
   ),
-  p: ({ children }) => <p className="mb-[1.25em] text-pretty">{withScriptureRefs(children)}</p>,
+  p: ({ children }) => {
+    // A photo on a line of its own becomes a figure, which can't sit in a <p>.
+    const only = React.Children.toArray(children);
+    if (only.length === 1 && React.isValidElement<{ src?: unknown }>(only[0]) && only[0].props.src) {
+      return only[0];
+    }
+    return <p className="mb-[1.25em] text-pretty">{withScriptureRefs(children)}</p>;
+  },
   a: ({ href, children }) => <ArticleLink href={href}>{children}</ArticleLink>,
   ul: ({ children }) => (
     <ul className="mb-[1.25em] list-disc space-y-[0.4em] pl-[1.4em] marker:text-neutral-500">
@@ -118,13 +125,8 @@ export const mdxComponents: MDXComponents = {
   code: ({ children }) => (
     <code className="font-mono text-[0.875em] text-neutral-200">{children}</code>
   ),
-  img: ({ src, alt, width, height }) => (
-    <Image
-      src={src as string}
-      alt={(alt as string) || ""}
-      width={(width as number) || 1200}
-      height={(height as number) || 800}
-      className="my-10 h-auto w-full"
-    />
-  ),
+  // ![What the photo shows](/writings/slug/photo.jpg "An optional caption")
+  img: ({ src, alt, title }) => <Photo src={src as string} alt={alt} caption={title} />,
+  Photo,
+  Photos,
 };

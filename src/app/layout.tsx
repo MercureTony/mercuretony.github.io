@@ -14,7 +14,13 @@ import React from "react";
 // paint. Read at build time so the script has no request of its own.
 const skyScript = fs.readFileSync(path.join(process.cwd(), "src/lib/sky-inline.js"), "utf8");
 
+// Share cards need absolute URLs. On Vercel this is the production domain.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "https://mercuretony-github-io.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Anthony Uyende",
   description: "Anthony Uyende's personal website",
 };

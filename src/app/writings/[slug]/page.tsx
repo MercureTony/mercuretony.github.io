@@ -1,40 +1,14 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import * as React from "react";
 
 import { mdxComponents } from "@/components/MDXComponents";
+import { Plate } from "@/components/essay-photo";
 import { ScriptureRef } from "@/components/scripture-ref";
 import { formatDateOnly } from "@/lib/date";
+import { getEssay, getEssays } from "@/lib/essays";
 import { type Reference, findReferences, formatReference, referenceKey } from "@/lib/scripture";
-
-interface PostMeta {
-  slug: string;
-  title: string;
-  date: string;
-}
-
-function getPosts(): PostMeta[] {
-  const postsDirectory = path.join(process.cwd(), "src/content/articles");
-
-  return fs
-    .readdirSync(postsDirectory)
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => {
-      const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug: fileName.replace(/\.mdx$/, ""),
-        title: data.title,
-        date: data.date,
-      };
-    })
-    .sort((a, b) => b.date.localeCompare(a.date));
-}
 
 /** Every verse the essay cites, once each, in order of first appearance. */
 function scriptureIn(content: string): Reference[] {
@@ -50,20 +24,30 @@ function scriptureIn(content: string): Reference[] {
 }
 
 export async function generateStaticParams() {
-  return getPosts().map((post) => ({ slug: post.slug }));
+  return getEssays().map((post) => ({ slug: post.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const filePath = path.join(process.cwd(), "src/content/articles", `${slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(fileContents);
+  const { meta } = getEssay(slug);
+  const description = meta.summary || "An essay by Anthony Uyende";
 
+  // The share image comes from opengraph-image.tsx beside this file.
   return {
-    title: `${data.title} | Anthony Uyende`,
-    description: data.summary || "An article by Anthony Uyende",
+    title: `${meta.title} | Anthony Uyende`,
+    description,
+    openGraph: {
+      type: "article",
+      title: meta.title,
+      description,
+      url: `/writings/${slug}`,
+      siteName: "Anthony Uyende",
+      authors: ["Anthony Uyende"],
+      publishedTime: meta.date,
+    },
+    twitter: { card: "summary_large_image", title: meta.title, description },
   };
 }
 
@@ -72,15 +56,10 @@ const neighbourLink =
 
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
-  const filePath = path.join(process.cwd(), "src/content/articles", `${slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { content, data } = matter(fileContents);
-
-  const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
-  const readingTime = data.readingTime || Math.max(1, Math.ceil(wordCount / 220));
+  const { content, meta } = getEssay(slug);
   const verses = scriptureIn(content);
 
-  const posts = getPosts();
+  const posts = getEssays();
   const currentIndex = posts.findIndex((post) => post.slug === slug);
   const newerPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
   const olderPost =
@@ -96,23 +75,25 @@ export default async function BlogPost({ params }: Props) {
       </Link>
 
       <div className="essay">
+        {meta.photo ? <Plate photo={meta.photo} /> : null}
+
         <header className="mb-12 sm:mb-14">
           <h1 className="text-balance text-[2.125rem] font-medium leading-[1.12] tracking-[-0.015em] text-neutral-100 sm:text-[2.75rem] sm:leading-[1.08]">
-            {data.title}
+            {meta.title}
           </h1>
 
-          {data.summary ? (
+          {meta.summary ? (
             <p className="mt-4 text-pretty text-[1.0625rem] leading-[1.5] text-neutral-400">
-              {data.summary}
+              {meta.summary}
             </p>
           ) : null}
 
           <p className="mt-5 font-sans text-[0.8125rem] tabular-nums text-neutral-400">
-            <time dateTime={data.date}>
-              {formatDateOnly(data.date, { month: "long", day: "numeric", year: "numeric" })}
+            <time dateTime={meta.date}>
+              {formatDateOnly(meta.date, { month: "long", day: "numeric", year: "numeric" })}
             </time>
             <span aria-hidden="true"> · </span>
-            {readingTime} min
+            {meta.readingTime} min
           </p>
         </header>
 
@@ -124,8 +105,8 @@ export default async function BlogPost({ params }: Props) {
       {/* The essay ends on its own last line; then air, then a signature. */}
       <footer className="mt-20 space-y-3 text-[0.8125rem] leading-6 text-neutral-400">
         <p>
-          Anthony Uyende{data.place ? `, ${data.place}` : ""},{" "}
-          {formatDateOnly(data.date, { month: "long", year: "numeric" })}.
+          Anthony Uyende{meta.place ? `, ${meta.place}` : ""},{" "}
+          {formatDateOnly(meta.date, { month: "long", year: "numeric" })}.
         </p>
         {verses.length ? (
           <p>
