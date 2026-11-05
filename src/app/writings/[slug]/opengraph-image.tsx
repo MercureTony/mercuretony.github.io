@@ -7,8 +7,8 @@ import { formatDateOnly } from "@/lib/date";
 import { getEssay, getEssays } from "@/lib/essays";
 
 // The card a link to an essay unfurls into, drawn at build time. An essay
-// with a figure becomes its first photo with the title over it; one without
-// becomes a page of type in the essay's own face.
+// with a figure becomes its first photo with a byline; one without becomes a
+// page of type in the essay's own face.
 
 export const size = { width: 1200, height: 630 };
 // JPEG, not PNG: a photo card as PNG runs past 1 MB, and WhatsApp drops
@@ -80,14 +80,14 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const titleSize = meta.title.length > 56 ? 60 : meta.title.length > 32 ? 70 : 84;
 
   if (meta.shareImage) {
-    // The essay's first figure, cropped to the card. The crop keeps the photo's
-    // top, where a stage photo's slide or a landscape's horizon tends to sit;
-    // the title covers the bottom.
+    // The essay's first figure, cropped to the card, with only a byline over
+    // it. Apps print the title and summary beside the image, so the photo
+    // carries no title of its own. The crop keeps the photo's top, where a
+    // slide or a horizon tends to sit; the byline sits on a shade at the foot.
     const photo = await sharp(path.join(process.cwd(), "public", meta.shareImage))
       .resize(1200, 630, { fit: "cover", position: "top" })
       .jpeg({ quality: 90 })
       .toBuffer();
-    const photoTitleSize = Math.min(titleSize, 72);
 
     return toJpeg(new ImageResponse(
       (
@@ -109,49 +109,21 @@ export default async function Image({ params }: { params: Promise<{ slug: string
               height: 630,
               display: "flex",
               backgroundImage:
-                "linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0) 38%, rgba(10,10,10,0.55) 62%, rgba(10,10,10,0.94) 100%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: 1200,
-              height: 630,
-              display: "flex",
-              backgroundImage: "linear-gradient(90deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0) 65%)",
+                "linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0) 66%, rgba(10,10,10,0.82) 100%)",
             }}
           />
           <div
             style={{
               position: "relative",
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
+              alignItems: "flex-end",
               width: "100%",
-              padding: "56px 72px 60px",
+              padding: "0 56px 40px",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-              <div
-                style={{
-                  fontFamily: "Literata",
-                  fontWeight: 500,
-                  fontSize: photoTitleSize,
-                  lineHeight: 1.08,
-                  letterSpacing: "-0.015em",
-                  color: "#fafafa",
-                  maxWidth: 1000,
-                  textShadow: "0 2px 24px rgba(0,0,0,0.35)",
-                }}
-              >
-                {typeset(meta.title)}
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-                <Byline color="rgba(255,255,255,0.95)" />
-                <div style={{ fontFamily: "Geist", fontSize: 24, color: "rgba(255,255,255,0.72)" }}>{line}</div>
-              </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+              <Byline color="rgba(255,255,255,0.95)" />
+              <div style={{ fontFamily: "Geist", fontSize: 24, color: "rgba(255,255,255,0.75)" }}>{line}</div>
             </div>
           </div>
         </div>

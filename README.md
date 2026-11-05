@@ -4,7 +4,7 @@ The source for my personal site: resume, essays, reading log, interests, and a
 few side pages. Bilingual (English / French), print-friendly, statically
 rendered.
 
-Live at **[mercuretony-github-io.vercel.app](https://mercuretony-github-io.vercel.app)**.
+Live at **[anthonyuyende.com](https://www.anthonyuyende.com)**.
 
 ## Stack
 
@@ -52,8 +52,9 @@ file in `src/content/articles`.
 
 Photos sit in the text as numbered figures, like a textbook's: *Figure 1.*,
 *Figure 2.*, numbered in the order they appear. Refer to them in the text as
-"(Figure 1)". An essay's first figure also becomes its share card; essays
-without one get a card of type.
+"(Figure 1)". An essay's first figure also becomes its share card, with a
+byline but no title (apps print the title beside it); essays without one get
+a card of type.
 
 1. Prepare the photos. This turns them upright, shrinks them to 2000px and
    strips their metadata, including GPS location:
