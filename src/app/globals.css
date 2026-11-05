@@ -168,3 +168,19 @@ html {
     scrollbar-width: none;
   }
 }
+
+
+/* Figures are numbered like a textbook's: Figure 1, Figure 2… in the order
+   they appear. A caption gets its number from here, so reordering photos in
+   an essay renumbers them. */
+.essay {
+  counter-reset: figure;
+}
+.essay .essay-figure {
+  counter-increment: figure;
+}
+.essay .essay-figure figcaption::before {
+  content: "Figure " counter(figure) ". ";
+  font-weight: 500;
+  color: #d4d4d4;
+}

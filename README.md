@@ -48,6 +48,35 @@ docker compose up -d   # stop with: docker compose down
 Most content changes are edits to a single file in `src/data`, or a new MDX
 file in `src/content/articles`.
 
+## Photographs in essays
+
+Photos sit in the text as numbered figures, like a textbook's: *Figure 1.*,
+*Figure 2.*, numbered in the order they appear. Refer to them in the text as
+"(Figure 1)". An essay's first figure also becomes its share card; essays
+without one get a card of type.
+
+1. Prepare the photos. This turns them upright, shrinks them to 2000px and
+   strips their metadata, including GPS location:
+
+   ```sh
+   pnpm photos why-im-building-coalesc ~/Downloads/stage.jpg
+   ```
+
+2. Place the figure where the text needs it. The quoted part is the caption:
+
+   ```mdx
+   ![What the photo shows, for people who can't see it](/writings/slug/stage.jpg "The caption.")
+   ```
+
+   Two photos side by side, as one figure:
+
+   ```mdx
+   <Photos caption="One caption for the pair.">
+     <Photo src="/writings/slug/a.jpg" alt="…" />
+     <Photo src="/writings/slug/b.jpg" alt="…" />
+   </Photos>
+   ```
+
 ## Reusing this
 
 You are welcome to fork the site and make it yours. Start by replacing
