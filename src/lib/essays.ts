@@ -57,7 +57,9 @@ export function photoSize(src: string): { width: number; height: number } {
 /** The first photo in an essay's text: ![…](src) or <Photo src="…">. */
 function firstFigure(content: string): string | undefined {
   const match = /!\[[^\]]*\]\(\s*([^\s)]+)|<Photo\b[^>]*\bsrc=["']([^"']+)["']/.exec(content);
-  return match ? match[1] || match[2] : undefined;
+  const src = match ? match[1] || match[2] : undefined;
+  // Only local photos can be read by the build-time Open Graph image generator.
+  return src?.startsWith("/") && !src.startsWith("//") ? src : undefined;
 }
 
 export function getEssay(slug: string): { meta: EssayMeta; content: string } {

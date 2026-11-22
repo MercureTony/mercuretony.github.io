@@ -16,6 +16,12 @@ interface PhotoProps {
 }
 
 function PhotoImage({ src, alt = "", sizes }: { src: string; alt?: string; sizes: string }) {
+  if (/^https?:\/\//.test(src)) {
+    // Remote sources do not have a local file header to inspect at build time.
+    // Render them without Next image optimization or a local filesystem read.
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} alt={alt} loading="lazy" className="h-auto w-full rounded-sm bg-neutral-900" />;
+  }
   const { width, height } = photoSize(src);
   return (
     <Image
