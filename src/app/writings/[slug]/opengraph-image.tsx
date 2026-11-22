@@ -79,16 +79,30 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const line = [meta.place, when, `${meta.readingTime} min read`].filter(Boolean).join("  ·  ");
   const titleSize = meta.title.length > 56 ? 60 : meta.title.length > 32 ? 70 : 84;
 
-  if (meta.shareImage && meta.shareImage.startsWith("/") && !meta.shareImage.startsWith("//")) {
-    // The essay's first figure, cropped to the card, with only a byline over
-    // it. Apps print the title and summary beside the image, so the photo
-    // carries no title of its own. The crop keeps the photo's top, where a
-    // slide or a horizon tends to sit; the byline sits on a shade at the foot.
-    const photo = await sharp(path.join(process.cwd(), "public", meta.shareImage))
-      .resize(1200, 630, { fit: "cover", position: "top" })
-      .jpeg({ quality: 90 })
-      .toBuffer();
+  // A photo share card avoids repeating the article title and summary,
+  // which WhatsApp already renders below the preview image.
+  // Remote images are optional: if the provider is unavailable at build time,
+  // the existing typography share card remains a safe fallback.
+  let photo: Buffer | undefined;
+  if (meta.shareImage) {
+    try {
+      const source = /^https?:\/\//.test(meta.shareImage)
+        ? Buffer.from(await (async () => {
+            const response = await fetch(meta.shareImage!, { signal: AbortSignal.timeout(8000) });
+            if (!response.ok) throw new Error(`Image HTTP ${response.status}`);
+            return response.arrayBuffer();
+          })())
+        : fs.readFileSync(path.join(process.cwd(), "public", meta.shareImage));
+      photo = await sharp(source)
+        .resize(1200, 630, { fit: "cover", position: "top" })
+        .jpeg({ quality: 90 })
+        .toBuffer();
+    } catch (error) {
+      console.warn(`Share photo unavailable for ${slug}: ${String(error)}`);
+    }
+  }
 
+  if (photo) {
     return toJpeg(new ImageResponse(
       (
         <div style={{ display: "flex", width: "100%", height: "100%", position: "relative", background: "#171717" }}>
