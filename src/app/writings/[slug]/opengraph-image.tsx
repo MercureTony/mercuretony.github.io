@@ -79,7 +79,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const line = [meta.place, when, `${meta.readingTime} min read`].filter(Boolean).join("  ·  ");
   const titleSize = meta.title.length > 56 ? 60 : meta.title.length > 32 ? 70 : 84;
 
-  if (meta.shareImage) {
+  if (meta.shareImage && meta.shareImage.startsWith("/") && !meta.shareImage.startsWith("//")) {
     // The essay's first figure, cropped to the card, with only a byline over
     // it. Apps print the title and summary beside the image, so the photo
     // carries no title of its own. The crop keeps the photo's top, where a
